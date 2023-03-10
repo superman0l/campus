@@ -1,0 +1,45 @@
+class position
+{
+public:
+    int id;
+    ~position(){};
+};
+class path
+{
+private:
+    std::vector<position> road;
+public:
+    path(std::initializer_list<position> h1) : road(h1.begin(), h1.end()){};
+    void push_back(const position &a)
+    {
+        road.push_back(a);
+    }
+    void clear()
+    {
+        road.clear();
+    }
+    const std::string output();
+};
+class map
+{
+private:
+
+public:
+    /// @brief 使用文件数据载入地图
+    /// @param fname 文件名
+    map(const std::string fname);
+    
+    /// @brief 返回从begin到end的导航路径
+    /// @param begin 出发点
+    /// @param end 目标终点
+    /// @return 导航路径
+    path route (position begin,position end);
+
+    /// @brief 返回从begin途径need中所有点后,再次回到begin的导航路径
+    /// @param begin 出发点和结束点
+    /// @param need 需要途径的点集
+    /// @return 导航路径
+    path route (position begin,std::initializer_list<position>need);
+    
+
+};
