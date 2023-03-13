@@ -1,0 +1,21 @@
+{
+    "class": "2021211311",
+    "courses": [
+        {
+            "alarm": {
+                "hour": 7,
+                "minute": 30,
+                "periodicity": 3,
+                "weekday": 3
+            },
+            "destination_id": 18,
+            "endtime": 9,
+            "endweek": 8,
+            "name": "数据结构课程设计",
+            "starttime": 8,
+            "startweek": 3,
+            "teacher": "杨震",
+            "weekday": 3
+        }
+    ]
+}

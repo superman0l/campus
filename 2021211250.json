@@ -1,0 +1,48 @@
+{
+    "activities": [
+        {
+            "alarm": {
+                "day": 7,
+                "hour": 14,
+                "minute": 50,
+                "periodicity": 2
+            },
+            "day": 7,
+            "destination_id": 15,
+            "name": "班会",
+            "tag": 3,
+            "time": 15
+        }
+    ],
+    "affairs": [
+        {
+            "alarm": {
+                "day": 7,
+                "hour": 15,
+                "minute": 50,
+                "periodicity": 2
+            },
+            "day": 7,
+            "destination_id": 4,
+            "name": "去物美买东西",
+            "tag": 1,
+            "time": 16
+        },
+        {
+            "alarm": {
+                "day": 7,
+                "hour": 18,
+                "minute": 50,
+                "periodicity": 1
+            },
+            "day": 7,
+            "destination_id": 8,
+            "name": "洗澡",
+            "tag": 2,
+            "time": 19
+        }
+    ],
+    "class": "2021211311",
+    "id": "2021211250",
+    "name": "张三"
+}
