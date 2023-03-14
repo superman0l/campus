@@ -61,25 +61,34 @@ public:
 
     /// @brief 管理员添加课程功能
     /// @param cr 要添加的课程
-    /// @param id 学生学号
+    /// @param id 班级编号
     /// @return true表示添加成功,false表示添加失败
     bool add_course(const course&cr,int64_t id);
 
     /// @brief 管理员删除课程功能
     /// @param cr 要删除的课程(该参数仅供索引使用)
-    /// @param id 学生学号
+    /// @param id 班级编号
     /// @return true表示删除成功,false表示删除失败
     bool erase_course(const course&cr,int64_t id);
 
     /// @brief 管理员修改课程功能
     /// @param old 要修改的旧的课程(该参数仅供索引使用)
     /// @param now 新课程
-    /// @param id 学生学号
+    /// @param id 班级编号
     /// @return true表示修改成功,false表示修改失败
     bool update_course(const course&old,const course&now,int64_t id);
 
     
 };
 const User *login();
-void sign_up();
-class Group;
+bool sign_up();
+class Group{
+    public:
+        std::vector<User> ug;
+        int64_t id;
+
+    /// @brief 初始化班级人员
+    /// @param fname 存储文件名称
+    /// @param id 班级编号
+    Group(std::string fname,int64_t id):id(id){};
+}

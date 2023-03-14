@@ -19,9 +19,9 @@ public:
     virtual ~affair(){};
 
     /// @brief 将活动信息写入文件
-    /// @param fname 文件名 
+    /// @param fname 文件名
     /// @return 返回是否成功写入
-    virtual bool write_in(const std::string fname)=0;
+    virtual bool write_in(const std::string fname) = 0;
 };
 class course : public affair
 {
@@ -33,20 +33,14 @@ public:
 };
 class activity : public affair
 {
-public:
-    activity(position place, int start_time, int end_time, int day, int periodicity = 0)
-        : affair(place, start_time, end_time, day, periodicity){};
-    virtual ~activity(){};
-    virtual bool write_in(const std::string fname);
-};
-class tmpaffair : public activity
-{
 private:
     int tag;
+
 public:
-    tmpaffair(int tag,position place, int start_time, int end_time, int day, int periodicity = 0)
-        : activity(place, start_time, end_time, day, periodicity),tag(tag){};
-        
+    activity(int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
+        : affair(place, start_time, end_time, day, periodicity), tag(tag){};
+    virtual ~activity(){};
+
     /// @brief 设置tag属性
     /// @param st 要添加的tag
     void set_tag(int st);
@@ -54,5 +48,13 @@ public:
     /// @brief 消除tag属性
     /// @param et 要消除的tag
     void erase_tag(int et);
+    virtual bool write_in(const std::string fname);
+};
+class tmpaffair : public activity
+{
+public:
+    tmpaffair(int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
+        : activity(tag, place, start_time, end_time, day, periodicity){};
     virtual ~tmpaffair(){};
+    
 };
