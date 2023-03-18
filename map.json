@@ -1,0 +1,43 @@
+{
+  "PlaceNumber" : "6",
+  "Places": [
+    {
+      "PlaceName" : "学5公寓",
+      "PlaceCode": "1",
+      "Position" : ["18", "19"],
+      "NearestNeighbor" : [
+        {
+          "PlaceCode" : "2",
+          "Distance": "10"
+        }
+        {
+          "PlaceCode": "3",
+          "Distance": "10"
+        }
+        {
+          "PlaceCode": "4",
+          "Distance": "10"
+        }
+      ]
+    }
+    {
+      "PlaceName" : "留学生公寓",
+      "PlaceCode": "2",
+      "Position" : ["18", "25"],
+      "NearestNeighbor" : [
+        {
+          "PlaceCode" : "1",
+          "Distance": "10"
+        }
+        {
+          "PlaceCode": "5",
+          "Distance": "10"
+        }
+        {
+          "PlaceCode": "6",
+          "Distance": "10"
+        }
+      ]
+    }
+  ]
+}
