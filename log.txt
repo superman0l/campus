@@ -1,0 +1,6 @@
+course course_name course_time #课程
+activity activity_name activity_time #活动
+alarm name time #闹钟
+navigate id_1 id_2 id_3 id_4 navigate_time#导航
+set course/activity set_time set_user_id #设置
+query query_string query_time query_user_id #查询
