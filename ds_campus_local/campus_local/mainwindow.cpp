@@ -18,8 +18,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Register_clicked()
 {
-    if(!sign_up(ui->rgs_id->toPlainText(),ui->rgs_pswd->toPlainText())){
+    if(!sign_up(ui->rgs_id->toPlainText(),ui->rgs_pswd->toPlainText(),ui->rgs_name->toPlainText(),ui->rgs_class->toPlainText())){
         qDebug()<<"sign failed.";
     }
+}
+
+
+void MainWindow::on_login_clicked()
+{
+    const User* stu=login(ui->login_id->toPlainText(),ui->login_pswd->toPlainText());
+    qDebug()<<QString::fromStdString(stu->get_name());
 }
 

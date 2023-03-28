@@ -16,11 +16,11 @@ private:
 public:
     User(const std::string &username, int64_t id) : name(username), id(id) {}
     virtual ~User() {}
-    const std::string get_name()
+    const std::string get_name() const
     {
         return name;
     }
-    int64_t get_id()
+    int64_t get_id() const
     {
         return id;
     }
@@ -89,13 +89,47 @@ public:
 
 
 };
-const User *login();
-bool sign_up(QString rgs_id,QString rgs_pswd){
+/// @brief 账号登录功能
+/// @param user_id  登录使用id
+/// @param user_pswd 登录使用密码
+/// @return 若登录成功返回const User*,若登录失败返回NULL
+const User *login(QString user_id,QString user_pswd){
+    QJsonObject rootObject;
+    if(!open_json("id_pswd.json",rootObject))
+        return NULL;
+    QJsonValue pswdValue = rootObject.value(user_id);
+    if(pswdValue.toString()!=user_pswd){
+        qDebug()<<"id or password error, please retry.";
+        return NULL;
+    }
+    QJsonObject rootObject2;
+    if(!open_json(user_id+".json",rootObject2)){
+        qDebug()<<"account data exception, read failed.";
+        return NULL;
+    }
+    QJsonValue nameValue = rootObject2.value("name");
+    User* logged =new User(nameValue.toString().toStdString() ,user_id.toLongLong());
+    return logged;
+};
+/// @brief 账号注册功能
+/// @param rgs_id 注册者使用的学号/id
+/// @param rgs_pswd 注册者使用的密码
+/// @param rgs_name 注册者姓名
+/// @param rgs_class 注册者所在班级
+/// @return true表示注册成功,false表示注册失败
+bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
         return false;
     rootObject.insert(rgs_id,rgs_pswd);
-    if(!write_json("id_pswd.json",rootObject))
+    if(!write_json("id_pswd.json",rootObject))//将账号密码数据写入json
+        return false;
+
+    QJsonObject rootObject1;
+    rootObject1.insert("name",rgs_name);
+    rootObject1.insert("id",rgs_id);
+    rootObject1.insert("class",rgs_class);
+    if(!write_json(rgs_id+".json",rootObject1))//将个人相关数据写入json
         return false;
     return true;
 };

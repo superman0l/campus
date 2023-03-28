@@ -27,6 +27,11 @@ public:
     QTextEdit *rgs_id;
     QTextEdit *rgs_pswd;
     QPushButton *Register;
+    QTextEdit *rgs_name;
+    QTextEdit *rgs_class;
+    QTextEdit *login_id;
+    QTextEdit *login_pswd;
+    QPushButton *login;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -46,6 +51,21 @@ public:
         Register = new QPushButton(centralwidget);
         Register->setObjectName("Register");
         Register->setGeometry(QRect(240, 120, 71, 21));
+        rgs_name = new QTextEdit(centralwidget);
+        rgs_name->setObjectName("rgs_name");
+        rgs_name->setGeometry(QRect(70, 190, 131, 31));
+        rgs_class = new QTextEdit(centralwidget);
+        rgs_class->setObjectName("rgs_class");
+        rgs_class->setGeometry(QRect(70, 240, 131, 31));
+        login_id = new QTextEdit(centralwidget);
+        login_id->setObjectName("login_id");
+        login_id->setGeometry(QRect(380, 90, 111, 31));
+        login_pswd = new QTextEdit(centralwidget);
+        login_pswd->setObjectName("login_pswd");
+        login_pswd->setGeometry(QRect(380, 150, 111, 31));
+        login = new QPushButton(centralwidget);
+        login->setObjectName("login");
+        login->setGeometry(QRect(520, 120, 71, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -64,6 +84,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         Register->setText(QCoreApplication::translate("MainWindow", "Register", nullptr));
+        login->setText(QCoreApplication::translate("MainWindow", "login", nullptr));
     } // retranslateUi
 
 };

@@ -9,6 +9,10 @@
 #include<QJsonDocument>
 #include <QJsonParseError>
 
+/// @brief 打开json文件并读取为QJsonObject
+/// @param jsonname 要打开的json文件名
+/// @param objectname 要使用的QJsonObject名字
+/// @return true表示读取成功,false表示读取失败
 bool open_json(QString jsonname,QJsonObject& objectname){
     QFile file("../Json/"+jsonname);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
@@ -18,9 +22,8 @@ bool open_json(QString jsonname,QJsonObject& objectname){
 
     // 读取文件
     QTextStream stream(&file);
-    stream.setEncoding(QStringConverter::Utf8);		// 设置读取编码是UTF8
+    stream.setEncoding(QStringConverter::Utf8);
     QString str = stream.readAll();
-
     file.close();
 
     // JSON解析期间报告错误。
@@ -35,6 +38,10 @@ bool open_json(QString jsonname,QJsonObject& objectname){
     return true;
 }
 
+/// @brief 将QJsonObject写入json文件中
+/// @param jsonname 要写入的json文件名
+/// @param objectname 要使用的QJsonObject名字
+/// @return true表示写入成功,false表示写入失败
 bool write_json(QString jsonname,QJsonObject objectname){
     QJsonDocument doc;
     doc.setObject(objectname);
