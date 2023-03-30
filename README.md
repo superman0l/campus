@@ -42,3 +42,13 @@
 
 调试->开始调试
 
+### 参考资料
+
+Qt学习:
+
+- https://wiki.qt.io/Qt_for_Beginners (基本概念)
+- https://wiki.qt.io/Category:HowTo (官方教程)
+- https://www.cnblogs.com/GeophysicsWorker/p/16163965.html (Qt多线程)
+- https://doc.qt.io/qt-6/reference-overview.html (Qt reference)
+- https://blog.csdn.net/cpp_learner/article/details/118421096 (Qt Json库)
+
