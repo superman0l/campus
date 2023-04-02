@@ -58,10 +58,13 @@ class map
 private:
     /// @brief mp[i][j]表示编号为i的点,其第j条边所连端点和权值
     std::vector<std::vector<std::pair<int, int>>> mp;
+
     /// @brief 0~tot-1为现有position编号
     int tot;
+
     /// @brief idtopos idtopos[i]返回编号为i的position
     std::vector<position>idtopos;
+
     /// @brief dijkstra
     /// @param begin 表示起点
     /// @return 一个vector表示起点到各地点的最短距离

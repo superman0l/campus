@@ -2,6 +2,9 @@
 #define TIMER_H
 #include<QDateTime>
 #include<ctime>
+///
+/// @brief The timer class 继承QDateTime
+/// @brief QDateTIme相关: https://doc.qt.io/qt-6/qdatetime.html
 class timer:public QDateTime
 {
 private:
@@ -51,7 +54,7 @@ void timer::update()
         return;
     }
     clock_t now=clock();
-    *this=timer(addSecs(1LL*ratio*(now-last)/CLOCKS_PER_SEC),now,ratio,is_paused);
+    *this=timer(addSecs(1L*ratio*(now-last)/CLOCKS_PER_SEC),now,ratio,is_paused);
 }
 void timer::output()
 {
