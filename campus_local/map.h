@@ -9,7 +9,7 @@ public:
     int id;
     QString name;
     double x,y;
-    position():id(0),name(""),x(0.0),y(0.0){};
+    position():id(-1),name(""),x(0.0),y(0.0){};
     position(int id, QString name) : id(id), name(name){};
     ~position(){};
 };
@@ -24,18 +24,18 @@ public:
     {
         return road.size();
     }
-    position operator [](int idx) const
+    position operator [](unsigned int idx) const
     {
-        if(idx>=size()||idx<0)
+        if(idx>=size())
         {
-            qDebug()<<"class path access error!";
+            qDebug()<<"class path access error!\n";
             return position();
         }else
         {
             return road[idx];
         }
     }
-    position& operator [] (int idx)
+    position& operator [] (unsigned int idx)
     {
         return road[idx];
     }
@@ -56,25 +56,20 @@ public:
 class map
 {
 private:
-    ///
     /// @brief mp[i][j]表示编号为i的点,其第j条边所连端点和权值
-    ///
     std::vector<std::vector<std::pair<int, int>>> mp;
-    ///
     /// @brief 0~tot-1为现有position编号
-    ///
     int tot;
-    ///
     /// @brief idtopos idtopos[i]返回编号为i的position
-    ///
     std::vector<position>idtopos;
+    /// @brief dijkstra
+    /// @param begin 表示起点
+    /// @return 一个vector表示起点到各地点的最短距离
+    std::vector<int> dijkstra(position begin);
 public:
     /// @brief 使用文件数据载入地图
     /// @param fname 文件名
     map(const QString fname);
-
-    std::vector<int> dijkstra(position begin);
-
 
     /// @brief 返回从begin到end的导航路径
     /// @param begin 出发点
@@ -91,12 +86,18 @@ public:
     /// @brief 返回一个vector,vector存储该点的邻点邻边
     /// @param  now 表示该点的编号
     /// @return vector中元素的first存储的是邻点编号,second存储的是边的长度
-    std::vector<std::pair<int,int>>& operator [](unsigned int now);
+    std::vector<std::pair<int,int>>& operator [](unsigned int now)
+    {
+        return mp[now];
+    }
 
     /// @brief 返回一个vector,vector存储该点的邻点邻边
     /// @param now 表示该地点
     /// @return vector中元素的first存储的是邻点编号,second存储的是边的长度
-    std::vector<std::pair<int,int>>& operator [](position now);
+    std::vector<std::pair<int,int>>& operator [](position now)
+    {
+        return mp[now.id];
+    }
 };
 std::vector<int> map::dijkstra(position begin)
 {

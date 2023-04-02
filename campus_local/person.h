@@ -5,6 +5,7 @@
 #include "affair.h"
 #include<QFile>
 #include<QJsonObject>
+#include<QString>
 #include"basic.h"
 
 class User
@@ -35,7 +36,7 @@ public:
     /// @brief 课程查询功能
     /// @param s 课程名
     /// @return 查询结果
-    const std::vector<course> query(const std::string s);
+    const std::vector<course> query(const QString& s);
 
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间
@@ -141,7 +142,7 @@ class Group{
     /// @brief 初始化班级人员
     /// @param fname 存储文件名称
     /// @param id 班级编号
-    Group(std::string fname,int64_t id):id(id){};
+    Group(QString fname,int64_t id):id(id){};
 };
 
 #endif // PERSON_H
