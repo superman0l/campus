@@ -49,11 +49,17 @@ public:
 
     /// @brief 设置tag属性
     /// @param st 要添加的tag
-    void set_tag(int st);
+    void set_tag(int st)
+    {
+        tag|=st;
+    }
 
     /// @brief 消除tag属性
     /// @param et 要消除的tag
-    void erase_tag(int et);
+    void erase_tag(int et)
+    {
+        tag&=(~et);
+    }
     virtual bool write_in(const std::string fname);
 };
 class tmpaffair : public activity
