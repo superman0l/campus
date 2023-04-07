@@ -13,105 +13,81 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QTextEdit" name="rgs_id">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>90</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="rgs_pswd">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>140</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Register">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>120</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Register</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="rgs_name">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>190</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="rgs_class">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>240</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="login_id">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>90</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="login_pswd">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>150</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="login">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>120</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>login</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="action_w"/>
+   </widget>
+   <widget class="QMenu" name="menu_O">
+    <property name="title">
+     <string>操作(&amp;O)</string>
+    </property>
+    <addaction name="action_X"/>
+   </widget>
+   <widget class="QMenu" name="menu_U">
+    <property name="title">
+     <string>用户(&amp;U)</string>
+    </property>
+    <addaction name="action_S"/>
+    <addaction name="action_E"/>
+   </widget>
+   <addaction name="menu_U"/>
+   <addaction name="menu_O"/>
+   <addaction name="menu_H"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_X">
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+   <property name="toolTip">
+    <string>退出(&amp;X)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="action_S">
+   <property name="text">
+    <string>切换账户(&amp;S)</string>
+   </property>
+   <property name="toolTip">
+    <string>Switch(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="action_E">
+   <property name="text">
+    <string>注销(&amp;O)</string>
+   </property>
+   <property name="toolTip">
+    <string>LogOut(&amp;O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="action_w">
+   <property name="text">
+    <string>用户说明(&amp;W)</string>
+   </property>
+   <property name="toolTip">
+    <string>HelpDocument(&amp;W)</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
