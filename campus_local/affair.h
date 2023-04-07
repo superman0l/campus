@@ -31,6 +31,8 @@ public:
 };
 class course : public affair
 {
+private:
+    //int startweek, endweek;
 public:
     course(position place, int start_time, int end_time, int day, int periodicity = 0)
         : affair(place, start_time, end_time, day, periodicity){};

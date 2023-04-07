@@ -100,6 +100,19 @@
      <string>login</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="isAdmin">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>170</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>isAdmin</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -3,6 +3,9 @@
 #include<bits/stdc++.h>
 #include<QString>
 #include<QDebug>
+#include<QJsonObject>
+#include<QJsonArray>
+#include "basic.h"
 class position
 {
 public:
@@ -10,6 +13,9 @@ public:
     QString name;
     double x,y;
     position():id(-1),name(""),x(0.0),y(0.0){};
+    position(int id): id(id){
+
+    };
     position(int id, QString name) : id(id), name(name){};
     ~position(){};
 };
@@ -65,14 +71,49 @@ private:
     /// @brief idtopos idtopos[i]返回编号为i的position
     std::vector<position>idtopos;
 
+    /// @brief idtopos idtoname[i]返回编号为i的位置名称
+    std::vector<QString>idtoname;
+
     /// @brief dijkstra
     /// @param begin 表示起点
     /// @return 一个vector表示起点到各地点的最短距离
     std::vector<int> dijkstra(position begin);
 public:
+
     /// @brief 使用文件数据载入地图
     /// @param fname 文件名
-    map(const QString fname);
+    map(const QString fname){
+        QJsonObject mapobject;
+        open_json(fname,mapobject);
+        QJsonValue totValue = mapobject.value("PlaceNumber");
+        tot=totValue.toInt();
+        mp.resize(tot);
+        idtopos.resize(tot);
+        idtoname.resize(tot);
+        QJsonValue placeValue=mapobject.value("Places");
+        if (placeValue.type() == QJsonValue::Array) {
+            QJsonArray placeArray = placeValue.toArray();
+            for(int i=0;i<placeArray.size();i++){
+                QJsonValue place = placeArray.at(i);
+                QJsonObject placeObject = place.toObject();
+                QJsonValue nameValue = placeObject.value("PlaceName");
+                QJsonValue idValue = placeObject.value("PlaceCode");
+                idtoname[idValue.toInt()]=nameValue.toString();
+                idtopos[idValue.toInt()]=position(idValue.toInt(),nameValue.toString());
+
+                QJsonValue edgesValue = placeObject.value("NearestNeighbor");
+                QJsonArray edgesArray = edgesValue.toArray();
+                for(int j=0;j<edgesArray.size();j++){
+                    QJsonValue edge = edgesArray.at(j);
+                    QJsonObject edgeObject = edge.toObject();
+                    QJsonValue desidValue = edgeObject.value("PlaceCode");
+                    QJsonValue weightValue = edgeObject.value("Distance");
+
+                    mp[i].push_back(std::pair(desidValue.toInt(),weightValue.toInt()));
+                }
+            }
+        }
+    };
 
     /// @brief 返回从begin到end的导航路径
     /// @param begin 出发点

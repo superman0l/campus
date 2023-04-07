@@ -23,7 +23,6 @@ set(PROJECT_SOURCES
         map.h
         person.h
         basic.h
-        timer.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

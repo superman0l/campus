@@ -1,10 +1,10 @@
 #ifndef TIMER_H
 #define TIMER_H
-#include<QDateTime>
+#include<QDatetime>
 #include<ctime>
 ///
-/// @brief The timer class 继承QDateTime
-/// @brief QDateTIme相关: https://doc.qt.io/qt-6/qdatetime.html
+/// @brief The timer class 继承QDatetime
+/// @brief QDatetime相关: https://doc.qt.io/qt-6/qdatetime.html
 class timer:public QDateTime
 {
 private:

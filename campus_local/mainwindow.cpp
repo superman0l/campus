@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "person.h"
+//#include "map.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,7 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Register_clicked()
 {
-    if(!sign_up(ui->rgs_id->toPlainText(),ui->rgs_pswd->toPlainText(),ui->rgs_name->toPlainText(),ui->rgs_class->toPlainText())){
+    if(!sign_up(ui->rgs_id->toPlainText(),ui->rgs_pswd->toPlainText(),ui->rgs_name->toPlainText(),ui->rgs_class->toPlainText(),ui->isAdmin->isChecked())){
         qDebug()<<"sign failed.";
     }
 }

@@ -5,8 +5,11 @@
 #include "affair.h"
 #include<QFile>
 #include<QJsonObject>
+#include<QJsonValue>
+#include<QJsonArray>
 #include<QString>
 #include"basic.h"
+#include"map.h"
 
 class User
 {
@@ -36,7 +39,37 @@ public:
     /// @brief 课程查询功能
     /// @param s 课程名
     /// @return 查询结果
-    const std::vector<course> query(const QString& s);
+    const std::vector<course> query(const QString& s, map benbu){
+        std::vector<course> result;
+        QJsonObject rootObject1;
+        QString filepath = QString::number(id)+".json";
+        if(!open_json(filepath,rootObject1))
+            return std::vector<course>();
+        QJsonValue classValue = rootObject1.value("class");
+        QJsonObject rootObject2;
+        if(!open_json(classValue.toString()+"_course.json",rootObject2))
+            return std::vector<course>();
+        QJsonValue arrayValue = rootObject2.value("class");
+        if (arrayValue.type() == QJsonValue::Array) {
+            // 转换为QJsonArray类型
+            QJsonArray courseArray = arrayValue.toArray();
+
+            for (int i = 0; i < courseArray.size(); i++) {
+                QJsonValue course = courseArray.at(i);
+                if(course.type()==QJsonValue::Object){
+                    QJsonObject courseObject = course.toObject();
+                    QJsonValue nameValue = courseObject.value("name");
+                    QString coursename = nameValue.toString();
+                    if(coursename.contains(s,Qt::CaseSensitive)){
+                        //result.push_back(course());
+                        qDebug() << "包含了";
+                    }
+                }
+
+            }
+        }
+
+    };
 
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间
@@ -118,7 +151,7 @@ const User *login(QString user_id,QString user_pswd){
 /// @param rgs_name 注册者姓名
 /// @param rgs_class 注册者所在班级
 /// @return true表示注册成功,false表示注册失败
-bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
+bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class, bool isAdmin){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
         return false;
@@ -130,6 +163,7 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
     rootObject1.insert("name",rgs_name);
     rootObject1.insert("id",rgs_id);
     rootObject1.insert("class",rgs_class);
+    rootObject1.insert("isAdmin",isAdmin);
     if(!write_json(rgs_id+".json",rootObject1))//将个人相关数据写入json
         return false;
     return true;
