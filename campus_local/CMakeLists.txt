@@ -17,12 +17,15 @@ include_directories(../)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
+        map.cpp
         mainwindow.h
         mainwindow.ui
         affair.h
         map.h
         person.h
         basic.h
+        basic.cpp
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
