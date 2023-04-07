@@ -15,15 +15,21 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 include_directories(../)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
         affair.h
         map.h
         person.h
         basic.h
         timer.h
+        main.cpp
+        login.cpp
+        login.h
+        login.ui
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+        regste.h
+        regste.cpp
+        regste.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
