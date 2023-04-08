@@ -1,0 +1,581 @@
+{
+  "PlaceNumber" : "6",
+  "Places": [
+    {
+      "PlaceName" : "北门",
+      "PlaceCode": "0",
+      "Position" : ["11", "0"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "北邮科技酒店",
+      "PlaceCode": "1",
+      "Position" : ["3", "0"],
+      "Type": "0",
+      "NearestNeighbor" : [
+       
+      ]
+    },
+    {
+      "PlaceName" : "学11公寓",
+      "PlaceCode": "2",
+      "Position" : ["7", "2"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学10公寓西门",
+      "PlaceCode": "3",
+      "Position" : ["7", "3"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学10公寓东门",
+      "PlaceCode": "4",
+      "Position" : ["11", "3"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学10公寓南门",
+      "PlaceCode": "5",
+      "Position" : ["9", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "经管楼",
+      "PlaceCode": "6",
+      "Position" : ["11", "3"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学6公寓",
+      "PlaceCode": "7",
+      "Position" : ["19", "3"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "科研大楼",
+      "PlaceCode": "8",
+      "Position" : ["21", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教师公寓",
+      "PlaceCode": "9",
+      "Position" : ["26", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "东北门",
+      "PlaceCode": "10",
+      "Position" : ["27", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学9公寓",
+      "PlaceCode": "11",
+      "Position" : ["5", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学生活动中心西门",
+      "PlaceCode": "12",
+      "Position" : ["11", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学生活动中心南门",
+      "PlaceCode": "13",
+      "Position" : ["13", "9"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "澡堂",
+      "PlaceCode": "14",
+      "Position" : ["15", "9"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "水房",
+      "PlaceCode": "15",
+      "Position" : ["17", "9"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "留学生公寓",
+      "PlaceCode": "16",
+      "Position" : ["7", "6"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "综合食堂西门",
+      "PlaceCode": "17",
+      "Position" : ["7", "7.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "综合食堂东门",
+      "PlaceCode": "18",
+      "Position" : ["11", "7.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "青年公寓",
+      "PlaceCode": "19",
+      "Position" : ["3", "8"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学5公寓",
+      "PlaceCode": "20",
+      "Position" : ["5", "12"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学8公寓",
+      "PlaceCode": "21",
+      "Position" : ["9", "12"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "超市",
+      "PlaceCode": "22",
+      "Position" : ["15", "9"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "矮子食堂",
+      "PlaceCode": "23",
+      "Position" : ["19", "12"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学生食堂",
+      "PlaceCode": "24",
+      "Position" : ["19", "15"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "保卫处",
+      "PlaceCode": "25",
+      "Position" : ["26", "15"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学13公寓",
+      "PlaceCode": "26",
+      "Position" : ["3", "15"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学3公寓",
+      "PlaceCode": "27",
+      "Position" : ["5", "15"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学4公寓",
+      "PlaceCode": "28",
+      "Position" : ["9", "15"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学1公寓",
+      "PlaceCode": "29",
+      "Position" : ["5", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学2公寓",
+      "PlaceCode": "30",
+      "Position" : ["9", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "图书馆",
+      "PlaceCode": "31",
+      "Position" : ["11", "19.5"],
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "篮球场",
+      "PlaceCode": "32",
+      "Position" : ["19", "23"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "网球场/排球场",
+      "PlaceCode": "33",
+      "Position" : ["22.5", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "学29公寓",
+      "PlaceCode": "34",
+      "Position" : ["26", "18"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "行政办公楼",
+      "PlaceCode": "35",
+      "Position" : ["15", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "体育馆北门",
+      "PlaceCode": "36",
+      "Position" : ["25.5", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "体育馆西门",
+      "PlaceCode": "37",
+      "Position" : ["22.5", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "游泳馆北门",
+      "PlaceCode": "38",
+      "Position" : ["26.5", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "东门",
+      "PlaceCode": "39",
+      "Position" : ["27", "24"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "财务处/后勤楼",
+      "PlaceCode": "40",
+      "Position" : ["11", "25"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "邮局",
+      "PlaceCode": "41",
+      "Position" : ["3", "27.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教四楼西门",
+      "PlaceCode": "42",
+      "Position" : ["3", "28"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教四楼东门",
+      "PlaceCode": "43",
+      "Position" : ["11", "28"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教四楼南门",
+      "PlaceCode": "44",
+      "Position" : ["5", "33"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教一楼西门",
+      "PlaceCode": "45",
+      "Position" : ["11", "29"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教一楼东门",
+      "PlaceCode": "46",
+      "Position" : ["19", "29"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教一楼南门",
+      "PlaceCode": "47",
+      "Position" : ["15", "33"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "移动营业厅",
+      "PlaceCode": "48",
+      "Position" : ["3", "33"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "西门",
+      "PlaceCode": "49",
+      "Position" : ["0", "37.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "主楼",
+      "PlaceCode": "50",
+      "Position" : ["11", "37.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "科学会堂北门",
+      "PlaceCode": "51",
+      "Position" : ["20.75", "33"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "体育场",
+      "PlaceCode": "52",
+      "Position" : ["22.5", "42"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教三楼西门",
+      "PlaceCode": "53",
+      "Position" : ["3", "46.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教三楼东门",
+      "PlaceCode": "54",
+      "Position" : ["10.75", "46.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教三楼北门",
+      "PlaceCode": "55",
+      "Position" : ["7", "42"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教二楼西门",
+      "PlaceCode": "56",
+      "Position" : ["11.25", "46.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教二楼东门",
+      "PlaceCode": "57",
+      "Position" : ["19", "46.5"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "教二楼北门",
+      "PlaceCode": "58",
+      "Position" : ["15", "42"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "可信网络通信协同创新中心/信通楼",
+      "PlaceCode": "59",
+      "Position" : ["20.75", "51"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "中门",
+      "PlaceCode": "60",
+      "Position" : ["11", "51"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "校医院",
+      "PlaceCode": "61",
+      "Position" : ["9", "51"],
+      "Type": "0",
+      "NearestNeighbor" : [
+        
+      ]
+    },
+    {
+      "PlaceName" : "example留学生公寓",
+      "PlaceCode": "2",
+      "Position" : ["18", "25"],
+      "NearestNeighbor" : [
+        {
+          "PlaceCode" : "1",
+          "Distance": "10"
+        },
+        {
+          "PlaceCode": "5",
+          "Distance": "10"
+        },
+        {
+          "PlaceCode": "6",
+          "Distance": "10"
+        }
+      ]
+    }
+  ]
+}
