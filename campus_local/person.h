@@ -93,24 +93,37 @@ public:
 /// @brief 账号登录功能
 /// @param user_id  登录使用id
 /// @param user_pswd 登录使用密码
-/// @return 若登录成功返回const User*,若登录失败返回NULL
-const User *login(QString user_id,QString user_pswd){
+/// @param user 一个用户指针的引用，登录失败或登录上管理员用户为NULL值
+/// @param adm  一个管理员指针的引用，登录失败或登陆上普通用户为NULL值
+/// @return 若登录成功返回true,若登录失败返回flase
+bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
-        return NULL;
+        return false;
     QJsonValue pswdValue = rootObject.value(user_id);
     if(pswdValue.toString()!=user_pswd){
         qDebug()<<"id or password error, please retry.";
-        return NULL;
+        return false;
     }
     QJsonObject rootObject2;
     if(!open_json(user_id+".json",rootObject2)){
         qDebug()<<"account data exception, read failed.";
-        return NULL;
+        return false;
     }
     QJsonValue nameValue = rootObject2.value("name");
-    User* logged =new User(nameValue.toString().toStdString() ,user_id.toLongLong());
-    return logged;
+
+    if(rootObject2.value("isAdmin").toBool()){
+        //鉴定为管理员用户
+        adm = new Admin(nameValue.toString().toStdString(), user_id.toLongLong());
+        user = NULL;
+    }
+    else{
+        //鉴定为普通用户
+        user =new User(nameValue.toString().toStdString() ,user_id.toLongLong());
+        adm = NULL;
+    }
+
+    return true;
 };
 /// @brief 账号注册功能
 /// @param rgs_id 注册者使用的学号/id
@@ -129,6 +142,7 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
     QJsonObject rootObject1;
     rootObject1.insert("name",rgs_name);
     rootObject1.insert("id",rgs_id);
+    rootObject1.insert("isAdmin", false);
     rootObject1.insert("class",rgs_class);
     if(!write_json(rgs_id+".json",rootObject1))//将个人相关数据写入json
         return false;

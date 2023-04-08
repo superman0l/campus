@@ -30,6 +30,9 @@ set(PROJECT_SOURCES
         regste.h
         regste.cpp
         regste.ui
+        adminwindow.h
+        adminwindow.cpp
+        adminwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

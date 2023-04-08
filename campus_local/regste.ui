@@ -6,42 +6,133 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
-    <height>257</height>
+    <width>489</width>
+    <height>332</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QSplitter" name="splitter">
+  <widget class="QPushButton" name="RetToLogIn">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>0</y>
-     <width>321</width>
-     <height>241</height>
+     <x>250</x>
+     <y>280</y>
+     <width>131</width>
+     <height>31</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;请输入注册信息&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="id"/>
-   <widget class="QLineEdit" name="pswd"/>
-   <widget class="QLineEdit" name="Repswd"/>
-   <widget class="QLineEdit" name="name"/>
-   <widget class="QLineEdit" name="clas"/>
-   <widget class="QPushButton" name="RegesConfirm">
-    <property name="text">
-     <string>确认注册</string>
-    </property>
-   </widget>
+   <property name="text">
+    <string>返回登录</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pswd">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>120</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请输入仅有数字、大小写字母、下划线组成的至少6位密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>30</y>
+     <width>189</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;请输入注册信息&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Repswd">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>160</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;再次输入密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="id">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>80</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请输入10位由纯数字组成的学号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="name">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>200</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请输入不超过18位的用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RegesConfirm">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>280</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="text">
+    <string>确认注册</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="clas">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>240</y>
+     <width>281</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请输入由10位纯数字组成的班级号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>id</tabstop>
+  <tabstop>pswd</tabstop>
+  <tabstop>Repswd</tabstop>
+  <tabstop>name</tabstop>
+  <tabstop>clas</tabstop>
+  <tabstop>RegesConfirm</tabstop>
+  <tabstop>RetToLogIn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
