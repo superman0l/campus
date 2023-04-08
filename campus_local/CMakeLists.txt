@@ -17,8 +17,11 @@ include_directories(../)
 set(PROJECT_SOURCES
         affair.h
         map.h
+        map.cpp
         person.h
+        person.cpp
         basic.h
+        basic.cpp
         timer.h
         main.cpp
         login.cpp

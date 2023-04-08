@@ -4,7 +4,7 @@
 #include<ctime>
 ///
 /// @brief The timer class 继承QDateTime
-/// @brief QDateTIme相关: https://doc.qt.io/qt-6/qdatetime.html
+/// @brief QDateTime相关: https://doc.qt.io/qt-6/qdatetime.html
 class timer:public QDateTime
 {
 private:
