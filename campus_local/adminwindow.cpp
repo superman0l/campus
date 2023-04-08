@@ -1,7 +1,8 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
 #include "QCloseEvent"
-//#include "person.h"//多重定义问题还没解决
+#include "person.h"//多重定义问题还没解决
+//已添加person.cpp
 #include <QMessageBox>
 
 AdminWindow::AdminWindow(QWidget *parent) :

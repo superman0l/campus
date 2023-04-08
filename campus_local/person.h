@@ -28,7 +28,7 @@ public:
 
     /// @brief 判断当前用户是否是管理员
     /// @return true表示当前用户是管理员,false则相反
-    virtual bool is_admin()
+    virtual bool is_admin() const
     {
         return false;
     }
@@ -36,24 +36,24 @@ public:
     /// @brief 课程查询功能
     /// @param s 课程名
     /// @return 查询结果
-    const std::vector<course> query(const QString& s);
+    const std::vector<course> query(const QString& s)const;
 
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间
     /// @param end_time 查询的最终时间
     /// @param ntag 查询的tag
     /// @return 查询结果
-    const std::vector<tmpaffair> query(int begin_time,int end_time,int ntag=0);
+    const std::vector<tmpaffair> query(int begin_time,int end_time,int ntag=0)const;
 
     /// @brief 添加活动,临时事务功能
     /// @param a 添加的活动或临时事务
     /// @return true表示活动添加成功,false表示由于冲突活动添加失败
-    bool add_activity(const activity &a);
+    bool add_activity(const activity &a)const;
 
     /// @brief 添加闹钟功能
     /// @param a 为a事务添加闹钟
     /// @param periodicity 闹钟的周期
-    void add_clock(const affair &a, int periodicity=0);
+    void add_clock(const affair &a, int periodicity=0)const;
 
 };
 class Admin : public User
@@ -64,7 +64,7 @@ public:
 
     /// @brief 判断当前用户是否是管理员
     /// @return true表示当前用户是管理员,false表示添加失败
-    virtual bool is_admin() override
+    virtual bool is_admin()const override
     {
         return true;
     }
@@ -73,20 +73,20 @@ public:
     /// @param cr 要添加的课程
     /// @param id 班级编号
     /// @return true表示添加成功,false表示添加失败
-    bool add_course(const course&cr,int64_t id);
+    bool add_course(const course&cr,int64_t id)const;
 
     /// @brief 管理员删除课程功能
     /// @param cr 要删除的课程(该参数仅供索引使用)
     /// @param id 班级编号
     /// @return true表示删除成功,false表示删除失败
-    bool erase_course(const course&cr,int64_t id);
+    bool erase_course(const course&cr,int64_t id)const;
 
     /// @brief 管理员修改课程功能
     /// @param old 要修改的旧的课程(该参数仅供索引使用)
     /// @param now 新课程
     /// @param id 班级编号
     /// @return true表示修改成功,false表示修改失败
-    bool update_course(const course&old,const course&now,int64_t id);
+    bool update_course(const course&old,const course&now,int64_t id)const;
 
 
 };
