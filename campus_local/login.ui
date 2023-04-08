@@ -6,44 +6,85 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>399</width>
-    <height>274</height>
+    <width>522</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QSplitter" name="splitter">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>341</width>
-     <height>211</height>
+     <x>210</x>
+     <y>70</y>
+     <width>95</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;请您先登录&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;请您先登录&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="UserId"/>
-   <widget class="QLineEdit" name="PassWord"/>
-   <widget class="QPushButton" name="LogIn_2">
-    <property name="text">
-     <string>确认登录</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Regester">
-    <property name="text">
-     <string>还没有账号？点我注册</string>
-    </property>
-   </widget>
+  </widget>
+  <widget class="QLineEdit" name="UserId">
+   <property name="geometry">
+    <rect>
+     <x>111</x>
+     <y>103</y>
+     <width>311</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;10位纯数字组成的学号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LogIn_2">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>200</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认登录</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="PassWord">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>150</y>
+     <width>311</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;只由数字、大小写字母、下划线组成的至少8位的密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Regester">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>200</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>还没有账号？点我注册</string>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>UserId</tabstop>
+  <tabstop>PassWord</tabstop>
+  <tabstop>LogIn_2</tabstop>
+  <tabstop>Regester</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
