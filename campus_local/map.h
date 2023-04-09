@@ -3,16 +3,21 @@
 #include<bits/stdc++.h>
 #include<QString>
 #include<QDebug>
+
+class map;//提前声明map
+
 class position
 {
 public:
     int id;
     QString name;
     double x,y;
-    position():id(-1),name(""),x(0.0),y(0.0){};
+    int type;
+    position():id(-1),name(""),x(0.0),y(0.0),type(0){};
     position(int id, QString name) : id(id), name(name){};
     ~position(){};
 };
+
 class path
 {
 private:
@@ -51,7 +56,7 @@ public:
     {
         road.clear();
     }
-    const QString output();
+    const QString output(map&)const;
 };
 class map
 {
