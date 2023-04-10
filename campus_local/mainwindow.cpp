@@ -5,6 +5,7 @@
 #include "adminwindow.h"
 #include <QMessageBox>
 #include <QLabel>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    event->accept();
 }
 
 void MainWindow::ReceiveLoginData(QString userid, QString pass)
@@ -95,7 +101,8 @@ void MainWindow::close()
 {
     //未登录时登录窗口关闭，紧随着关闭此窗口
     //管理员窗口关闭时，紧随着关闭此窗口
-    this->close();
+    //this->show();
+    qApp->quit();
 }
 
 void MainWindow::on_action_S_triggered()
