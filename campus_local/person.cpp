@@ -71,6 +71,7 @@ const std::vector<course> User::query(const QString& s, map benbu) const{
                 if(coursename.contains(s,Qt::CaseSensitive)){
                     result.push_back(
                         course(
+                            coursename,
                             benbu.idtopos[courseObject.value("destination_id").toInt()],
                             courseObject.value("starttime").toInt(),
                             courseObject.value("endtime").toInt(),
@@ -93,17 +94,11 @@ bool User::add_activity(const activity &a) const{
     if(!open_json(filepath,rootObject1))
         return false;
     QJsonValue activityValue = rootObject1.value("activities");
-    QJsonObject rootObject2;//activity
-    rootObject2.insert("alarm",empty_alarm());
-    rootObject2.insert("day",a.day);
-    rootObject2.insert("destination_id",a.day);
-    rootObject2.insert("day",a.day);
-    //"day": 7,
-    //            "destination_id": 4,
-    //            "name": "去物美买东西",
-    //            "tag": 1,
-    //            "time": 16
-
-
+    QJsonObject rootObject2=activitytojson(a);//activity
+    QJsonArray activityArray = activityValue.toArray();
+    activityArray.append(rootObject2);
+    rootObject1["activities"]=activityArray;
+    if(!write_json(filepath,rootObject1))
+        return false;
     return true;
 }

@@ -16,39 +16,39 @@ class affair
 {
 
 public:
-    int start, end, day;
-    int period;
+    int start, end, day;//开始、结束时间（小时），周几
+    int period;//是否重复
     position place;
     QString name;
-    affair(position place, int start_time, int end_time, int day, int periodicity = 0)
-        : place(place), start(start_time), end(end_time), day(day), period(periodicity){};
+    affair(QString name, position place, int start_time, int end_time, int day, int periodicity = 0)
+        : name(name), place(place), start(start_time), end(end_time), day(day), period(periodicity){};
     virtual ~affair(){};
 
     /// @brief 将活动信息写入文件
     /// @param fname 文件名
     /// @return 返回是否成功写入
-    virtual bool write_in(const std::string fname) = 0;
+    //virtual bool write_in(const std::string fname) = 0;
 };
 class course : public affair
 {
 public:
-    int start_week;
+    int start_week;//第几周开始
     int end_week;
     QString teacher;
 
-    course(position place, int start_time, int end_time, int day, int periodicity = 0, int startweek = 0, int endweek = 0)
-        : affair(place, start_time, end_time, day, periodicity){start_week=startweek; end_week=endweek;}
+    course(QString name, position place, int start_time, int end_time, int day, int periodicity = 0, int startweek = 0, int endweek = 0, QString teacher="")
+        : affair(name, place, start_time, end_time, day, periodicity){start_week=startweek; end_week=endweek;teacher=teacher;}
     virtual ~course(){};
-    virtual bool write_in(const std::string fname);
+    //virtual bool write_in(const std::string fname);
 };
 class activity : public affair
 {
 
 public:
-    int tag;
+    int tag;//activity 1-7 自习 锻炼 外出 班会 小组作业 双创 聚餐
 
-    activity(int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
-        : affair(place, start_time, end_time, day, periodicity), tag(tag){};
+    activity(QString name, int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
+        : affair(name, place, start_time, end_time, day, periodicity), tag(tag){};
     virtual ~activity(){};
 
     /// @brief 设置tag属性
@@ -64,13 +64,14 @@ public:
     {
         tag&=(~et);
     }
-    virtual bool write_in(const std::string fname);
+    //virtual bool write_in(const std::string fname);
 };
 class tmpaffair : public activity
 {
 public:
-    tmpaffair(int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
-        : activity(tag, place, start_time, end_time, day, periodicity){};
+    int tag;//tmpaffair 1-4 购物 洗澡 取物 吃饭
+    tmpaffair(QString name, int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
+        : activity(name, tag, place, start_time, end_time, day, periodicity){};
     virtual ~tmpaffair(){};
 
 };

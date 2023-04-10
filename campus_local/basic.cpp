@@ -71,7 +71,66 @@ course jsontocourse(QJsonObject rootObject, map school){
     QJsonValue startweekValue=rootObject.value("startweek");
     QJsonValue endweekValue=rootObject.value("endweek");
     QJsonValue weekdayValue=rootObject.value("weekday");
-    //return course(
-    //    position(idValue.toInt(),school.idtopos[idValue.toInt()]);
-    //);
+    return course(
+        nameValue.toString(),
+        school.idtopos[idValue.toInt()],
+        startValue.toInt(),
+        endValue.toInt(),
+        weekdayValue.toInt(),
+        1<<(weekdayValue.toInt()-1),
+        startweekValue.toInt(),
+        endweekValue.toInt()
+    );
+}
+QJsonObject activitytojson(activity a){
+    QJsonObject rootObject;
+    rootObject.insert("alarm",empty_alarm());
+    rootObject.insert("destination_id",a.place.id);
+    rootObject.insert("name",a.name);
+    rootObject.insert("tag",a.tag);
+    rootObject.insert("time",a.start);
+    rootObject.insert("day",a.day);
+    return rootObject;
+}
+activity jsontoactivity(QJsonObject rootObject, map school){
+    QJsonValue idValue=rootObject.value("destination_id");
+    QJsonValue nameValue=rootObject.value("name");
+    QJsonValue tagValue=rootObject.value("tag");
+    QJsonValue startValue=rootObject.value("time");
+    QJsonValue weekdayValue=rootObject.value("day");
+    return activity(
+        nameValue.toString(),
+        tagValue.toInt(),
+        school.idtopos[idValue.toInt()],
+        startValue.toInt(),
+        startValue.toInt()+1,
+        weekdayValue.toInt(),
+        1<<(weekdayValue.toInt()-1)
+    );
+}
+QJsonObject tmpaffairtojson(tmpaffair t){
+    QJsonObject rootObject;
+    rootObject.insert("alarm",empty_alarm());
+    rootObject.insert("destination_id",t.place.id);
+    rootObject.insert("name",t.name);
+    rootObject.insert("tag",t.tag);
+    rootObject.insert("time",t.start);
+    rootObject.insert("day",t.day);
+    return rootObject;
+}
+activity jsontotmpaffair(QJsonObject rootObject, map school){
+    QJsonValue idValue=rootObject.value("destination_id");
+    QJsonValue nameValue=rootObject.value("name");
+    QJsonValue tagValue=rootObject.value("tag");
+    QJsonValue startValue=rootObject.value("time");
+    QJsonValue weekdayValue=rootObject.value("day");
+    return activity(
+        nameValue.toString(),
+        tagValue.toInt(),
+        school.idtopos[idValue.toInt()],
+        startValue.toInt(),
+        startValue.toInt()+1,
+        weekdayValue.toInt(),
+        1<<(weekdayValue.toInt()-1)
+    );
 }
