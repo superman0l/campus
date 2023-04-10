@@ -167,3 +167,52 @@ path map::route(position begin,std::initializer_list<position>need)
     ret.push_front(idtopos[pos[0]]);
     return ret;
 }
+constexpr int north=1;
+constexpr int south=2;
+constexpr int west=4;
+constexpr int east=8;
+const QString path::output(map&mp)const
+{
+
+    if(!this->size())
+    {
+        qDebug()<<"there is nothing in path!\n";
+    }
+    QString ret="从"+this->road[0].name+"出发";
+    double nowx=this->road[0].x,nowy=this->road[0].y;
+    int nowid=this->road[0].id;
+    //lamda表达式
+    auto judge=[](double x,double y,double x2,double y2)
+    {
+        return (((x2>x)*west)|((x>x2)*east)|((y2>y)*south)|((y>y2)*north));
+
+    };
+    std::unordered_map<int,QString>tmp;
+    tmp[north]=QString("南方");
+    tmp[south]=QString("北方");
+    tmp[west]=QString("西方");
+    tmp[east]=QString("东方");
+    for(int i=1;i<this->size();i++)
+    {
+        int len=0x3f3f3f3f;
+        for(auto&e:mp[nowid])
+        {
+            if(e.first==this->road[i].id)
+            {
+                len=std::min(len,e.second);
+            }
+        }
+        //根据相对相对位置得出对应string
+        int dir=judge(nowx,nowy,this->road[i].x,this->road[i].y);
+        ret=ret+QString("然后向");
+        for(int j=3;j>=0;j--)
+        {
+            if((dir>>j)&1)
+            {
+                ret=ret+tmp[(1<<j)];
+            }
+        }
+        ret=ret+QString("方走大约%1米到达%2\n").arg(len).arg(this->road[i].name);
+    }
+    return ret;
+}

@@ -2,12 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include"person.h"
 //四个类的前置定义
 class LogIn;
 class AdminWindow;
-class User;
-class Admin;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

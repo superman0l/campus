@@ -1,4 +1,6 @@
 #include "person.h"
+#include <QJsonArray>
+#include "affair.h"
 bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
@@ -45,3 +47,58 @@ bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm
 
     return true;
 };
+const std::vector<course> User::query(const QString& s, map benbu) const{
+    std::vector<course> result;
+    QJsonObject rootObject1;
+    QString filepath = QString::number(id)+".json";
+    if(!open_json(filepath,rootObject1))
+        return std::vector<course>();
+    QJsonValue classValue = rootObject1.value("class");
+    QJsonObject rootObject2;
+    if(!open_json(classValue.toString()+"_course.json",rootObject2))
+        return std::vector<course>();
+    QJsonValue arrayValue = rootObject2.value("class");
+    if (arrayValue.type() == QJsonValue::Array) {
+        // 转换为QJsonArray类型
+        QJsonArray courseArray = arrayValue.toArray();
+        //遍历array
+        for (int i = 0; i < courseArray.size(); i++) {
+            QJsonValue jsoncourse = courseArray.at(i);
+            if(jsoncourse.type()==QJsonValue::Object){
+                QJsonObject courseObject = jsoncourse.toObject();
+                QJsonValue nameValue = courseObject.value("name");
+                QString coursename = nameValue.toString();
+                if(coursename.contains(s,Qt::CaseSensitive)){
+                    result.push_back(
+                        course(
+                            coursename,
+                            benbu.idtopos[courseObject.value("destination_id").toInt()],
+                            courseObject.value("starttime").toInt(),
+                            courseObject.value("endtime").toInt(),
+                            courseObject.value("weekday").toInt(),
+                            1<<(courseObject.value("weekday").toInt()-1),
+                            courseObject.value("startweek").toInt(),
+                            courseObject.value("weekday").toInt()
+                        )
+                    );
+                }
+            }
+        }
+    }
+    return result;
+};
+bool User::add_activity(const activity &a) const{
+    //int tag, position place, int start_time, int end_time, int day, int periodicity = 0
+    QJsonObject rootObject1;
+    QString filepath = QString::number(id)+".json";
+    if(!open_json(filepath,rootObject1))
+        return false;
+    QJsonValue activityValue = rootObject1.value("activities");
+    QJsonObject rootObject2=activitytojson(a);//activity
+    QJsonArray activityArray = activityValue.toArray();
+    activityArray.append(rootObject2);
+    rootObject1["activities"]=activityArray;
+    if(!write_json(filepath,rootObject1))
+        return false;
+    return true;
+}
