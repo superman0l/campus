@@ -14,12 +14,12 @@ constexpr int Sunday = (1 << 6);
 
 class affair
 {
-private:
+
+public:
     int start, end, day;
     int period;
     position place;
-
-public:
+    QString name;
     affair(position place, int start_time, int end_time, int day, int periodicity = 0)
         : place(place), start(start_time), end(end_time), day(day), period(periodicity){};
     virtual ~affair(){};
@@ -32,17 +32,21 @@ public:
 class course : public affair
 {
 public:
-    course(position place, int start_time, int end_time, int day, int periodicity = 0)
-        : affair(place, start_time, end_time, day, periodicity){};
+    int start_week;
+    int end_week;
+    QString teacher;
+
+    course(position place, int start_time, int end_time, int day, int periodicity = 0, int startweek = 0, int endweek = 0)
+        : affair(place, start_time, end_time, day, periodicity){start_week=startweek; end_week=endweek;}
     virtual ~course(){};
     virtual bool write_in(const std::string fname);
 };
 class activity : public affair
 {
-private:
-    int tag;
 
 public:
+    int tag;
+
     activity(int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
         : affair(place, start_time, end_time, day, periodicity), tag(tag){};
     virtual ~activity(){};

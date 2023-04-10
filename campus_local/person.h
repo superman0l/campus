@@ -36,7 +36,7 @@ public:
     /// @brief 课程查询功能
     /// @param s 课程名
     /// @return 查询结果
-    const std::vector<course> query(const QString& s)const;
+    const std::vector<course> query(const QString& s, map school)const;
 
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间

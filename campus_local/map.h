@@ -67,14 +67,14 @@ private:
     /// @brief 0~tot-1为现有position编号
     int tot;
 
-    /// @brief idtopos idtopos[i]返回编号为i的position
-    std::vector<position>idtopos;
-
     /// @brief dijkstra
     /// @param begin 表示起点
     /// @return 一个vector表示起点到各地点的最短距离
     std::vector<int> dijkstra(position begin);
 public:
+    /// @brief idtopos idtopos[i]返回编号为i的position
+    std::vector<position>idtopos;
+
     /// @brief 使用文件数据载入地图
     /// @param fname 文件名
     map(const QString fname);
