@@ -1,6 +1,8 @@
 #include "person.h"
+#include <QDebug>
 #include <QJsonArray>
 #include "affair.h"
+#include "basic.h"
 bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
@@ -89,16 +91,70 @@ const std::vector<course> User::query(const QString& s, map benbu) const{
 };
 bool User::add_activity(const activity &a) const{
     //int tag, position place, int start_time, int end_time, int day, int periodicity = 0
-    QJsonObject rootObject1;
+    QJsonObject rootObject1;//存储学生信息的json
     QString filepath = QString::number(id)+".json";
     if(!open_json(filepath,rootObject1))
         return false;
     QJsonValue activityValue = rootObject1.value("activities");
     QJsonObject rootObject2=activitytojson(a);//activity
-    QJsonArray activityArray = activityValue.toArray();
+    QJsonArray activityArray = activityValue.toArray();//activity队列
+    for(int i=0;i<activityArray.size();i++){
+        QJsonObject activityObject=activityArray[i].toObject();
+        if(activityObject.value("time").toInt()==a.start){
+            qDebug()<<"time error:activity conflicts activity.";
+            return false;
+        }
+    }
+
+    QString filepath2 = rootObject1.value("class").toString()+"_course.json";
+    QJsonObject rootObject3;//存储班级信息的json
+    if(!open_json(filepath2,rootObject3))
+        return false;
+    QJsonValue courseValue = rootObject3.value("courses");
+    QJsonArray courseArray = courseValue.toArray();//course队列
+    for(int i=0;i<courseArray.size();i++){
+        QJsonObject courseObject=courseArray[i].toObject();
+        if(courseObject.value("starttime").toInt()<=a.start && courseObject.value("endtime").toInt()>=a.start){
+            qDebug()<<"time error:activity conflicts course.";
+            return false;
+        }
+    }
+    //分别遍历activity和course以确定能够正常添加activity
+
     activityArray.append(rootObject2);
     rootObject1["activities"]=activityArray;
     if(!write_json(filepath,rootObject1))
         return false;
+    return true;
+}
+bool User::set_clock_activity(const affair &a, int early_moment, bool enable)const{
+    int day,hour,minute;
+    day=a.day;
+    if(early_moment==0){
+        hour=a.start;
+        minute=0;
+    }
+    else{
+        hour=a.start-1;
+        minute=60-early_moment;
+    }
+    QJsonObject rootObject1;//存储学生信息的json
+    QString filepath = QString::number(id)+".json";
+    if(!open_json(filepath,rootObject1))
+        return false;
+    QJsonArray activityarray=rootObject1["activities"].toArray();
+    for(int i=0;i<activityarray.size();i++){
+        QJsonObject activityobject=activityarray[i].toObject();
+        if(activityobject.value("name").toString()==a.name){
+            activityobject["alarm"]=alarm(enable, day, hour, minute, a.period);
+            activityarray[i]=activityobject;
+        }
+    }
+    rootObject1["activities"]=activityarray;
+    if(!write_json(filepath,rootObject1))
+        return false;
+    return true;
+}
+bool User::set_clock_tmpaffair(const affair &a, int early_moment, bool enable)const{
     return true;
 }

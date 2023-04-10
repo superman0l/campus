@@ -49,6 +49,15 @@ QJsonObject empty_alarm(){
     rootObject.insert("periodicity",0);
     return rootObject;
 }
+QJsonObject alarm(bool enable, int day, int hour, int minute, int periodicity){
+    QJsonObject rootObject;
+    rootObject.insert("enable",enable);
+    rootObject.insert("day",day);
+    rootObject.insert("hour",hour);
+    rootObject.insert("minite",minute);
+    rootObject.insert("periodicity",periodicity);
+    return rootObject;
+}
 QJsonObject coursetojson(course c){
     QJsonObject rootObject;
     rootObject.insert("alarm",empty_alarm());
