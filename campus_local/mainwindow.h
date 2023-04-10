@@ -27,6 +27,7 @@ private:
     AdminWindow* AdmW;//存放指向管理员页面的窗口的指针
     const User* per;//存放正在登录的用户
     const Admin* adm;//存放可能的管理员用户
+    void closeEvent(QCloseEvent *event);//处理关闭窗口事件
 private slots:
     void ReceiveLoginData(QString, QString);//接受登录信息
     void ReceiveRegstData(QString, QString, QString, QString);//接受注册信息
