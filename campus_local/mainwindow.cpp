@@ -9,6 +9,10 @@
 #include <QInputDialog>
 #include <QPushButton>
 #include "CustomTabStyle.h"
+#include "classeswind.h"
+#include "mapwin.h"
+#include "affairwin.h"
+#include "personwin.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -16,13 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
 , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle(tr("学生端"));
 
     //建立切换页面
-    QTabWidget* tab = new QTabWidget();
-    QWidget* Classes = new QWidget(this);
-    QWidget* Map = new QWidget(this);
-    QWidget* Affair = new QWidget(this);
-    QWidget* person = new QWidget(this);
+    QTabWidget* tab = new QTabWidget(this);
+    QWidget* Classes = new ClassesWind(tab);
+    QWidget* Map = new MapWin(tab);
+    QWidget* Affair = new AffairWin(tab);
+    QWidget* person = new PersonWin(tab);
     //tab->addTab(Classes, "关闭");
     tab->addTab(Classes, "课表");
     tab->addTab(Map, "导航");
@@ -32,9 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
     tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
     setCentralWidget(tab);
 
-    //设计每个页面
-    QLabel* cla = new QLabel(Classes);
-    cla->setText("课表");
 
     //初始化时间
     tim = new timer();
