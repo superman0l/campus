@@ -114,6 +114,26 @@
     <string>开始时间(&amp;B)</string>
    </property>
   </action>
+  <action name="actionClasses_C">
+   <property name="text">
+    <string>课表</string>
+   </property>
+  </action>
+  <action name="action_Map_M">
+   <property name="text">
+    <string>导航</string>
+   </property>
+  </action>
+  <action name="action_Affair_A">
+   <property name="text">
+    <string>事务</string>
+   </property>
+  </action>
+  <action name="actionPerson_P">
+   <property name="text">
+    <string>个人</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

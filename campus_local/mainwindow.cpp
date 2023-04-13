@@ -7,14 +7,34 @@
 #include <QTimer>
 #include <QDialog>
 #include <QInputDialog>
-#include <QLineEdit>
-#include <QIntValidator>
+#include <QPushButton>
+#include "CustomTabStyle.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+, ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //建立切换页面
+    QTabWidget* tab = new QTabWidget();
+    QWidget* Classes = new QWidget(this);
+    QWidget* Map = new QWidget(this);
+    QWidget* Affair = new QWidget(this);
+    QWidget* person = new QWidget(this);
+    //tab->addTab(Classes, "关闭");
+    tab->addTab(Classes, "课表");
+    tab->addTab(Map, "导航");
+    tab->addTab(Affair, "事务");
+    tab->addTab(person, "个人");
+    tab->setTabPosition(QTabWidget::West);//QTabWidget竖向
+    tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
+    setCentralWidget(tab);
+
+    //设计每个页面
+    QLabel* cla = new QLabel(Classes);
+    cla->setText("课表");
 
     //初始化时间
     tim = new timer();
@@ -37,7 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
     perm->setTextFormat(Qt::RichText);
     perm->setOpenExternalLinks(true);
     ui->statusbar->addPermanentWidget(perm);
-
 }
 
 MainWindow::~MainWindow()
@@ -96,4 +115,5 @@ void MainWindow::on_actionChgTimRa_T_triggered()
     if(ok)
         tim->set_ratio(raio*60);
 }
+
 
