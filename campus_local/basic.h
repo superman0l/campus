@@ -26,6 +26,15 @@ bool write_json(QString jsonname,QJsonObject objectname);
 /// @return 返回QJsonObject表示空闹钟
 QJsonObject empty_alarm();
 
+/// @brief 闹钟参数传入json
+/// @param enable表示闹钟开关
+/// @param day表示闹钟weekday
+/// @param hour
+/// @param minute
+/// @param periodicity传入affair.period
+/// @return 返回QJsonObject表示闹钟
+QJsonObject alarm(bool enable, int day, int hour, int minute, int periodicity);
+
 /// @brief 把course转化为json格式
 /// @param 参数为需要转化的course类
 /// @return 返回转化之后的QJsonObject

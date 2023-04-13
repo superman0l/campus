@@ -26,6 +26,7 @@ private:
     void closeEvent(QCloseEvent *event);//处理关闭窗口事件
     timer* tim;//保存时间
     QLabel* timlabl;//显示时间的标签
+
 private slots:
     void on_action_S_triggered();//切换用户的槽
     void ReiceiveUser(const User*);
