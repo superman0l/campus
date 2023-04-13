@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1356</width>
+    <height>922</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>17</height>
+     <width>1356</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_H">
@@ -33,14 +33,21 @@
     <property name="title">
      <string>操作(&amp;O)</string>
     </property>
+    <addaction name="separator"/>
     <addaction name="action_X"/>
+    <addaction name="separator"/>
+    <addaction name="actionChgTimRa_T"/>
+    <addaction name="actionPauseTim_P"/>
+    <addaction name="actionBeginTim_B"/>
    </widget>
    <widget class="QMenu" name="menu_U">
     <property name="title">
      <string>用户(&amp;U)</string>
     </property>
     <addaction name="action_S"/>
-    <addaction name="action_E"/>
+    <addaction name="actionChangPswd_P"/>
+    <addaction name="action_ChangName_N"/>
+    <addaction name="actionDestroyCount_D"/>
    </widget>
    <addaction name="menu_U"/>
    <addaction name="menu_O"/>
@@ -69,23 +76,42 @@
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="action_E">
-   <property name="text">
-    <string>注销(&amp;O)</string>
-   </property>
-   <property name="toolTip">
-    <string>LogOut(&amp;O)</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+O</string>
-   </property>
-  </action>
   <action name="action_w">
    <property name="text">
     <string>用户说明(&amp;W)</string>
    </property>
    <property name="toolTip">
     <string>HelpDocument(&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionChangPswd_P">
+   <property name="text">
+    <string>更改密码(&amp;P)</string>
+   </property>
+  </action>
+  <action name="action_ChangName_N">
+   <property name="text">
+    <string>更改用户名(&amp;N)</string>
+   </property>
+  </action>
+  <action name="actionDestroyCount_D">
+   <property name="text">
+    <string>销毁账户(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionChgTimRa_T">
+   <property name="text">
+    <string>更改时间倍率(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionPauseTim_P">
+   <property name="text">
+    <string>暂停时间(&amp;P)</string>
+   </property>
+  </action>
+  <action name="actionBeginTim_B">
+   <property name="text">
+    <string>开始时间(&amp;B)</string>
    </property>
   </action>
  </widget>
