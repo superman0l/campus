@@ -50,11 +50,17 @@ public:
     /// @return true表示活动添加成功,false表示由于冲突活动添加失败
     bool add_activity(const activity &a)const;
 
-    /// @brief 添加闹钟功能
+    /// @brief 添加闹钟功能(activity类)
     /// @param a 为a事务添加闹钟
     /// @param periodicity 闹钟的周期
-    void add_clock(const affair &a, int periodicity=0)const;
+    /// @return true表示设置闹钟成功，反之失败
+    bool set_clock_activity(const affair &a, int early_moment, bool enable)const;
 
+    /// @brief 添加闹钟功能(tmpaffair类)
+    /// @param a 为a事务添加闹钟
+    /// @param periodicity 闹钟的周期
+    /// @return true表示设置闹钟成功，反之失败
+    bool set_clock_tmpaffair(const affair &a, int early_moment, bool enable)const;
 };
 class Admin : public User
 {
