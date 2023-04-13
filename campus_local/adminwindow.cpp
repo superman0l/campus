@@ -25,8 +25,7 @@ void AdminWindow::closeEvent(QCloseEvent *event)
     QMessageBox::StandardButton button;
     button=QMessageBox::question(this,tr("退出管理员界面"),QString(tr("确认退出管理员界面？这将退出整个程序！")),QMessageBox::Yes|QMessageBox::No);
     if(button == QMessageBox::Yes){
-        emit ExitAdm();
-        event->accept();
+        qApp->quit();
     }
     else if(button == QMessageBox::No){
         event->ignore();
@@ -42,5 +41,6 @@ void AdminWindow::ReceiveAdmData(const Admin * data)
 void AdminWindow::on_actionLogOut_O_triggered()
 {
     emit LogOut();
+    this->hide();
 }
 
