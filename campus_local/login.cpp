@@ -80,8 +80,9 @@ void LogIn::on_LogIn_2_clicked()
             //展示登录成功信息
             QMessageBox::information(this, tr("成功！"), tr("欢迎您，尊敬的管理员！"), QMessageBox::Ok);
             //新建一个管理员界面
-            if(admWin == nullptr)
-                admWin = new AdminWindow(this);
+            if(admWin != nullptr)
+                delete admWin;
+            admWin = new AdminWindow(this);
             //实现数据传输
             connect(this, SIGNAL(SendAdmn(const Admin*)), admWin, SLOT(ReceiveAdmData(const Admin*)));
             //实现切换用户
@@ -94,8 +95,9 @@ void LogIn::on_LogIn_2_clicked()
             //展示登录成功信息
             QMessageBox::information(this, tr("成功！"), tr("登录成功，正在跳转"), QMessageBox::Ok);
             //新建学生功能窗口界面
-            if(useWin == nullptr)
-                useWin = new MainWindow(this);
+            if(useWin != nullptr)
+                delete useWin;
+            useWin = new MainWindow(this);
             //实现数据传输
             connect(this, SIGNAL(SendUser(const User*)), useWin, SLOT(ReiceiveUser(const User*)));
             //实现切换用户
