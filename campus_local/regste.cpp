@@ -80,13 +80,11 @@ void Regste::on_RegesConfirm_clicked()
     }
     else{
         emit SendRegData(ui->id->text(), ui->pswd->text(), ui->name->text(), ui->clas->text().trimmed());//传输数据
-        this->close();
     }
 }
 
 void Regste::on_RetToLogIn_clicked()
 {
-    //返回登录窗口
     this->close();
 }
 

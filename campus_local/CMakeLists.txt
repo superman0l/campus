@@ -36,6 +36,7 @@ set(PROJECT_SOURCES
         adminwindow.h
         adminwindow.cpp
         adminwindow.ui
+        CustomTabStyle.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -27,7 +27,6 @@ private slots:
     void on_actionLogOut_O_triggered();
 
 signals:
-    void ExitAdm();//关闭本窗口
     void LogOut();//退出登录信号
 };
 
