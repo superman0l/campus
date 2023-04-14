@@ -18,8 +18,8 @@ public:
         QSize s = QProxyStyle::sizeFromContents(type, option, size, widget);
         if (type == QStyle::CT_TabBarTab) {
             s.transpose();
-            s.rwidth() = 150; // 设置每个tabBar中item的大小
-            s.rheight() = 50;
+            s.rwidth() = 140; // 设置每个tabBar中item的大小
+            s.rheight() = 120;
         }
         return s;
     }
@@ -34,7 +34,7 @@ public:
                 if (tab->state & QStyle::State_Selected) {
                     //save用以保护坐标，restore用来退出状态
                     painter->save();
-                    painter->setBrush(QBrush(0x008B8B));
+                    painter->setBrush(QBrush(0xFFFAFA));
                     //矩形
                     //painter->drawRect(allRect.adjusted(0, 0, 0, 0));
                     //带有弧线矩形
@@ -50,14 +50,14 @@ public:
                 }
                 else{
                     painter->save();
-                    painter->setBrush(QBrush(0x2F4F4F));
+                    painter->setBrush(QBrush(0xFFFAF0));
                     painter->drawRoundedRect(allRect, 8, 8);
                     painter->restore();
                 }
                 QTextOption option;
                 option.setAlignment(Qt::AlignCenter);
                 painter->setFont(QFont("楷体", 18, QFont::Bold));
-                painter->setPen(0xffffff);
+                painter->setPen(0x000001);
                 painter->drawText(allRect, tab->text, option);
                 return;
             }

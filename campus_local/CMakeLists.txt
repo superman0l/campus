@@ -37,6 +37,18 @@ set(PROJECT_SOURCES
         adminwindow.cpp
         adminwindow.ui
         CustomTabStyle.h
+        classeswind.h
+        classeswind.cpp
+        classeswind.ui
+        mapwin.h
+        mapwin.cpp
+        mapwin.ui
+        affairwin.h
+        affairwin.cpp
+        affairwin.ui
+        personwin.h
+        personwin.cpp
+        personwin.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
