@@ -37,11 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
     tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
     setCentralWidget(tab);
 
-
-    connect(this, SIGNAL(UserOut(const User*)), Classes, SLOT(UserIn(const User*)));
-    emit UserOut(per);
-
-
     //初始化时间
     tim = new timer();
     //初始化并美化时间标签
@@ -91,10 +86,6 @@ void MainWindow::on_action_S_triggered()
     this->hide();
 }
 
-void MainWindow::ReiceiveUser(const User * data)
-{
-    per = data;
-}
 
 void MainWindow::timShowNewest()
 {

@@ -5,6 +5,8 @@
 #include <QStandardItemModel>
 #include "person.h"
 
+extern const User* user_online;
+
 namespace Ui {
 class classwind;
 }
@@ -21,9 +23,6 @@ public:
 
 private:
     Ui::classwind *ui;
-    const User* user;
 
-private slots:
-    void UserIn(const User*);
 };
 #endif // CLASSWIND_H

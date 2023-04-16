@@ -6,7 +6,7 @@
 #include<QFile>
 #include<QJsonObject>
 #include<QString>
-#include"basic.h"
+//#include"basic.h"
 
 class User
 {
@@ -102,7 +102,7 @@ public:
 /// @param user 一个用户指针的引用，登录失败或登录上管理员用户为NULL值
 /// @param adm  一个管理员指针的引用，登录失败或登陆上普通用户为NULL值
 /// @return 若登录成功返回true,若登录失败返回flase
-bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm);
+bool login(QString user_id,QString user_pswd);
 
 /// @brief 账号注册功能
 /// @param rgs_id 注册者使用的学号/id
@@ -121,5 +121,6 @@ class Group{
     /// @param id 班级编号
     Group(QString fname,int64_t id):id(id){};
 };
+
 
 #endif // PERSON_H

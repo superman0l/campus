@@ -3,6 +3,11 @@
 #include <QJsonArray>
 #include "affair.h"
 #include "basic.h"
+#include "online_data.h"
+
+extern const User* user_online;
+extern const Admin* admin_online;
+
 bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
@@ -20,7 +25,7 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
         return false;
     return true;
 };
-bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm){
+bool login(QString user_id,QString user_pswd){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
         return false;
@@ -38,13 +43,13 @@ bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm
 
     if(rootObject2.value("isAdmin").toBool()){
         //鉴定为管理员用户
-        adm = new Admin(nameValue.toString().toStdString(), user_id.toLongLong());
-        user = NULL;
+        admin_online = new Admin(nameValue.toString().toStdString(), user_id.toLongLong());
+        user_online = NULL;
     }
     else{
         //鉴定为普通用户
-        user =new User(nameValue.toString().toStdString() ,user_id.toLongLong());
-        adm = NULL;
+        user_online =new User(nameValue.toString().toStdString() ,user_id.toLongLong());
+        admin_online = NULL;
     }
 
     return true;

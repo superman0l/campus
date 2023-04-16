@@ -9,6 +9,7 @@
 #include<QJsonDocument>
 #include <QJsonParseError>
 #include "affair.h"
+#include "person.h"
 
 /// @brief 打开json文件并读取为QJsonObject
 /// @param jsonname 要打开的json文件名

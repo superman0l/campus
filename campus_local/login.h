@@ -37,13 +37,11 @@ private slots:
 private:
     Ui::LogIn *ui;
     Regste* reg;//保存一个注册窗口的指针
-    const User* userptr;//保存用户登录信息
-    const Admin* admnptr;//保存管理员登录信息
     MainWindow* useWin;//用户的主功能窗口
     AdminWindow* admWin;//管理员的功能窗口
 signals:
-    void SendUser(const User*);//发送普通用户信息
-    void SendAdmn(const Admin*);//发送管理员信息
+    //void SendUser(const User*);//发送普通用户信息
+    //void SendAdmn(const Admin*);//发送管理员信息
 };
 
 #endif // LOGIN_H

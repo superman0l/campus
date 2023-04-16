@@ -8,6 +8,11 @@
 #include "mainwindow.h"
 #include "adminwindow.h"
 #include "regste.h"
+#include "basic.h"
+
+extern const User* user_online;
+extern const Admin* admin_online;
+
 
 LogIn::LogIn(QWidget *parent) :
     QDialog(parent),
@@ -72,10 +77,10 @@ void LogIn::on_LogIn_2_clicked()
         //处理为空时的情况
         QMessageBox::warning(this, tr("警告！"), tr("用户ID或密码不能为空！"), QMessageBox::Ok);
     }
-    else if(login(ui->UserId->text(), ui->PassWord->text(), userptr, admnptr)){
+    else if(login(ui->UserId->text(), ui->PassWord->text())){
         //logdlg->LogConfirm(true);//改变登录状态，避免弹出警告框
         this->hide();//隐藏登录窗口
-        if(admnptr){
+        if(admin_online){
             //是管理员用户，进入管理界面
             //展示登录成功信息
             QMessageBox::information(this, tr("成功！"), tr("欢迎您，尊敬的管理员！"), QMessageBox::Ok);
@@ -83,14 +88,14 @@ void LogIn::on_LogIn_2_clicked()
             if(admWin != nullptr)
                 delete admWin;
             admWin = new AdminWindow(this);
-            //实现数据传输
-            connect(this, SIGNAL(SendAdmn(const Admin*)), admWin, SLOT(ReceiveAdmData(const Admin*)));
+            //实现数据传输        
+            //connect(this, SIGNAL(SendAdmn(const Admin*)), admWin, SLOT(ReceiveAdmData(const Admin*)));
             //实现切换用户
             connect(admWin, SIGNAL(LogOut()), this, SLOT(ToIdInput()));
             //进入管理员界面
             admWin->show();
         }
-        else if(userptr){
+        else if(user_online){
             //是一般用户，进入主窗口
             //展示登录成功信息
             QMessageBox::information(this, tr("成功！"), tr("登录成功，正在跳转"), QMessageBox::Ok);
@@ -99,7 +104,8 @@ void LogIn::on_LogIn_2_clicked()
                 delete useWin;
             useWin = new MainWindow(this);
             //实现数据传输
-            connect(this, SIGNAL(SendUser(const User*)), useWin, SLOT(ReiceiveUser(const User*)));
+            //connect(this, SIGNAL(SendUser(const User*)), useWin, SLOT(ReiceiveUser(const User*)));
+            //emit SendUser(userptr);
             //实现切换用户
             connect(useWin, SIGNAL(LogOut()), this, SLOT(ToIdInput()));
             //进入学生界面
@@ -155,4 +161,3 @@ void LogIn::ToIdInput()
     this->show();
     ui->UserId->setFocus();
 }
-
