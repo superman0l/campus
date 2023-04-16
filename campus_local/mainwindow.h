@@ -39,5 +39,6 @@ private slots:
 
 signals:
     void LogOut();
+    void UserOut(const User*);
 };
 #endif // MAINWINDOW_H

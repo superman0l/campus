@@ -65,5 +65,4 @@ tmpaffair jsontotmpaffair(QJsonObject rootObject);
 /// @return 返回转化之后的QJsonObject
 QJsonObject tmpaffairtojson(tmpaffair t);
 
-
 #endif // BASIC_H

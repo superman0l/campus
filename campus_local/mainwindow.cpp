@@ -9,7 +9,7 @@
 #include <QInputDialog>
 #include <QPushButton>
 #include "CustomTabStyle.h"
-#include "classeswind.h"
+#include "classwind.h"
 #include "mapwin.h"
 #include "affairwin.h"
 #include "personwin.h"
@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //建立切换页面
     QTabWidget* tab = new QTabWidget(this);
-    QWidget* Classes = new ClassesWind(tab);
+    QWidget* Classes = new classwind(tab);
     QWidget* Map = new MapWin(tab);
     QWidget* Affair = new AffairWin(tab);
     QWidget* person = new PersonWin(tab);
@@ -36,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent)
     tab->setTabPosition(QTabWidget::West);//QTabWidget竖向
     tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
     setCentralWidget(tab);
+
+
+    connect(this, SIGNAL(UserOut(const User*)), Classes, SLOT(UserIn(const User*)));
+    emit UserOut(per);
 
 
     //初始化时间

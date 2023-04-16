@@ -21,6 +21,7 @@ class LogIn : public QDialog
 public:
     explicit LogIn(QWidget *parent = nullptr);
     ~LogIn();
+
 protected:
     void closeEvent(QCloseEvent *event);//处理关闭窗口事件
 private slots:
@@ -32,6 +33,7 @@ private slots:
     void Receive_RegData(QString, QString, QString, QString);//接受注册窗口传来的信息
 
     void ToIdInput();//从注册窗口返回时，定位光标
+
 private:
     Ui::LogIn *ui;
     Regste* reg;//保存一个注册窗口的指针
