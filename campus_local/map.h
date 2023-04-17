@@ -11,10 +11,12 @@ class position
 public:
     int id;
     QString name;
-    double x,y;
+    int x,y;
+    int bx,by;
     int type;
-    position():id(-1),name(""),x(0.0),y(0.0),type(0){};
+    position():id(-1),name(""),x(-1),y(-1),bx(-1),by(-1),type(0){};
     position(int id, QString name) : id(id), name(name){};
+    position(int id,QString name,int x,int y,int bx,int by,int type=1):id(id),name(name),x(x),y(y),bx(bx),by(by),type(type){};
     ~position(){};
 };
 
@@ -60,7 +62,7 @@ public:
 };
 class map
 {
-private:
+public:
     /// @brief mp[i][j]表示编号为i的点,其第j条边所连端点和权值
     std::vector<std::vector<std::pair<int, int>>> mp;
 
@@ -71,7 +73,6 @@ private:
     /// @param begin 表示起点
     /// @return 一个vector表示起点到各地点的最短距离
     std::vector<int> dijkstra(position begin);
-public:
     /// @brief idtopos idtopos[i]返回编号为i的position
     std::vector<position>idtopos;
 
@@ -89,7 +90,7 @@ public:
     /// @param begin 出发点和结束点
     /// @param need 需要途径的点集
     /// @return 导航路径
-    path route(position begin, std::initializer_list<position> need);
+    path route(position begin,const std::vector<position>&need);
 
     /// @brief 返回一个vector,vector存储该点的邻点邻边
     /// @param  now 表示该点的编号

@@ -1,4 +1,55 @@
 #include "map.h"
+#include"basic.h"
+#include<QJsonArray>
+map::map(const QString fname)
+{
+    QJsonObject mapdata;
+    if(!open_json(fname,mapdata))
+    {
+        qDebug()<<"read the map data error!\n";
+        return;
+    }
+    this->tot=mapdata.value("PlaceNumber").toString().toInt();
+    this->idtopos=std::vector<position>(tot);
+    this->mp=std::vector<std::vector<std::pair<int,int>>>(tot,std::vector<std::pair<int,int>>());
+    QJsonValue tmp=mapdata.value("Places");
+    if(tmp.isNull()||tmp.type()!=QJsonValue::Array)
+    {
+        qDebug()<<"read the pos data error!\n";
+        return;
+    }
+    QJsonArray marray=tmp.toArray();
+    for(int i=0;i<marray.size();i++)
+    {
+        QJsonValue tmp=marray.at(i).toObject();
+        if(tmp.type()!=QJsonValue::Object)
+        {
+            qDebug()<<QString("read the data at %1 %2").arg(i).arg("error!\n");
+            return;
+        }
+        //tnnd 不类型检查了 开摆
+        QJsonObject tmp2=tmp.toObject();
+        QString name;
+        int id,posx,posy,bposx,bposy;
+        name=tmp2.value("PlaceName").toString();
+        id=tmp2.value("PlaceCode").toString().toInt();
+        posx=tmp2.value("Position").toArray().at(0).toString().toInt();
+        posy=tmp2.value("Position").toArray().at(1).toString().toInt();
+        bposx=tmp2.value("ButtonPos").toArray().at(0).toString().toInt();
+        bposy=tmp2.value("ButtonPos").toArray().at(1).toString().toInt();
+        idtopos[id]=position(id,name,posx,posy,bposx,bposy);
+        QJsonArray edge=tmp2.value("NearestNeighbor").toArray();
+        for(int i=0,nxt,len;i<edge.size();i++)
+        {
+            nxt=edge.at(i).toObject().value("PlaceCode").toString().toInt();
+            len=edge.at(i).toObject().value("Distance").toString().toInt();
+            //qDebug()<<id<<" "<<nxt<<" "<<len<<"????\n";
+            this->mp[id].push_back({nxt,len});
+            this->mp[nxt].push_back({id,len});
+        }
+    }
+
+}
 std::vector<int> map::dijkstra(position begin)
 {
         std::vector<int>dis(tot,0x3f3f3f3f);
@@ -34,6 +85,7 @@ path map::route(position begin,position end)
     std::vector<int>pre(tot,-1);
     int s=begin.id;
     int t=end.id;
+    //qDebug()<<s<<" "<<t<<"??\n";
     dis[s]=0;
     std::priority_queue<std::tuple<int,int,int>>que;
     que.push(std::make_tuple(0,s,s));
@@ -41,7 +93,7 @@ path map::route(position begin,position end)
     {
         auto [curdis,preid,curid]=que.top();
         que.pop();
-        if(pre[curid]!=-1)
+        if(pre[curid]==-1)
         {
             pre[curid]=preid;
             if(curid==t)
@@ -76,7 +128,8 @@ path map::route(position begin,position end)
     ret.push_front(idtopos[s]);
     return ret;
 }
-path map::route(position begin,std::initializer_list<position>need)
+//待修
+path map::route(position begin,const std::vector<position>&need)
 {
     std::vector<int>pos;
     pos.push_back(begin.id);
@@ -141,6 +194,7 @@ path map::route(position begin,std::initializer_list<position>need)
         }
     }
     int now_status=(1<<cnt)-1;
+    //qDebug()<<now_status<<"????\n";
     int now_mx=0x3f3f3f3f;
     int now_pos=-1;
     for(int j=1;j<cnt;j++)
@@ -156,7 +210,7 @@ path map::route(position begin,std::initializer_list<position>need)
     {
         int pre_pos=pre[now_status][now_pos];
         now_status^=(1<<now_pos);
-        path tmp=map::route(idtopos[pre_pos],idtopos[now_pos]);
+        path tmp=map::route(idtopos[pos[pre_pos]],idtopos[pos[now_pos]]);
         //tmp[0]即pre_pos,不插入
         for(int i=tmp.size()-1;i>=1;i--)
         {
@@ -184,14 +238,20 @@ const QString path::output(map&mp)const
     //lamda表达式
     auto judge=[](double x,double y,double x2,double y2)
     {
-        return (((x2>x)*west)|((x>x2)*east)|((y2>y)*south)|((y>y2)*north));
+        if(abs(x2-x)/abs(y2-y)>1)
+        {
+            if(x2>x) return east;
+            return west;
+        }
+        if(y2>y) return south;
+        return north;
 
     };
     std::unordered_map<int,QString>tmp;
-    tmp[north]=QString("南方");
-    tmp[south]=QString("北方");
-    tmp[west]=QString("西方");
-    tmp[east]=QString("东方");
+    tmp[north]=QString("南");
+    tmp[south]=QString("北");
+    tmp[west]=QString("西");
+    tmp[east]=QString("东");
     for(int i=1;i<this->size();i++)
     {
         int len=0x3f3f3f3f;
@@ -201,6 +261,14 @@ const QString path::output(map&mp)const
             {
                 len=std::min(len,e.second);
             }
+        }
+        if(len==0)
+        {
+            nowid=this->road[i].id;
+            nowx=this->road[i].x;
+            nowy=this->road[i].y;
+            ret=ret+QString("到达%1\n").arg(this->road[i].name);
+            continue;
         }
         //根据相对相对位置得出对应string
         int dir=judge(nowx,nowy,this->road[i].x,this->road[i].y);
@@ -213,6 +281,9 @@ const QString path::output(map&mp)const
             }
         }
         ret=ret+QString("方走大约%1米到达%2\n").arg(len).arg(this->road[i].name);
+        nowid=this->road[i].id;
+        nowx=this->road[i].x;
+        nowy=this->road[i].y;
     }
     return ret;
 }
