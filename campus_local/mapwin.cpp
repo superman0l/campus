@@ -1,14 +1,185 @@
 #include "mapwin.h"
 #include "ui_mapwin.h"
+#include <QGraphicsPixmapItem>
+#include<QGraphicsProxyWidget>
+#include<QWheelEvent>
+#include<QScrollBar>
+#include<QPoint>
+#include<QMessageBox>
+#include<QUndoStack>
+MapButton::MapButton(const position&pos,QWidget*parent):QRadioButton(parent)
+{
+}
+ButtonGroup::ButtonGroup(QWidget*parent):QButtonGroup(parent)
+{
+}
+//来源:https://zhuanlan.zhihu.com/p/469523496?utm_id=0
+MapView::MapView(QWidget*parent):QGraphicsView(parent){
 
+        this->m_scale=1;
+        this->setGeometry(QRect(535, 20, 401, 561));
+        setStyleSheet("padding: 0px; border: 0px;");//无边框
+        setMouseTracking(true);//跟踪鼠标位置
+        setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏水平条
+        setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏竖条
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        setResizeAnchor(QGraphicsView::AnchorUnderMouse);
+        setDragMode(QGraphicsView::ScrollHandDrag);
+};
+
+//来源:https://blog.csdn.net/GoForwardToStep/article/details/77035287
+void MapView::wheelEvent(QWheelEvent *event)
+{
+    // 获取当前鼠标相对于view的位置;
+    QPointF cursorPoint = event->position();
+    // 获取当前鼠标相对于scene的位置;
+    QPointF scenePos = this->mapToScene(QPoint(cursorPoint.x(), cursorPoint.y()));
+
+    // 获取view的宽高;
+    qreal viewWidth = this->viewport()->width();
+    qreal viewHeight = this->viewport()->height();
+
+    // 获取当前鼠标位置相当于view大小的横纵比例;
+    qreal hScale = cursorPoint.x() / viewWidth;
+    qreal vScale = cursorPoint.y() / viewHeight;
+    int wheelDeltaValue = event->angleDelta().y();
+    // 向上滚动，放大;
+    if (wheelDeltaValue > 0)
+    {
+        if(m_scale>=1.728) return;
+        this->scale(1.2, 1.2);
+        m_scale*=1.2;
+    }
+    // 向下滚动，缩小;
+    else
+    {
+        if(m_scale<=0.695) return;
+        this->scale(1.0 / 1.2, 1.0 / 1.2);
+        m_scale/=1.2;
+    }
+    // 将scene坐标转换为放大缩小后的坐标;
+    QPointF viewPoint = this->transform().map(scenePos);
+    // 通过滚动条控制view放大缩小后的展示scene的位置;
+    horizontalScrollBar()->setValue(int(viewPoint.x() - viewWidth * hScale));
+    verticalScrollBar()->setValue(int(viewPoint.y() - viewHeight * vScale));
+}
 MapWin::MapWin(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MapWin)
 {
-
     ui->setupUi(this);
-}
+    begin=-1;
+    mv=new MapView(this);
+    bg=new ButtonGroup(this);
+    mp=new map(QString("map.json"));
+    gig=new QGraphicsItemGroup();
+    auto sce=new QGraphicsScene(mv);
 
+    mv->setScene(sce);
+    auto pic=new QPixmap("../picture/map2.png");
+    auto qpi=sce->addPixmap(*pic);
+    for(auto&e:mp->idtopos)
+    {
+        if(e.bx==-1||e.by==-1)
+        {
+            continue;
+        }
+        auto button=new MapButton(e);
+        auto proxy=sce->addWidget(button);
+        proxy->setPos(e.bx,e.by);
+        proxy->setParentItem(qpi);
+        bg->addButton(button,e.id);
+    }
+    bg->setExclusive(true);
+}
+void MapWin::on_pushButton_clicked()
+{
+    begin=this->bg->checkedId();
+    if(begin==-1) return;
+    ui->textBrowser->setPlainText(mp->idtopos[begin].name);
+    bg->setExclusive(false);
+}
+void MapWin::on_pushButton_2_clicked()
+{
+    qDebug()<<begin<<"\n";
+    if(begin==-1)
+    {
+
+        QMessageBox::warning(this, tr("失败！"), tr("出发点未确定，请重试！"), QMessageBox::Ok);
+        return;
+    }
+    this->end.clear();
+    QString now;
+    for(auto&e:mp->idtopos)
+    {
+        if(e.bx==-1||e.by==-1)continue;
+        if(bg->button(e.id)->isChecked())
+        {
+            this->end.push_back(e.id);
+            now.append(mp->idtopos[e.id].name);
+            now.append("\n");
+        }
+    }
+    ui->textBrowser_2->setPlainText(now);
+}
+void MapWin::on_pushButton_3_clicked()
+{
+    this->end.clear();
+    begin=-1;
+    this->bg->setExclusive(true);
+    ui->textBrowser->setPlainText("");
+    ui->textBrowser_2->setPlainText("");
+    ui->textBrowser_3->setPlainText("");
+    //this->mv->scene()->destroyItemGroup(this->gig);
+
+}
+void MapWin::on_pushButton_4_clicked()
+{
+    if(begin==-1)
+    {
+        QMessageBox::warning(this, tr("失败！"), tr("出发点未确定，请重试！"), QMessageBox::Ok);
+        return;
+    }
+    if(!end.size())
+    {
+        QMessageBox::warning(this, tr("失败！"), tr("目的地未确定，请重试！"), QMessageBox::Ok);
+        return;
+    }
+    path pth;
+    if(end.size()==1)
+    {
+        pth=mp->route(mp->idtopos[begin],mp->idtopos[end[0]]);
+    }else
+    {
+        std::vector<position>need;
+        for(auto&e:end)
+        {
+            need.push_back(mp->idtopos[e]);
+        }
+        pth=mp->route(mp->idtopos[begin],need);
+    }
+    ui->textBrowser_3->setPlainText(pth.output(*mp));
+    int nowx,nowy;
+    nowx=mp->idtopos[begin].x;
+    nowy=mp->idtopos[begin].y;
+    for(int i=0;i<pth.size();i++)
+    {
+        if(pth[i].x==-1||pth[i].y==-1)
+        {
+            continue;
+        }
+        QGraphicsLineItem* line=new QGraphicsLineItem(qreal(nowx),qreal(nowy),qreal(pth[i].x),qreal(pth[i].y));
+        line->setPen(QPen(Qt::blue,5));
+        //this->mv->scene()->addItem(line);
+        //this->mv->scene()->addItem(gig);
+        gig->addToGroup(line);
+        nowx=pth[i].x;
+        nowy=pth[i].y;
+        //auto undostk=new QUndoStack(this);
+        //this->mv->scene()->destroyItemGroup();
+    }
+    this->mv->scene()->addItem(gig);
+}
 MapWin::~MapWin()
 {
     delete ui;
