@@ -50,6 +50,7 @@ set(PROJECT_SOURCES
         classwind.cpp
         classwind.ui
         online_data.h
+        online_data.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -5,8 +5,8 @@
 #include "basic.h"
 #include "online_data.h"
 
-extern const User* user_online;
-extern const Admin* admin_online;
+//extern const User* user_online;
+//extern const Admin* admin_online;
 
 bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
@@ -160,6 +160,21 @@ bool User::set_clock_activity(const affair &a, int early_moment, bool enable)con
         return false;
     return true;
 }
-bool User::set_clock_tmpaffair(const affair &a, int early_moment, bool enable)const{
+bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
     return true;
+}
+bool User::set_clock_course(const course &a, bool enable)const{
+    int day,hour,minute;
+    day=a.day;hour=a.start-1;minute=30;
+    QJsonArray coursearray=load_student_class_coursearray(QString::number(id));
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject courseobject=coursearray[i].toObject();
+        if(courseobject.value("name").toString()==a.name){
+            courseobject["alarm"]=alarm(enable, day, hour, minute, a.period);
+            coursearray[i]=courseobject;
+            write_coursearray(QString::number(id),coursearray);
+            return true;
+        }
+    }
+    return false;
 }

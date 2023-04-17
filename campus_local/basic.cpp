@@ -1,6 +1,7 @@
 #include "basic.h"
 #include "affair.h"
 #include "map.h"
+#include <QJsonObject>
 bool write_json(QString jsonname,QJsonObject objectname){
     QJsonDocument doc;
     doc.setObject(objectname);
@@ -71,7 +72,7 @@ QJsonObject coursetojson(course c){
     rootObject.insert("weekday",c.day);
     return rootObject;
 }
-course jsontocourse(QJsonObject rootObject, map school){
+course jsontocourse(QJsonObject rootObject, map* school){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue teacherValue=rootObject.value("teacher");
@@ -82,7 +83,7 @@ course jsontocourse(QJsonObject rootObject, map school){
     QJsonValue weekdayValue=rootObject.value("weekday");
     return course(
         nameValue.toString(),
-        school.idtopos[idValue.toInt()],
+        school->idtopos[idValue.toInt()],
         startValue.toInt(),
         endValue.toInt(),
         weekdayValue.toInt(),
@@ -142,4 +143,33 @@ activity jsontotmpaffair(QJsonObject rootObject, map school){
         weekdayValue.toInt(),
         1<<(weekdayValue.toInt()-1)
     );
+}
+QJsonArray load_student_class_coursearray(QString id){
+    QJsonObject studentObject;
+    open_json(id+".json", studentObject);
+    QString classid = studentObject["class"].toString();
+    QJsonObject classObject;
+    open_json(classid+"_course.json", classObject);
+    QJsonArray courseArray=classObject["courses"].toArray();
+    return courseArray;
+}
+void write_coursearray(QString id,QJsonArray coursearray){
+    QJsonObject studentObject;
+    open_json(id+".json", studentObject);
+    QString classid = studentObject["class"].toString();
+    QJsonObject classObject;
+    open_json(classid+"_course.json", classObject);
+    classObject["courses"]=coursearray;
+    write_json(classid+"_course.json", classObject);
+}
+QJsonObject load_course_json(QString id, QString name){
+    QJsonArray coursearray = load_student_class_coursearray(id);
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course=coursearray.at(i).toObject();
+        QString cname=course["name"].toString();
+        if(cname==name){
+            return course;
+        }
+    }
+    return QJsonObject();
 }

@@ -52,15 +52,22 @@ public:
 
     /// @brief 添加闹钟功能(activity类)
     /// @param a 为a事务添加闹钟
-    /// @param periodicity 闹钟的周期
+    /// @param early_moment 决定提前响铃多久
+    /// @param enable 闹钟开关
     /// @return true表示设置闹钟成功，反之失败
     bool set_clock_activity(const affair &a, int early_moment, bool enable)const;
 
     /// @brief 添加闹钟功能(tmpaffair类)
     /// @param a 为a事务添加闹钟
-    /// @param periodicity 闹钟的周期
+    /// @param enable 闹钟开关
     /// @return true表示设置闹钟成功，反之失败
-    bool set_clock_tmpaffair(const affair &a, int early_moment, bool enable)const;
+    bool set_clock_tmpaffair(const affair &a, bool enable)const;
+
+    /// @brief 添加闹钟功能(course类)
+    /// @param a 为a事务添加闹钟
+    /// @param enable 闹钟开关
+    /// @return true表示设置闹钟成功，反之失败
+    bool set_clock_course(const course &a, bool enable)const;
 };
 class Admin : public User
 {

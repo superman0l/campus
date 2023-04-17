@@ -9,7 +9,8 @@
 #include<QJsonDocument>
 #include <QJsonParseError>
 #include "affair.h"
-#include "person.h"
+//#include "person.h"
+#include <QJsonArray>
 
 /// @brief 打开json文件并读取为QJsonObject
 /// @param jsonname 要打开的json文件名
@@ -44,7 +45,7 @@ QJsonObject coursetojson(course c);
 /// @brief 把json格式转化为course类
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的course
-course jsontocourse(QJsonObject rootObject);
+course jsontocourse(QJsonObject rootObject, map* school);
 
 /// @brief 把activity转化为json格式
 /// @param 参数为需要转化的activity类
@@ -65,5 +66,21 @@ tmpaffair jsontotmpaffair(QJsonObject rootObject);
 /// @param 参数为需要转化的tmpaffair类
 /// @return 返回转化之后的QJsonObject
 QJsonObject tmpaffairtojson(tmpaffair t);
+
+/// @brief 根据学生学号读出课表
+/// @param id为学生学号
+/// @return 返回读出的的QJsonArray
+QJsonArray load_student_class_coursearray(QString id);
+
+/// @brief 写入更改的课程数据
+/// @param id为学生学号
+/// @param coursearray为更改后的课程array
+void write_coursearray(QString id,QJsonArray coursearray);
+
+/// @brief 根据课程名称读取json返回object
+/// @param id为学生学号
+/// @param name为课程名称
+/// @return 返回读出的的QJsonObject
+QJsonObject load_course_json(QString id, QString name);
 
 #endif // BASIC_H

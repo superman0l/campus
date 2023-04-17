@@ -5,7 +5,6 @@
 #include <QStandardItemModel>
 #include "person.h"
 
-extern const User* user_online;
 
 namespace Ui {
 class classwind;
@@ -19,7 +18,15 @@ public:
     explicit classwind(QWidget *parent = nullptr);
     ~classwind();
     QStandardItemModel* model = new QStandardItemModel(13, 7);
-    void load();
+
+    //bool eventFilter(QObject* object,QEvent* event) override;
+
+    void load();;
+
+private slots:
+    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_checkBox_stateChanged(int arg1);
 
 private:
     Ui::classwind *ui;
