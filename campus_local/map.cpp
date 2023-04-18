@@ -54,7 +54,7 @@ std::vector<int> map::dijkstra(position begin)
 {
         std::vector<int>dis(tot,0x3f3f3f3f);
         std::vector<bool>vis(tot,0);
-        std::priority_queue<std::pair<int,int>> que;
+        std::priority_queue<std::pair<int,int>,std::vector<std::pair<int,int>>,std::greater<std::pair<int,int>>> que;
         dis[begin.id]=0;
         que.push(std::make_pair(0,begin.id));
         while(que.size())
@@ -87,8 +87,17 @@ path map::route(position begin,position end)
     int t=end.id;
     //qDebug()<<s<<" "<<t<<"??\n";
     dis[s]=0;
-    std::priority_queue<std::tuple<int,int,int>>que;
+    std::priority_queue<std::tuple<int,int,int>,std::vector<std::tuple<int,int,int>>,std::greater<std::tuple<int,int,int>>>que;
     que.push(std::make_tuple(0,s,s));
+    for(auto&e:mp[s])
+    {
+        if(e.second==0)
+        {
+            dis[e.first]=0;
+            que.push(std::make_tuple(0,s,e.first));
+        }
+
+    }
     while(que.size())
     {
         auto [curdis,preid,curid]=que.top();
@@ -106,7 +115,7 @@ path map::route(position begin,position end)
         }
         for(auto&e:mp[curid])
         {
-
+            //if(e.second==0)continue;
             if(dis[e.first]>e.second+dis[curid])
             {
                 dis[e.first]=e.second+dis[curid];
@@ -248,8 +257,8 @@ const QString path::output(map&mp)const
 
     };
     std::unordered_map<int,QString>tmp;
-    tmp[north]=QString("南");
-    tmp[south]=QString("北");
+    tmp[north]=QString("北");
+    tmp[south]=QString("南");
     tmp[west]=QString("西");
     tmp[east]=QString("东");
     for(int i=1;i<this->size();i++)

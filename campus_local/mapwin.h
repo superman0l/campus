@@ -46,6 +46,7 @@ public:
     int status;//表示窗口状态,第1位置1表示出发点确定,第2位置1表示终点确定
     int begin;//起始点,导航功能中使用
     std::vector<int>end;//目的地,导航功能中使用
+    std::vector<QGraphicsLineItem*>vec;
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();

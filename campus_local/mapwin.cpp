@@ -7,6 +7,7 @@
 #include<QPoint>
 #include<QMessageBox>
 #include<QUndoStack>
+#include<QPainter>
 MapButton::MapButton(const position&pos,QWidget*parent):QRadioButton(parent)
 {
 }
@@ -130,11 +131,16 @@ void MapWin::on_pushButton_3_clicked()
     ui->textBrowser->setPlainText("");
     ui->textBrowser_2->setPlainText("");
     ui->textBrowser_3->setPlainText("");
-    //this->mv->scene()->destroyItemGroup(this->gig);
-
+    for(auto&e:vec)
+    {
+        this->mv->scene()->removeItem(e);
+        delete e;
+    }
+    vec.clear();
 }
 void MapWin::on_pushButton_4_clicked()
 {
+
     if(begin==-1)
     {
         QMessageBox::warning(this, tr("失败！"), tr("出发点未确定，请重试！"), QMessageBox::Ok);
@@ -145,6 +151,12 @@ void MapWin::on_pushButton_4_clicked()
         QMessageBox::warning(this, tr("失败！"), tr("目的地未确定，请重试！"), QMessageBox::Ok);
         return;
     }
+    for(auto&e:vec)
+    {
+        this->mv->scene()->removeItem(e);
+        delete e;
+    }
+    vec.clear();
     path pth;
     if(end.size()==1)
     {
@@ -162,23 +174,26 @@ void MapWin::on_pushButton_4_clicked()
     int nowx,nowy;
     nowx=mp->idtopos[begin].x;
     nowy=mp->idtopos[begin].y;
+    QPen qp(QColor(174 ,238, 238));
     for(int i=0;i<pth.size();i++)
     {
-        if(pth[i].x==-1||pth[i].y==-1)
+        if(pth[i].x==-1||pth[i].y==-1||nowx==-1||nowy==-1)
         {
+            nowx=pth[i].x;
+            nowy=pth[i].y;
             continue;
         }
         QGraphicsLineItem* line=new QGraphicsLineItem(qreal(nowx),qreal(nowy),qreal(pth[i].x),qreal(pth[i].y));
-        line->setPen(QPen(Qt::blue,5));
-        //this->mv->scene()->addItem(line);
-        //this->mv->scene()->addItem(gig);
-        gig->addToGroup(line);
+        vec.push_back(line);
+        qp.setWidth(7);
+        qp.setCapStyle(Qt::RoundCap);
+        qp.setJoinStyle(Qt::MiterJoin);
+        line->setPen(qp);
+        this->mv->scene()->addItem(line);
         nowx=pth[i].x;
         nowy=pth[i].y;
-        //auto undostk=new QUndoStack(this);
-        //this->mv->scene()->destroyItemGroup();
     }
-    this->mv->scene()->addItem(gig);
+    this->bg->setExclusive(true);
 }
 MapWin::~MapWin()
 {
