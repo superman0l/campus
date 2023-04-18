@@ -36,8 +36,8 @@ public:
     int end_week;
     QString teacher;
 
-    course(QString name, position place, int start_time, int end_time, int day, int periodicity = 0, int startweek = 0, int endweek = 0, QString teacher="")
-        : affair(name, place, start_time, end_time, day, periodicity){start_week=startweek; end_week=endweek;teacher=teacher;}
+    course(QString name, position place, int start_time, int end_time, int day, int periodicity, int startweek, int endweek, QString teacher)
+        : affair(name, place, start_time, end_time, day, periodicity), start_week(startweek), end_week(endweek), teacher(teacher){};
     virtual ~course(){};
     //virtual bool write_in(const std::string fname);
 };

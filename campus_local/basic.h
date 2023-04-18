@@ -83,4 +83,9 @@ void write_coursearray(QString id,QJsonArray coursearray);
 /// @return 返回读出的的QJsonObject
 QJsonObject load_course_json(QString id, QString name);
 
+/// @brief 根据数字返回星期几
+/// @param num为星期天数
+/// @return 返回string星期几
+QString num_to_qstr(int num);
+
 #endif // BASIC_H

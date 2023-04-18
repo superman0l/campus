@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QDebug>
 #include "online_data.h"
+#include <QListWidgetItem>
 
 classwind::classwind(QWidget *parent) :
     QWidget(parent),
@@ -22,6 +23,7 @@ classwind::classwind(QWidget *parent) :
             ui->tableView->setRowHeight(i,20);
         else ui->tableView->setRowHeight(i,150);
     }
+    for(int i=0;i<7;i++)ui->tableView->setColumnWidth(i,80);
 
     //ui->tableView->installEventFilter(this);
 }
@@ -109,6 +111,48 @@ void classwind::on_checkBox_stateChanged(int arg1)
         ui->tableView->setModel(model);
         QString newunderdata=datalist[0]+"  "+datalist[1]+"  "+datalist[2]+"  "+"alarm:off";
         ui->label->setText(newunderdata);
+    }
+}
+
+
+void classwind::on_search_clicked()
+{
+    ui->result->clear();
+    if(ui->course_line->text()==""){
+        int itemCount = ui->result->count();
+        QString mesg="无有效输入";
+        QListWidgetItem * item = new QListWidgetItem;
+        item->setSizeHint(QSize(ui->result->width(),20));
+        item->setSizeHint(QSize(ui->result->height(),25));
+        item->setText(QString(mesg).arg(itemCount));
+        ui->result->addItem(item);
+        return;
+    }
+    int tag;
+    if(ui->comboBox->currentText()=="搜索课程名称")
+        tag=0;
+    else if(ui->comboBox->currentText()=="搜索教师名称")
+        tag=1;
+    std::vector<course> courses=user_online->query(ui->course_line->text(),school_online,tag);
+    if(courses.empty()){
+        QString error="无结果。请检查搜索内容";
+        int itemCount = ui->result->count();
+        QListWidgetItem * item = new QListWidgetItem;
+        item->setSizeHint(QSize(ui->result->width(),20));
+        item->setSizeHint(QSize(ui->result->height(),25));
+        item->setText(QString(error).arg(itemCount));
+        ui->result->addItem(item);
+    }
+    for(int i=0;i<courses.size();i++){
+
+        QString info=courses[i].name+"  "+num_to_qstr(courses[i].day)+"  "+QString::number(courses[i].start)+":00-"+QString::number(courses[i].end)+":00  "+courses[i].teacher;
+
+        int itemCount = ui->result->count();
+        QListWidgetItem * item = new QListWidgetItem;
+        item->setSizeHint(QSize(ui->result->width(),20));
+        item->setSizeHint(QSize(ui->result->height(),25));
+        item->setText(QString(info).arg(itemCount));
+        ui->result->addItem(item);
     }
 }
 

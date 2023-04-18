@@ -28,6 +28,8 @@ private slots:
 
     void on_checkBox_stateChanged(int arg1);
 
+    void on_search_clicked();
+
 private:
     Ui::classwind *ui;
 

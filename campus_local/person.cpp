@@ -54,7 +54,8 @@ bool login(QString user_id,QString user_pswd){
 
     return true;
 };
-const std::vector<course> User::query(const QString& s, map benbu) const{
+const std::vector<course> User::query(const QString& s, map* benbu, int tag) const{
+    //tag=0 课程名字 tag=1老师名字
     std::vector<course> result;
     QJsonObject rootObject1;
     QString filepath = QString::number(id)+".json";
@@ -64,7 +65,7 @@ const std::vector<course> User::query(const QString& s, map benbu) const{
     QJsonObject rootObject2;
     if(!open_json(classValue.toString()+"_course.json",rootObject2))
         return std::vector<course>();
-    QJsonValue arrayValue = rootObject2.value("class");
+    QJsonValue arrayValue = rootObject2.value("courses");
     if (arrayValue.type() == QJsonValue::Array) {
         // 转换为QJsonArray类型
         QJsonArray courseArray = arrayValue.toArray();
@@ -73,19 +74,24 @@ const std::vector<course> User::query(const QString& s, map benbu) const{
             QJsonValue jsoncourse = courseArray.at(i);
             if(jsoncourse.type()==QJsonValue::Object){
                 QJsonObject courseObject = jsoncourse.toObject();
-                QJsonValue nameValue = courseObject.value("name");
-                QString coursename = nameValue.toString();
-                if(coursename.contains(s,Qt::CaseSensitive)){
+
+                QString cmpname;
+                if(tag==0)
+                    cmpname=courseObject.value("name").toString();
+                else if(tag==1)
+                    cmpname=courseObject.value("teacher").toString();
+                if(cmpname.contains(s,Qt::CaseSensitive)){
                     result.push_back(
                         course(
-                            coursename,
-                            benbu.idtopos[courseObject.value("destination_id").toInt()],
+                            courseObject.value("name").toString(),
+                            benbu->idtopos[courseObject.value("destination_id").toInt()],
                             courseObject.value("starttime").toInt(),
                             courseObject.value("endtime").toInt(),
                             courseObject.value("weekday").toInt(),
                             1<<(courseObject.value("weekday").toInt()-1),
                             courseObject.value("startweek").toInt(),
-                            courseObject.value("weekday").toInt()
+                            courseObject.value("weekday").toInt(),
+                            courseObject.value("teacher").toString()
                         )
                     );
                 }
