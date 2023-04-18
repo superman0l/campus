@@ -34,10 +34,10 @@
     <string>输入课程名称</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="coursesearch">
+  <widget class="QPushButton" name="search">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>420</x>
      <y>30</y>
      <width>101</width>
      <height>31</height>
@@ -96,7 +96,7 @@
    <property name="title">
     <string>搜索结果</string>
    </property>
-   <widget class="QTableView" name="searchView">
+   <widget class="QListWidget" name="result">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -144,7 +144,7 @@
    </widget>
    <widget class="QCheckBox" name="checkBox">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -166,6 +166,49 @@
      <bool>false</bool>
     </property>
    </widget>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>30</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string>搜索课程名称</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>搜索课程名称</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>搜索教师名称</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

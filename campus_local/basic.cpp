@@ -89,7 +89,8 @@ course jsontocourse(QJsonObject rootObject, map* school){
         weekdayValue.toInt(),
         1<<(weekdayValue.toInt()-1),
         startweekValue.toInt(),
-        endweekValue.toInt()
+        endweekValue.toInt(),
+        teacherValue.toString()
     );
 }
 QJsonObject activitytojson(activity a){
@@ -172,4 +173,25 @@ QJsonObject load_course_json(QString id, QString name){
         }
     }
     return QJsonObject();
+}
+QString num_to_qstr(int num){
+    switch (num) {
+    case 1:
+        return "星期一";
+    case 2:
+        return "星期二";
+    case 3:
+        return "星期三";
+    case 4:
+        return "星期四";
+    case 5:
+        return "星期五";
+    case 6:
+        return "星期六";
+    case 7:
+        return "星期日";
+    default:
+        return "错误输入";
+    }
+    return "错误输入";
 }
