@@ -35,9 +35,10 @@ public:
     int start_week;//第几周开始
     int end_week;
     QString teacher;
+    QString classroom;
 
-    course(QString name, position place, int start_time, int end_time, int day, int periodicity, int startweek, int endweek, QString teacher)
-        : affair(name, place, start_time, end_time, day, periodicity), start_week(startweek), end_week(endweek), teacher(teacher){};
+    course(QString name, position place, int start_time, int end_time, int day, int periodicity, int startweek, int endweek, QString teacher, QString classroom)
+        : affair(name, place, start_time, end_time, day, periodicity), start_week(startweek), end_week(endweek), teacher(teacher), classroom(classroom){};
     virtual ~course(){};
     //virtual bool write_in(const std::string fname);
 };

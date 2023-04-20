@@ -51,6 +51,15 @@ set(PROJECT_SOURCES
         classwind.ui
         online_data.h
         online_data.cpp
+        setcourse.cpp
+        setcourse.h
+        setcourse.ui
+        addcourse.cpp
+        addcourse.h
+        addcourse.ui
+        addexam.cpp
+        addexam.h
+        addexam.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -101,6 +101,12 @@ public:
     /// @return true表示修改成功,false表示修改失败
     bool update_course(const course&old,const course&now,int64_t id)const;
 
+    /// @brief 管理员发布考试功能
+    /// @param exam 考试
+    /// @param id 班级编号
+    /// @return true表示修改成功,false表示修改失败
+    bool update_course(const course&exam,int64_t id)const;
+
 
 };
 /// @brief 账号登录功能

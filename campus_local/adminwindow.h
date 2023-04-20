@@ -2,6 +2,9 @@
 #define ADMINWINDOW_H
 
 #include <QMainWindow>
+#include "setcourse.h"
+#include "addcourse.h"
+#include "addexam.h"
 
 //前置定义一个类
 class Admin;
@@ -25,6 +28,14 @@ private:
 private slots:
     void ReceiveAdmData(const Admin*);
     void on_actionLogOut_O_triggered();
+
+    void on_set_clicked();
+
+    void on_add_clicked();
+
+    void on_delete_2_clicked();
+
+    void on_set_quiz_clicked();
 
 signals:
     void LogOut();//退出登录信号

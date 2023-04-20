@@ -88,4 +88,15 @@ QJsonObject load_course_json(QString id, QString name);
 /// @return 返回string星期几
 QString num_to_qstr(int num);
 
+/// @brief 根据星期几返回数字
+/// @param day为表示星期字符串
+/// @return 返回int：1表示星期一，以此类推
+int qstr_to_num(QString day);
+
+/// @brief 根据表示时间字符串更改起始时间int
+/// @param time为表示时间字符串：“8：00-10：00”
+/// @param st为更改的开始时间
+/// @param ed为更改的结束时间
+void qstr_to_time(QString time, int& st, int& ed);
+
 #endif // BASIC_H

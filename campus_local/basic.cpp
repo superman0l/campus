@@ -70,6 +70,7 @@ QJsonObject coursetojson(course c){
     rootObject.insert("startweek",c.start_week);
     rootObject.insert("endweek",c.end_week);
     rootObject.insert("weekday",c.day);
+    rootObject.insert("classroom",c.classroom);
     return rootObject;
 }
 course jsontocourse(QJsonObject rootObject, map* school){
@@ -81,6 +82,7 @@ course jsontocourse(QJsonObject rootObject, map* school){
     QJsonValue startweekValue=rootObject.value("startweek");
     QJsonValue endweekValue=rootObject.value("endweek");
     QJsonValue weekdayValue=rootObject.value("weekday");
+    QJsonValue classroomValue=rootObject.value("classroom");
     return course(
         nameValue.toString(),
         school->idtopos[idValue.toInt()],
@@ -90,7 +92,8 @@ course jsontocourse(QJsonObject rootObject, map* school){
         1<<(weekdayValue.toInt()-1),
         startweekValue.toInt(),
         endweekValue.toInt(),
-        teacherValue.toString()
+        teacherValue.toString(),
+        classroomValue.toString()
     );
 }
 QJsonObject activitytojson(activity a){
@@ -194,4 +197,43 @@ QString num_to_qstr(int num){
         return "错误输入";
     }
     return "错误输入";
+}
+int qstr_to_num(QString day){
+    if(day=="星期一")
+        return 1;
+    else if(day=="星期二")
+        return 2;
+    else if(day=="星期三")
+        return 3;
+    else if(day=="星期四")
+        return 4;
+    else if(day=="星期五")
+        return 5;
+    else if(day=="星期六")
+        return 6;
+    else if(day=="星期日")
+        return 7;
+    else
+        return 0;
+}
+void qstr_to_time(QString time, int& st, int& ed){
+    QString start,end;
+    int f,c=0;
+    for(int i=0;i<time.length();i++){
+        if(time[i]==':'){
+            if(c==0){
+                start=time.mid(0,i);
+                c=1;
+            }
+            else if(c==1){
+                end=time.mid(f,i-f);
+                break;
+            }
+        }
+        else if(time[i]=='-'){
+            f=i+1;
+        }
+    }
+    st=start.toInt();
+    ed=end.toInt();
 }

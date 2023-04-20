@@ -91,7 +91,8 @@ const std::vector<course> User::query(const QString& s, map* benbu, int tag) con
                             1<<(courseObject.value("weekday").toInt()-1),
                             courseObject.value("startweek").toInt(),
                             courseObject.value("weekday").toInt(),
-                            courseObject.value("teacher").toString()
+                            courseObject.value("teacher").toString(),
+                            courseObject.value("classroom").toString()
                         )
                     );
                 }
@@ -183,4 +184,19 @@ bool User::set_clock_course(const course &a, bool enable)const{
         }
     }
     return false;
+}
+bool Admin::add_course(const course&cr,int64_t id)const{
+    QJsonObject classObject;
+    if(!open_json(QString::number(id)+"_course.json",classObject)){
+        return false;
+    }
+    QJsonObject courseObject;
+    courseObject=coursetojson(cr);
+    QJsonArray coursearray=classObject["courses"].toArray();
+    coursearray.append(courseObject);
+    classObject["courses"]=coursearray;
+    if(!write_json(QString::number(id)+"_course.json",classObject)){
+        return false;
+    }
+    return true;
 }

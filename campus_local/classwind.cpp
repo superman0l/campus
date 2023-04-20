@@ -36,7 +36,7 @@ classwind::~classwind()
 
 void classwind::load(){
     QJsonArray courseArray=load_student_class_coursearray(QString::number(user_online->get_id()));
-    QString name,teacher,al;
+    QString name,teacher,al,classroom;
     int starttime,period,day;
     bool alarm;
     for(int i=0;i<courseArray.size();i++){
@@ -44,12 +44,13 @@ void classwind::load(){
         QString message;
         name=course["name"].toString();
         teacher=course["teacher"].toString();
+        classroom=course["classroom"].toString();
         starttime=course["starttime"].toInt();
         period=course["endtime"].toInt()-starttime+1;
         day=course["weekday"].toInt();
         alarm=course["alarm"].toObject()["enable"].toBool();
         al=alarm==true?"alarm:on":"alarm:off";
-        message=name+"\n\n"+teacher+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
+        message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
         for(int j=0;j<period;j++){
             model->setItem(starttime-8+j,day-1,new QStandardItem(message));
             model->item(starttime-8+j,day-1)->setTextAlignment(Qt::AlignCenter);
@@ -119,12 +120,11 @@ void classwind::on_search_clicked()
 {
     ui->result->clear();
     if(ui->course_line->text()==""){
-        int itemCount = ui->result->count();
         QString mesg="无有效输入";
         QListWidgetItem * item = new QListWidgetItem;
         item->setSizeHint(QSize(ui->result->width(),20));
         item->setSizeHint(QSize(ui->result->height(),25));
-        item->setText(QString(mesg).arg(itemCount));
+        item->setText(QString(mesg));
         ui->result->addItem(item);
         return;
     }
@@ -136,23 +136,32 @@ void classwind::on_search_clicked()
     std::vector<course> courses=user_online->query(ui->course_line->text(),school_online,tag);
     if(courses.empty()){
         QString error="无结果。请检查搜索内容";
-        int itemCount = ui->result->count();
         QListWidgetItem * item = new QListWidgetItem;
         item->setSizeHint(QSize(ui->result->width(),20));
         item->setSizeHint(QSize(ui->result->height(),25));
-        item->setText(QString(error).arg(itemCount));
+        item->setText(QString(error));
         ui->result->addItem(item);
     }
     for(int i=0;i<courses.size();i++){
 
-        QString info=courses[i].name+"  "+num_to_qstr(courses[i].day)+"  "+QString::number(courses[i].start)+":00-"+QString::number(courses[i].end)+":00  "+courses[i].teacher;
-
-        int itemCount = ui->result->count();
+        QString info=courses[i].name+"  "+num_to_qstr(courses[i].day)+"  "+QString::number(courses[i].start)+":00-"+QString::number(courses[i].end+1)+":00  "+courses[i].classroom+"  "+courses[i].teacher;
         QListWidgetItem * item = new QListWidgetItem;
         item->setSizeHint(QSize(ui->result->width(),20));
         item->setSizeHint(QSize(ui->result->height(),25));
-        item->setText(QString(info).arg(itemCount));
+        item->setText(QString(info));
         ui->result->addItem(item);
     }
+}
+
+void classwind::on_result_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    //ui->tableView->setCurrentIndex(ui->tableView->model()->index(2, 3));
+    QString data=ui->result->currentItem()->text();
+    QStringList strlist=data.split("  ");
+    int col=qstr_to_num(strlist[1])-1;
+    int st,ed;
+    qstr_to_time(strlist[2],st,ed);
+    ui->tableView->setCurrentIndex(ui->tableView->model()->index(st-8, col));
+    on_tableView_clicked(ui->tableView->model()->index(st-8, col));
 }
 
