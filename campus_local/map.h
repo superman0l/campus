@@ -107,5 +107,19 @@ public:
     {
         return mp[now.id];
     }
+
+
+    /// @brief navigate 获取导航路线文字说明
+    /// @param stid 起始地点
+    /// @param edid 目的地点
+    /// @return QString即为文字说明
+    const QString navigate(const int stid,const int edid);
+
+
+    /// @brief navigate 获取导航路线文字说明
+    /// @param stid 起始地点
+    /// @param edids 目的地点
+    /// @return QString即为文字说明
+    const QString navigate(const int stid,const std::vector<int>&edids);
 };
 #endif // MAP_H

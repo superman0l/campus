@@ -174,14 +174,10 @@
       "ButtonPos": ["145","280"],
       "Type": "1",
       "NearestNeighbor" : [
-        {
-          "PlaceCode": "12",
-          "Distance": "45"
-        }
       ]
     },
     {
-      "PlaceName" : "留学生2号公寓东北侧路口",
+      "PlaceName" : "留学生1号公寓西北侧路口",
       "PlaceCode": "11",
       "Position" : ["112", "333"],
       "ButtonPos": ["-1","-1"],
@@ -223,10 +219,7 @@
       "ButtonPos": ["169","411"],
       "Type": "1",
       "NearestNeighbor" : [
-        {
-          "PlaceCode": "12",
-          "Distance": "45"
-        }
+        
       ]
     },
     {
@@ -756,7 +749,7 @@
           "Distance": "112"
         },
         {
-          "PlaceCode": "60",
+          "PlaceCode": "59",
           "Distance": "71"
         }
         
