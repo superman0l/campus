@@ -73,7 +73,6 @@ MapWin::MapWin(QWidget *parent) :
     mv=new MapView(this);
     bg=new ButtonGroup(this);
     mp=new map(QString("map.json"));
-    gig=new QGraphicsItemGroup();
     auto sce=new QGraphicsScene(mv);
 
     mv->setScene(sce);
