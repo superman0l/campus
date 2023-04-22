@@ -54,7 +54,7 @@ void MapView::wheelEvent(QWheelEvent *event)
     // 向下滚动，缩小;
     else
     {
-        if(m_scale<=0.695) return;
+        if(m_scale<=0.482) return;
         this->scale(1.0 / 1.2, 1.0 / 1.2);
         m_scale/=1.2;
     }
@@ -73,7 +73,6 @@ MapWin::MapWin(QWidget *parent) :
     mv=new MapView(this);
     bg=new ButtonGroup(this);
     mp=new map(QString("map.json"));
-    gig=new QGraphicsItemGroup();
     auto sce=new QGraphicsScene(mv);
 
     mv->setScene(sce);
@@ -98,45 +97,53 @@ void MapWin::on_pushButton_clicked()
     begin=this->bg->checkedId();
     if(begin==-1) return;
     ui->textBrowser->setPlainText(mp->idtopos[begin].name);
-    bg->setExclusive(false);
+    this->bg->setExclusive(false);
+    this->bg->button(begin)->setChecked(false);
+    this->bg->setExclusive(true);
 }
 void MapWin::on_pushButton_2_clicked()
 {
-    qDebug()<<begin<<"\n";
-    if(begin==-1)
-    {
-
-        QMessageBox::warning(this, tr("失败！"), tr("出发点未确定，请重试！"), QMessageBox::Ok);
-        return;
-    }
-    this->end.clear();
+    int tmp=this->bg->checkedId();
+    if(tmp==-1)return;
+    end.push_back(tmp);
+    std::sort(end.begin(),end.end());
+    end.erase(std::unique(end.begin(),end.end()),end.end());
     QString now;
-    for(auto&e:mp->idtopos)
+    for(auto&e:end)
     {
-        if(e.bx==-1||e.by==-1)continue;
-        if(bg->button(e.id)->isChecked())
-        {
-            this->end.push_back(e.id);
-            now.append(mp->idtopos[e.id].name);
-            now.append("\n");
-        }
+        now.append(mp->idtopos[e].name);
+        now.append("\n");
     }
     ui->textBrowser_2->setPlainText(now);
+    this->bg->setExclusive(false);
+    this->bg->button(tmp)->setChecked(false);
+    this->bg->setExclusive(true);
 }
 void MapWin::on_pushButton_3_clicked()
 {
     this->end.clear();
     begin=-1;
-    this->bg->setExclusive(true);
+    int tmp=this->bg->checkedId();
+    if(tmp!=-1)
+    {
+        this->bg->setExclusive(false);
+        this->bg->button(tmp)->setChecked(false);
+        this->bg->setExclusive(true);
+    }
     ui->textBrowser->setPlainText("");
     ui->textBrowser_2->setPlainText("");
     ui->textBrowser_3->setPlainText("");
-    for(auto&e:vec)
+    while(this->head.size())
     {
-        this->mv->scene()->removeItem(e);
-        delete e;
+        this->mv->scene()->removeItem(head.top());
+        delete head.top();
+        head.pop();
     }
-    vec.clear();
+    while(this->tail.size())
+    {
+        delete tail.top();
+        tail.pop();
+    }
 }
 void MapWin::on_pushButton_4_clicked()
 {
@@ -151,12 +158,17 @@ void MapWin::on_pushButton_4_clicked()
         QMessageBox::warning(this, tr("失败！"), tr("目的地未确定，请重试！"), QMessageBox::Ok);
         return;
     }
-    for(auto&e:vec)
+    while(this->head.size())
     {
-        this->mv->scene()->removeItem(e);
-        delete e;
+        this->mv->scene()->removeItem(head.top());
+        delete head.top();
+        head.pop();
     }
-    vec.clear();
+    while(this->tail.size())
+    {
+        delete tail.top();
+        tail.pop();
+    }
     path pth;
     if(end.size()==1)
     {
@@ -175,6 +187,9 @@ void MapWin::on_pushButton_4_clicked()
     nowx=mp->idtopos[begin].x;
     nowy=mp->idtopos[begin].y;
     QPen qp(QColor(174 ,238, 238));
+    qp.setWidth(7);
+    qp.setCapStyle(Qt::RoundCap);
+    qp.setJoinStyle(Qt::MiterJoin);
     for(int i=0;i<pth.size();i++)
     {
         if(pth[i].x==-1||pth[i].y==-1||nowx==-1||nowy==-1)
@@ -184,16 +199,39 @@ void MapWin::on_pushButton_4_clicked()
             continue;
         }
         QGraphicsLineItem* line=new QGraphicsLineItem(qreal(nowx),qreal(nowy),qreal(pth[i].x),qreal(pth[i].y));
-        vec.push_back(line);
-        qp.setWidth(7);
-        qp.setCapStyle(Qt::RoundCap);
-        qp.setJoinStyle(Qt::MiterJoin);
         line->setPen(qp);
-        this->mv->scene()->addItem(line);
+        //this->mv->scene()->addItem(line);
+        this->head.push(line);
         nowx=pth[i].x;
         nowy=pth[i].y;
     }
+    while(this->head.size())
+    {
+        this->tail.push(this->head.top());
+        this->head.pop();
+    }
     this->bg->setExclusive(true);
+}
+void MapWin::on_pushButton_5_clicked()
+{
+    if(this->tail.empty())
+    {
+        QMessageBox::warning(this, tr("失败！"), tr("路线已导航完毕！"), QMessageBox::Ok);
+        return;
+    }
+    this->mv->scene()->addItem(this->tail.top());
+    this->head.push(this->tail.top());
+    this->tail.pop();
+}
+void MapWin::on_pushButton_6_clicked()
+{
+    if(this->head.empty())
+    {
+        return;
+    }
+    this->mv->scene()->removeItem(this->head.top());
+    this->tail.push(this->head.top());
+    this->head.pop();
 }
 MapWin::~MapWin()
 {

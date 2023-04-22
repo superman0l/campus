@@ -43,7 +43,6 @@ map::map(const QString fname)
         {
             nxt=edge.at(i).toObject().value("PlaceCode").toString().toInt();
             len=edge.at(i).toObject().value("Distance").toString().toInt();
-            //qDebug()<<id<<" "<<nxt<<" "<<len<<"????\n";
             this->mp[id].push_back({nxt,len});
             this->mp[nxt].push_back({id,len});
         }
@@ -85,7 +84,6 @@ path map::route(position begin,position end)
     std::vector<int>pre(tot,-1);
     int s=begin.id;
     int t=end.id;
-    //qDebug()<<s<<" "<<t<<"??\n";
     dis[s]=0;
     std::priority_queue<std::tuple<int,int,int>,std::vector<std::tuple<int,int,int>>,std::greater<std::tuple<int,int,int>>>que;
     que.push(std::make_tuple(0,s,s));
@@ -137,7 +135,6 @@ path map::route(position begin,position end)
     ret.push_front(idtopos[s]);
     return ret;
 }
-//待修
 path map::route(position begin,const std::vector<position>&need)
 {
     std::vector<int>pos;
@@ -295,4 +292,33 @@ const QString path::output(map&mp)const
         nowy=this->road[i].y;
     }
     return ret;
+}
+const QString map::navigate(const int stid,const int edid)
+{
+    if(stid>=tot||edid>=tot)
+    {
+        qDebug()<<"In navigate,id not found!\n";
+        return QString("");
+    }
+    return this->route(this->idtopos[stid],this->idtopos[edid]).output(*this);
+}
+
+const QString map::navigate(const int stid,const std::vector<int>&edids)
+{
+    if(stid>=tot)
+    {
+        qDebug()<<"In navigate,id not found!\n";
+        return QString("");
+    }
+    std::vector<position>need;
+    for(auto&e:edids)
+    {
+        if(e>=tot)
+        {
+            qDebug()<<"In navigate,id not found!\n";
+            return QString("");
+        }
+        need.push_back(this->idtopos[e]);
+    }
+    return this->route(this->idtopos[stid],need).output(*this);
 }

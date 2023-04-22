@@ -132,7 +132,7 @@
     </font>
    </property>
    <property name="text">
-    <string>确认选择</string>
+    <string>添加</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -218,6 +218,42 @@
    </property>
    <property name="text">
     <string>开始导航</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>50</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>后一步</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>50</y>
+     <width>61</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>前一步</string>
    </property>
   </widget>
  </widget>
