@@ -21,7 +21,7 @@ public:
 
     //bool eventFilter(QObject* object,QEvent* event) override;
 
-    void load();;
+    void load(int weeknum);
 
 private slots:
     void on_tableView_clicked(const QModelIndex &index);
@@ -31,6 +31,10 @@ private slots:
     void on_search_clicked();
 
     void on_result_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_navigate_clicked();
+
+    void on_week_currentIndexChanged(int index);
 
 private:
     Ui::classwind *ui;

@@ -52,7 +52,7 @@
     <string>课程名称</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="coursename">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -88,7 +88,7 @@
     <string>教师名称</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="teacher">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -124,7 +124,7 @@
     <string>开始周数</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_5">
+  <widget class="QComboBox" name="start">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -189,7 +189,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="placeid">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -200,22 +200,22 @@
    </property>
    <item>
     <property name="text">
-     <string>教学楼一</string>
+     <string>教一</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼二</string>
+     <string>教二</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼三</string>
+     <string>教三</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼四</string>
+     <string>教四</string>
     </property>
    </item>
    <item>
@@ -306,7 +306,7 @@
     <string>上课时间</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="classroom">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -324,7 +324,7 @@
     <string>在此处输入教室号</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_6">
+  <widget class="QComboBox" name="period">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -367,7 +367,7 @@
     <string>上课地点</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="startweek">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -472,7 +472,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="comboBox_4">
+  <widget class="QComboBox" name="day">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -517,7 +517,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="comboBox_3">
+  <widget class="QComboBox" name="endweek">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -626,27 +626,6 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>280</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>检测课程可行</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="set">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>350</x>
      <y>280</y>
      <width>101</width>
      <height>31</height>

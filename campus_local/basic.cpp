@@ -237,3 +237,33 @@ void qstr_to_time(QString time, int& st, int& ed){
     st=start.toInt();
     ed=end.toInt();
 }
+int qstr_to_placeid(QString classroom){
+    if(classroom.contains("教一",Qt::CaseSensitive))
+        return 61;
+    else if(classroom.contains("教四",Qt::CaseSensitive))
+        return 65;
+    else if(classroom.contains("主楼",Qt::CaseSensitive))
+        return 71;
+    else if(classroom.contains("教三",Qt::CaseSensitive))
+        return 77;
+    else if(classroom.contains("教二",Qt::CaseSensitive))
+        return 80;
+    else if(classroom.contains("操场",Qt::CaseSensitive))
+        return 50;
+    else if(classroom.contains("体育馆",Qt::CaseSensitive))
+        return 55;
+    else
+        return -1;
+}
+
+bool course_check(course cr, QJsonArray coursearray)
+{
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course = coursearray.at(i).toObject();
+        if(cr.start_week<=course["endweek"].toInt()&&cr.end_week>=course["startweek"].toInt()
+            &&cr.day==course["weekday"].toInt()
+            &&cr.start<=course["endtime"].toInt()&&cr.end>=course["starttime"].toInt())
+            return false;
+    }
+    return true;
+}

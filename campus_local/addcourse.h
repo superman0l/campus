@@ -2,6 +2,8 @@
 #define ADDCOURSE_H
 
 #include <QDialog>
+#include "affair.h"
+#include "basic.h"
 
 namespace Ui {
 class addcourse;
@@ -15,8 +17,18 @@ public:
     explicit addcourse(QWidget *parent = nullptr);
     ~addcourse();
 
+private slots:
+    void on_check_clicked();
+
+    void on_endweek_currentIndexChanged(int index);
+
+    void on_startweek_currentIndexChanged(int index);
+
 private:
     Ui::addcourse *ui;
+
+signals:
+    void change();
 };
 
 #endif // ADDCOURSE_H

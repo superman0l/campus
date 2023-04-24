@@ -12,10 +12,12 @@ class User
 {
 private:
     std::string name;
+    int place_id=-1;
     int64_t id;
+    int64_t classid;
 
 public:
-    User(const std::string &username, int64_t id) : name(username), id(id) {}
+    User(const std::string &username, int64_t id, int64_t classid, int place_id) : name(username), id(id), classid(classid), place_id(place_id){}
     virtual ~User() {}
     const std::string get_name() const
     {
@@ -24,6 +26,13 @@ public:
     int64_t get_id() const
     {
         return id;
+    }
+    int get_place_id()const{
+        return place_id;
+    }
+    int64_t get_classid() const
+    {
+        return classid;
     }
 
     /// @brief 判断当前用户是否是管理员
@@ -72,7 +81,7 @@ public:
 class Admin : public User
 {
 public:
-    Admin(const std::string &username, int64_t id) : User(username, id) {}
+    Admin(const std::string &username, int64_t id, int64_t classid,int place_id) : User(username, id, classid, place_id) {}
     virtual ~Admin() {}
 
     /// @brief 判断当前用户是否是管理员
@@ -92,21 +101,14 @@ public:
     /// @param cr 要删除的课程(该参数仅供索引使用)
     /// @param id 班级编号
     /// @return true表示删除成功,false表示删除失败
-    bool erase_course(const course&cr,int64_t id)const;
+    bool erase_course(QString name, int day, int64_t id)const;
 
     /// @brief 管理员修改课程功能
     /// @param old 要修改的旧的课程(该参数仅供索引使用)
     /// @param now 新课程
     /// @param id 班级编号
     /// @return true表示修改成功,false表示修改失败
-    bool update_course(const course&old,const course&now,int64_t id)const;
-
-    /// @brief 管理员发布考试功能
-    /// @param exam 考试
-    /// @param id 班级编号
-    /// @return true表示修改成功,false表示修改失败
-    bool update_course(const course&exam,int64_t id)const;
-
+    bool update_course(const course&now, int64_t id, int old_day)const;
 
 };
 /// @brief 账号登录功能

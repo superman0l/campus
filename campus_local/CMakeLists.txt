@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         basic.h
         basic.cpp
         timer.h
+        timer.cpp
         main.cpp
         login.cpp
         login.h

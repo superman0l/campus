@@ -16,8 +16,8 @@ private:
         /// @brief is_paused 表示时间是否暂停
         bool is_paused;
 public:
-    timer():QDateTime(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(QString("20230905000000"),QString("yyyyMMddHHmmss"))){}
-    timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused):QDateTime(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(QString("20230905000000"),QString("yyyyMMddHHmmss"))){}
+    timer():QDateTime(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(QString("20230220000000"),QString("yyyyMMddHHmmss"))){}
+    timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused):QDateTime(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(QString("20230220000000"),QString("yyyyMMddHHmmss"))){}
 
     /// @brief puase 设置暂停
     void puase(){ is_paused=true;}
@@ -46,36 +46,5 @@ public:
     /// @return 周数
     int get_week();
 };
-bool timer::set_ratio(double nratio){
-    if(nratio>0)
-    {
-        ratio=nratio;
-        return true;
-    }else
-    {
-        return false;
-    }
-}
-void timer::update()
-{
-    if(is_paused){
-        last=clock();
-        return;
-    }
-    clock_t now=clock();
-    *this=timer(addSecs(1L*ratio*(now-last)/CLOCKS_PER_SEC),now,ratio,is_paused);
-}
-void timer::output()
-{
-    qDebug() << this->toString(" yyyy-MM-dd hh:mm:ss");
-}
-void timer::set_term_begin(QString qs)
-{
-    this->term_begin=QDateTime::fromString(qs,"yyyyMMddhhmmss");
-}
-int timer::get_week()
-{
-    int dif=this->term_begin.daysTo(*this);
-    return 1+dif/7;
-}
+
 #endif // TIMER_H

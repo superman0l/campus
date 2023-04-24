@@ -5,6 +5,7 @@
 #include "setcourse.h"
 #include "addcourse.h"
 #include "addexam.h"
+#include <QStandardItemModel>
 
 //前置定义一个类
 class Admin;
@@ -20,6 +21,8 @@ class AdminWindow : public QMainWindow
 public:
     explicit AdminWindow(QWidget *parent = nullptr);
     ~AdminWindow();
+    QStandardItemModel* model = new QStandardItemModel(13, 7);
+    void load(int weeknum);
 
 private:
     Ui::AdminWindow *ui;
@@ -37,8 +40,13 @@ private slots:
 
     void on_set_quiz_clicked();
 
+    void on_comboBox_currentIndexChanged(int index);
+
+    void fresh();
+
 signals:
     void LogOut();//退出登录信号
+    void sendsetData(QModelIndex indx, QString show);
 };
 
 #endif // ADMINWINDOW_H

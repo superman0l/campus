@@ -24,7 +24,7 @@ private:
     Ui::MainWindow *ui;
     //const User* per;//存放登录的用户
     void closeEvent(QCloseEvent *event);//处理关闭窗口事件
-    timer* tim;//保存时间
+    //timer* tim;//保存时间
     QLabel* timlabl;//显示时间的标签
 
 private slots:

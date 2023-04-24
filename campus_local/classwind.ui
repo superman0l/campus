@@ -83,14 +83,14 @@
    <property name="geometry">
     <rect>
      <x>720</x>
-     <y>50</y>
+     <y>30</y>
      <width>211</width>
-     <height>431</height>
+     <height>211</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="title">
@@ -102,8 +102,13 @@
       <x>0</x>
       <y>20</y>
       <width>211</width>
-      <height>411</height>
+      <height>191</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
    </widget>
   </widget>
@@ -166,6 +171,24 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="navigate">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>30</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>导航</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
@@ -210,7 +233,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="week">
    <property name="geometry">
     <rect>
      <x>600</x>
@@ -314,6 +337,39 @@
      <string>第19周</string>
     </property>
    </item>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>250</y>
+     <width>211</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="title">
+    <string>导航结果</string>
+   </property>
+   <widget class="QTextBrowser" name="naviresult">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>211</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

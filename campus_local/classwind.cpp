@@ -7,17 +7,22 @@
 #include <QDebug>
 #include "online_data.h"
 #include <QListWidgetItem>
+#include "timer.h"
 
 classwind::classwind(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::classwind)
 {
     ui->setupUi(this);
+
+
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectItems);
+
     model->setHorizontalHeaderLabels({"周一", "周二", "周三", "周四", "周五", "周六", "周日"});
     model->setVerticalHeaderLabels({"8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "休息", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "休息", "19:00-20:00", "20:00-21:00"});
-    load();
+    ui->week->setCurrentIndex(tim->get_week()-1);
+    load(tim->get_week());
     ui->tableView->setModel(model);
-    qDebug()<<"111";
     for(int i=0;i<13;i++){
         if(i==4 || i==10)
             ui->tableView->setRowHeight(i,20);
@@ -34,32 +39,47 @@ classwind::~classwind()
 }
 
 
-void classwind::load(){
+void classwind::load(int weeknum){
+    //int weeknum=tim->get_week();
+
     QJsonArray courseArray=load_student_class_coursearray(QString::number(user_online->get_id()));
     QString name,teacher,al,classroom;
     int starttime,period,day;
+    int stweek,edweek;
     bool alarm;
     for(int i=0;i<courseArray.size();i++){
         QJsonObject course=courseArray.at(i).toObject();
         QString message;
-        name=course["name"].toString();
-        teacher=course["teacher"].toString();
-        classroom=course["classroom"].toString();
+        stweek=course["startweek"].toInt();
+        edweek=course["endweek"].toInt();
         starttime=course["starttime"].toInt();
-        period=course["endtime"].toInt()-starttime+1;
         day=course["weekday"].toInt();
-        alarm=course["alarm"].toObject()["enable"].toBool();
-        al=alarm==true?"alarm:on":"alarm:off";
-        message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
-        for(int j=0;j<period;j++){
-            model->setItem(starttime-8+j,day-1,new QStandardItem(message));
-            model->item(starttime-8+j,day-1)->setTextAlignment(Qt::AlignCenter);
+        period=course["endtime"].toInt()-starttime+1;
+
+        if(weeknum<stweek||weeknum>edweek){
+            for(int j=0;j<period;j++){
+                model->setItem(starttime-8+j,day-1,new QStandardItem(""));
+            }
+        }
+        else{
+            name=course["name"].toString();
+            teacher=course["teacher"].toString();
+            classroom=course["classroom"].toString();
+
+            alarm=course["alarm"].toObject()["enable"].toBool();
+            al=alarm==true?"alarm:on":"alarm:off";
+            message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
+            for(int j=0;j<period;j++){
+                model->setItem(starttime-8+j,day-1,new QStandardItem(message));
+                model->item(starttime-8+j,day-1)->setTextAlignment(Qt::AlignCenter);
+            }
         }
     }
 }
 
 void classwind::on_tableView_clicked(const QModelIndex &index)
 {
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     QModelIndex indx = ui->tableView->currentIndex();
     QVariant data = model->data(indx);
     QString show = data.toString();
@@ -155,13 +175,41 @@ void classwind::on_search_clicked()
 
 void classwind::on_result_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
-    //ui->tableView->setCurrentIndex(ui->tableView->model()->index(2, 3));
+
+    ui->tableView->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableView->clearSelection();
     QString data=ui->result->currentItem()->text();
     QStringList strlist=data.split("  ");
     int col=qstr_to_num(strlist[1])-1;
     int st,ed;
     qstr_to_time(strlist[2],st,ed);
-    ui->tableView->setCurrentIndex(ui->tableView->model()->index(st-8, col));
+    for(int i=0;i<ed-st;i++)
+        ui->tableView->setCurrentIndex(ui->tableView->model()->index(st-8+i, col));
     on_tableView_clicked(ui->tableView->model()->index(st-8, col));
+}
+
+
+void classwind::on_navigate_clicked()
+{
+    int stid,edid;
+    stid=user_online->get_place_id();
+    edid=qstr_to_placeid(ui->label->text());
+    QString text;
+    if(edid!=-1)text=school_online->navigate(stid,edid);
+    else text="无有效课程目的地，请重新选择";
+    ui->naviresult->setText(text);
+}
+
+
+void classwind::on_week_currentIndexChanged(int index)
+{
+    load(index+1);
+    ui->tableView->setModel(model);
+    for(int i=0;i<13;i++){
+        if(i==4 || i==10)
+            ui->tableView->setRowHeight(i,20);
+        else ui->tableView->setRowHeight(i,150);
+    }
+    for(int i=0;i<7;i++)ui->tableView->setColumnWidth(i,80);
 }
 

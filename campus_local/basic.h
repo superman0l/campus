@@ -99,4 +99,15 @@ int qstr_to_num(QString day);
 /// @param ed为更改的结束时间
 void qstr_to_time(QString time, int& st, int& ed);
 
+/// @brief 根据教室位置返回地图编号
+/// @param classroom为表示教室的字符串
+/// @return 返回int表示地图编号
+int qstr_to_placeid(QString classroom);
+
+/// @brief 检查课程是否冲突
+/// @param cr为需要检测的课程
+/// @param id为班级id
+/// @return 不冲突返回true，冲突返回false
+bool course_check(course cr, QJsonArray coursearray);
+
 #endif // BASIC_H

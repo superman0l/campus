@@ -13,6 +13,7 @@
 #include "mapwin.h"
 #include "affairwin.h"
 #include "personwin.h"
+#include "online_data.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -21,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("学生端"));
+
+    //初始化时间
+    tim = new timer();
 
     //建立切换页面
     QTabWidget* tab = new QTabWidget(this);
@@ -37,8 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
     setCentralWidget(tab);
 
-    //初始化时间
-    tim = new timer();
+
     //初始化并美化时间标签
     timlabl = new QLabel(this);//显示时间的标签
     timlabl->setFrameShape(QLabel::WinPanel);

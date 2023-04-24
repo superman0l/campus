@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="place">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -24,22 +24,22 @@
    </property>
    <item>
     <property name="text">
-     <string>教学楼一</string>
+     <string>教一</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼二</string>
+     <string>教二</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼三</string>
+     <string>教三</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教学楼四</string>
+     <string>教四</string>
     </property>
    </item>
    <item>
@@ -94,7 +94,7 @@
     <string>考试时间</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_5">
+  <widget class="QComboBox" name="start">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -159,7 +159,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="comboBox_6">
+  <widget class="QComboBox" name="period">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -184,7 +184,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="classroom">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -202,7 +202,7 @@
     <string>在此处输入教室号</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_4">
+  <widget class="QComboBox" name="weekday">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -247,32 +247,14 @@
     </property>
    </item>
   </widget>
-  <widget class="QPushButton" name="check">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>240</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>检测考试可行</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="set">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>240</y>
+     <x>340</x>
+     <y>250</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -286,7 +268,7 @@
     <string>确定发布</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_3">
+  <widget class="QComboBox" name="week">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -484,7 +466,7 @@
     <string>考试节数</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="name">
    <property name="geometry">
     <rect>
      <x>80</x>
