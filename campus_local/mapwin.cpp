@@ -86,6 +86,7 @@ MapWin::MapWin(QWidget *parent) :
         }
         auto button=new MapButton(e);
         auto proxy=sce->addWidget(button);
+        proxy->setScale(1.2);
         proxy->setPos(e.bx,e.by);
         proxy->setParentItem(qpi);
         bg->addButton(button,e.id);
@@ -186,7 +187,7 @@ void MapWin::on_pushButton_4_clicked()
     int nowx,nowy;
     nowx=mp->idtopos[begin].x;
     nowy=mp->idtopos[begin].y;
-    QPen qp(QColor(174 ,238, 238));
+    QPen qp(QColor(238 ,99, 99));
     qp.setWidth(7);
     qp.setCapStyle(Qt::RoundCap);
     qp.setJoinStyle(Qt::MiterJoin);
