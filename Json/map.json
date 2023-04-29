@@ -114,21 +114,21 @@
     {
       "PlaceName" : "学十公寓",
       "PlaceCode": "7",
-      "Position" : ["-1", "-1"],
+      "Position" : ["422", "195"],
       "ButtonPos": ["364","188"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "4",
-          "Distance": "0"
+          "Distance": "70"
         },
         {
           "PlaceCode": "5",
-          "Distance": "0"
+          "Distance": "70"
         },
         {
           "PlaceCode": "6",
-          "Distance": "0"
+          "Distance": "70"
         }
       ]
     },
@@ -279,17 +279,17 @@
     {
       "PlaceName" : "综合食堂",
       "PlaceCode": "18",
-      "Position" : ["-1", "-1"],
+      "Position" : ["406", "392"],
       "ButtonPos": ["407","370"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "16",
-          "Distance": "0"
+          "Distance": "60"
         },
         {
           "PlaceCode": "17",
-          "Distance": "0"
+          "Distance": "82"
         }
         
       ]
@@ -817,17 +817,17 @@
     {
       "PlaceName" : "北邮体育馆",
       "PlaceCode": "55",
-      "Position" : ["-1", "-1"],
+      "Position" : ["1230", "1100"],
       "ButtonPos": ["1155","1034"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "52",
-          "Distance": "0"
+          "Distance": "123"
         },
         {
           "PlaceCode": "54",
-          "Distance": "0"
+          "Distance": "140"
         }
       ]
     },
@@ -919,21 +919,21 @@
     {
       "PlaceName" : "教一楼",
       "PlaceCode": "61",
-      "Position" : ["-1", "-1"],
+      "Position" : ["757", "1040"],
       "ButtonPos": ["655","1060"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "58",
-          "Distance": "0"
+          "Distance": "41"
         },
         {
           "PlaceCode": "59",
-          "Distance": "0"
+          "Distance": "110"
         },
         {
           "PlaceCode": "60",
-          "Distance": "0"
+          "Distance": "110"
         }
         
       ]
@@ -981,21 +981,21 @@
     {
       "PlaceName" : "教四楼",
       "PlaceCode": "65",
-      "Position" : ["-1", "-1"],
+      "Position" : ["341", "1069"],
       "ButtonPos": ["341","1069"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "62",
-          "Distance": "0"
+          "Distance": "132"
         },
         {
           "PlaceCode": "63",
-          "Distance": "0"
+          "Distance": "132"
         },
         {
           "PlaceCode": "64",
-          "Distance": "0"
+          "Distance": "32"
         }
         
       ]
@@ -1192,21 +1192,21 @@
     {
       "PlaceName" : "教三楼",
       "PlaceCode": "77",
-      "Position" : ["-1", "-1"],
+      "Position" : ["282", "1499"],
       "ButtonPos": ["230","1560"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "74",
-          "Distance": "0"
+          "Distance": "43"
         },
         {
           "PlaceCode": "75",
-          "Distance": "0"
+          "Distance": "179"
         },
         {
           "PlaceCode": "76",
-          "Distance": "0"
+          "Distance": "72"
         }
         
       ]
@@ -1237,17 +1237,17 @@
     {
       "PlaceName" : "教二楼",
       "PlaceCode": "80",
-      "Position" : ["-1", "-1"],
+      "Position" : ["778", "1513"],
       "ButtonPos": ["700","1516"],
       "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "78",
-          "Distance": "0"
+          "Distance": "113"
         },
         {
           "PlaceCode": "79",
-          "Distance": "0"
+          "Distance": "71"
         }
         
       ]
