@@ -61,6 +61,9 @@ set(PROJECT_SOURCES
         addexam.cpp
         addexam.h
         addexam.ui
+        addactivity.cpp
+        addactivity.h
+        addactivity.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

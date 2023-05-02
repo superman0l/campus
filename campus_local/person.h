@@ -54,10 +54,21 @@ public:
     /// @return 查询结果
     const std::vector<tmpaffair> query(int begin_time,int end_time,int ntag=0)const;
 
+    /// @brief 查询空闲时间功能
+    /// @return 查询时间结果，用字符串表示，“星期三 18:00-19:00”
+    const std::vector<QString> query_time()const;
+
     /// @brief 添加活动,临时事务功能
     /// @param a 添加的活动或临时事务
     /// @return true表示活动添加成功,false表示由于冲突活动添加失败
     bool add_activity(const activity &a)const;
+
+    /// @brief 删除活动功能
+    /// @param name 删除的活动名
+    /// @param day 删除的活动日
+    /// @param time 删除的活动时间
+    /// @return true表示活动删除成功,false表示未找到活动删除失败
+    bool del_activity(QString name,int day,int time)const;
 
     /// @brief 添加闹钟功能(activity类)
     /// @param a 为a事务添加闹钟
