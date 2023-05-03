@@ -30,7 +30,7 @@
    <property name="title">
     <string>活动</string>
    </property>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="activitylist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -111,7 +111,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
+   <widget class="QListWidget" name="checktimelist">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -121,7 +121,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="querytime">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -139,7 +139,7 @@
      <string>查询可用时间</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="addactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -154,10 +154,10 @@
      </font>
     </property>
     <property name="text">
-     <string>添加事务</string>
+     <string>添加活动</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="deleteactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -172,7 +172,7 @@
      </font>
     </property>
     <property name="text">
-     <string>删除事务</string>
+     <string>删除活动</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="checkBox">
@@ -214,7 +214,7 @@
    <property name="title">
     <string>临时事务</string>
    </property>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="tmpaffairlist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -224,7 +224,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="naviresult">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -234,7 +234,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_4">
+   <widget class="QListWidget" name="checkafrlist">
     <property name="geometry">
      <rect>
       <x>480</x>

@@ -110,6 +110,9 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -172,6 +175,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="navigate">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>540</x>

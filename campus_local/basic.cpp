@@ -252,10 +252,31 @@ int qstr_to_placeid(QString classroom){
         return 50;
     else if(classroom.contains("体育馆",Qt::CaseSensitive))
         return 55;
+    /*
+    else if(classroom.contains("综合食堂",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("学生食堂",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("教工食堂",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("超市",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("澡堂",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("图书馆",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("学生活动中心",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("学生发展中心",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("科学会堂",Qt::CaseSensitive))
+        return 55;
+    else if(classroom.contains("体育馆",Qt::CaseSensitive))
+        return 55;
+    */
     else
         return -1;
 }
-
 bool course_check(course cr, QJsonArray coursearray)
 {
     for(int i=0;i<coursearray.size();i++){
