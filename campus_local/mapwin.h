@@ -5,6 +5,7 @@
 #include<QRadioButton>
 #include<QButtonGroup>
 #include<QGraphicsView>
+#include<QStandardItemModel>
 #include"map.h"
 namespace Ui {
 class MapWin;
@@ -45,8 +46,11 @@ public:
     int status;//表示窗口状态,第1位置1表示出发点确定,第2位置1表示终点确定
     int begin;//起始点,导航功能中使用
     std::vector<int>end;//目的地,导航功能中使用
-    std::stack<QGraphicsLineItem*>head;
-    std::stack<QGraphicsLineItem*>tail;
+    std::stack<QGraphicsLineItem*>head;//单步功能
+    std::stack<QGraphicsLineItem*>tail;//单步功能
+    QStandardItemModel*qsim;//单步功能
+    std::stack<QStandardItem*>itemhead;//单步功能
+    std::stack<QStandardItem*>itemtail;//单步功能
 private slots:
     void on_pushButton_clicked();//出发位置确认选择button
     void on_pushButton_2_clicked();//目的位置添加button
