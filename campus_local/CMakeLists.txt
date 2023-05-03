@@ -61,6 +61,9 @@ set(PROJECT_SOURCES
         addexam.cpp
         addexam.h
         addexam.ui
+        alarmwin.h
+        alarmwin.cpp
+        alarmwin.ui
         addactivity.cpp
         addactivity.h
         addactivity.ui
