@@ -32,12 +32,24 @@ void addactivity::on_add_clicked()
         ui->day->currentIndex()+1,
         1<<ui->day->currentIndex()
         );
-    if(user_online->add_activity(newa)){
-        emit flash();
+    int min;
+    if(!ui->check->isChecked())min=0;
+    else min=ui->min->value();
+    if(user_online->add_activity(newa,min)){
+        emit flash(0,0);
         this->close();
     }
     else{
         QMessageBox::critical(this, "错误","存在时间冲突，请更正！");
     }
+}
+
+
+void addactivity::on_check_stateChanged(int arg1)
+{
+    if(ui->check->isChecked())
+        ui->min->setEnabled(true);
+    else
+        ui->min->setEnabled(false);
 }
 

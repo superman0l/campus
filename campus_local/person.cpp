@@ -105,7 +105,7 @@ const std::vector<course> User::query(const QString& s, map* benbu, int tag) con
     return result;
 }
 
-const std::vector<QString> User::query_time() const
+const std::vector<QString> User::query_time(int day) const
 {
     bool flag[7][14];
     std::vector<QString> result;
@@ -129,6 +129,7 @@ const std::vector<QString> User::query_time() const
         for(int j=sttime;j<=edtime;j++)flag[day-1][j-8]=1;
     }
     for(int i=0;i<7;i++){
+        if(day!=0)i=day-1;
         for(int j=0;j<14;j++){
             if(!flag[i][j]){
                 QString day=num_to_qstr(i+1);
@@ -137,10 +138,11 @@ const std::vector<QString> User::query_time() const
                 result.push_back(data);
             }
         }
+        if(day!=0)break;
     }
     return result;
 };
-bool User::add_activity(const activity &a) const{
+bool User::add_activity(const activity &a, int min) const{
     //int tag, position place, int start_time, int end_time, int day, int periodicity = 0
     QJsonObject rootObject1;//存储学生信息的json
     QString filepath = QString::number(id)+".json";
@@ -175,6 +177,9 @@ bool User::add_activity(const activity &a) const{
     }
     //分别遍历activity和course以确定能够正常添加activity
 
+    if(min!=0){
+        rootObject2["alarm"]=alarm(true, a.day, a.start-1, 60-min, 1<<(a.day-1));
+    }
     activityArray.append(rootObject2);
     rootObject1["activities"]=activityArray;
     if(!write_json(filepath,rootObject1))

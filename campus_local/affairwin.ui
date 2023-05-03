@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>331</width>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
@@ -59,9 +59,9 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>360</x>
       <y>30</y>
-      <width>111</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -175,15 +175,12 @@
      <string>删除活动</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QComboBox" name="tags">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>220</y>
-      <width>71</width>
+      <x>260</x>
+      <y>30</y>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -192,9 +189,46 @@
       <pointsize>12</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>设置闹钟</string>
-    </property>
+    <item>
+     <property name="text">
+      <string>全部活动</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>自习</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>锻炼</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>外出</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>班会</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>小组作业</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>双创项目</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>聚餐</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">

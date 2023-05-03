@@ -18,12 +18,14 @@ public:
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
-    void load();
+    void load(int day, int tag);
     void on_addactvt_clicked();
 
     void on_deleteactvt_clicked();
 
     void on_querytime_clicked();
+
+    void on_tags_currentIndexChanged(int index);
 
 private:
     Ui::AffairWin *ui;

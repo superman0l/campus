@@ -18,8 +18,10 @@ public:
 private slots:
     void on_add_clicked();
 
+    void on_check_stateChanged(int arg1);
+
 signals:
-    void flash();
+    void flash(int a,int b);
 
 private:
     Ui::addactivity *ui;
