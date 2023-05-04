@@ -71,6 +71,8 @@ QJsonObject coursetojson(course c){
     rootObject.insert("endweek",c.end_week);
     rootObject.insert("weekday",c.day);
     rootObject.insert("classroom",c.classroom);
+    rootObject.insert("platform",c.platform);
+    rootObject.insert("url",c.url);
     return rootObject;
 }
 course jsontocourse(QJsonObject rootObject, map* school){
@@ -93,7 +95,9 @@ course jsontocourse(QJsonObject rootObject, map* school){
         startweekValue.toInt(),
         endweekValue.toInt(),
         teacherValue.toString(),
-        classroomValue.toString()
+        classroomValue.toString(),
+        rootObject["platform"].toString(),
+        rootObject["url"].toString()
     );
 }
 QJsonObject activitytojson(activity a){
@@ -104,6 +108,8 @@ QJsonObject activitytojson(activity a){
     rootObject.insert("tag",a.tag);
     rootObject.insert("time",a.start);
     rootObject.insert("day",a.day);
+    rootObject.insert("platform",a.platform);
+    rootObject.insert("url",a.url);
     return rootObject;
 }
 activity jsontoactivity(QJsonObject rootObject, map school){
@@ -119,6 +125,8 @@ activity jsontoactivity(QJsonObject rootObject, map school){
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),
+        rootObject["platform"].toString(),
+        rootObject["url"].toString(),
         1<<(weekdayValue.toInt()-1)
     );
 }
@@ -145,6 +153,8 @@ activity jsontotmpaffair(QJsonObject rootObject, map school){
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),
+        rootObject["platform"].toString(),
+        rootObject["url"].toString(),
         1<<(weekdayValue.toInt()-1)
     );
 }
@@ -179,6 +189,8 @@ QJsonObject load_course_json(QString id, QString name){
 }
 QString num_to_qstr(int num){
     switch (num) {
+    case 0:
+        return "每天";
     case 1:
         return "星期一";
     case 2:
@@ -199,19 +211,19 @@ QString num_to_qstr(int num){
     return "错误输入";
 }
 int qstr_to_num(QString day){
-    if(day=="星期一")
+    if(day=="星期一"||day=="周一")
         return 1;
-    else if(day=="星期二")
+    else if(day=="星期二"||day=="周二")
         return 2;
-    else if(day=="星期三")
+    else if(day=="星期三"||day=="周三")
         return 3;
-    else if(day=="星期四")
+    else if(day=="星期四"||day=="周四")
         return 4;
-    else if(day=="星期五")
+    else if(day=="星期五"||day=="周五")
         return 5;
-    else if(day=="星期六")
+    else if(day=="星期六"||day=="周六")
         return 6;
-    else if(day=="星期日")
+    else if(day=="星期日"||day=="周日")
         return 7;
     else
         return 0;
@@ -252,28 +264,6 @@ int qstr_to_placeid(QString classroom){
         return 50;
     else if(classroom.contains("体育馆",Qt::CaseSensitive))
         return 55;
-    /*
-    else if(classroom.contains("综合食堂",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("学生食堂",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("教工食堂",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("超市",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("澡堂",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("图书馆",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("学生活动中心",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("学生发展中心",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("科学会堂",Qt::CaseSensitive))
-        return 55;
-    else if(classroom.contains("体育馆",Qt::CaseSensitive))
-        return 55;
-    */
     else
         return -1;
 }

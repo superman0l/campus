@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>241</width>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -59,9 +59,9 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>370</x>
       <y>30</y>
-      <width>101</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -178,9 +178,9 @@
    <widget class="QComboBox" name="tags">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>280</x>
       <y>30</y>
-      <width>101</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -229,6 +229,24 @@
       <string>聚餐</string>
      </property>
     </item>
+   </widget>
+   <widget class="QPushButton" name="timesort">
+    <property name="geometry">
+     <rect>
+      <x>189</x>
+      <y>30</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>按时间升序</string>
+    </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">

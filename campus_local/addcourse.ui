@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>472</width>
-    <height>333</height>
+    <height>391</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -233,6 +233,11 @@
      <string>操场</string>
     </property>
    </item>
+   <item>
+    <property name="text">
+     <string>非线下课程</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
@@ -309,9 +314,9 @@
   <widget class="QLineEdit" name="classroom">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>80</x>
      <y>230</y>
-     <width>191</width>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -321,7 +326,7 @@
     </font>
    </property>
    <property name="placeholderText">
-    <string>在此处输入教室号</string>
+    <string>输入教室号（非线下课程则不填写）</string>
    </property>
   </widget>
   <widget class="QComboBox" name="period">
@@ -625,8 +630,8 @@
   <widget class="QPushButton" name="check">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>280</y>
+     <x>340</x>
+     <y>340</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -638,6 +643,96 @@
    </property>
    <property name="text">
     <string>确定增加</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="platform">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>280</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="placeholderText">
+    <string>腾讯会议等（无则为空）</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>280</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>课程平台</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>280</y>
+     <width>61</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>课程链接</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="url">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>280</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="placeholderText">
+    <string>若无线上课程则不填</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>课堂教室</string>
    </property>
   </widget>
  </widget>

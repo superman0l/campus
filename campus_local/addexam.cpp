@@ -34,10 +34,29 @@ addexam::~addexam()
 void addexam::on_set_clicked()
 {
     QString name=ui->name->currentText()+"-考试",classroom=ui->place->currentText()+ui->classroom->text(),teacher="";
-    int start=ui->start->currentIndex()+8, end =ui->period->currentIndex()+start, day=ui->weekday->currentIndex()+1;
+    int start;
+    if(ui->start->currentIndex()>8)
+        start=ui->start->currentIndex()+10;
+    else if(ui->start->currentIndex()>3)
+        start=ui->start->currentIndex()+9;
+    else
+        start=ui->start->currentIndex()+8;
+    int end =ui->period->currentIndex()+start, day=ui->weekday->currentIndex()+1;
     int startweek=ui->week->currentIndex()+1, endweek=startweek;
     int placeid=qstr_to_placeid(ui->place->currentText());
-    course check=course(name,school_online->idtopos[placeid],start,end,day,1<<(day-1),startweek,endweek,teacher,classroom);
+    course check=course(
+        name,
+        school_online->idtopos[placeid],
+        start,
+        end,
+        day,
+        1<<(day-1),
+        startweek,
+        endweek,
+        teacher,
+        classroom,
+        "",
+        "");
     QString classid =QString::number(admin_online->get_classid());
     QJsonObject classObject;open_json(classid+"_course.json",classObject);
     QJsonArray coursearray=classObject["courses"].toArray();

@@ -21,7 +21,7 @@ private slots:
     void on_check_stateChanged(int arg1);
 
 signals:
-    void flash(int a,int b);
+    void flash(int a,int b,int c);
 
 private:
     Ui::addactivity *ui;

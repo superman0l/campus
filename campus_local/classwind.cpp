@@ -47,6 +47,7 @@ void classwind::load(int weeknum){
     int starttime,period,day;
     int stweek,edweek;
     bool alarm;
+    QString platform,url;
     bool flag[91]={0};
     for(int i=0;i<courseArray.size();i++){
         QJsonObject course=courseArray.at(i).toObject();
@@ -66,11 +67,16 @@ void classwind::load(int weeknum){
         else{
             name=course["name"].toString();
             teacher=course["teacher"].toString();
-            classroom=course["classroom"].toString();
-
+            if(course["destination_id"].toInt()!=-1)
+                classroom=course["classroom"].toString();
+            else classroom="非线下课程";
+            platform=course["platform"].toString();
+            url=course["url"].toString();
             alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
-            message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
+            if(url!=""&&platform!="")
+                message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al+"\n\n"+platform+"\n\n"+url;
+            else message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
             for(int j=0;j<period;j++){
                 flag[(starttime-8+j)*7+day-1]=1;
                 model->setItem(starttime-8+j,day-1,new QStandardItem(message));
@@ -86,9 +92,13 @@ void classwind::on_tableView_clicked(const QModelIndex &index)
     QModelIndex indx = ui->tableView->currentIndex();
     QVariant data = model->data(indx);
     QString show = data.toString();
+    QStringList sl=show.split("\n\n");
     if(show.length()!=0){
         ui->checkBox->setEnabled(true);
-        ui->navigate->setEnabled(true);
+        if(sl[2]=="非线下课程")
+            ui->navigate->setEnabled(false);
+        else
+            ui->navigate->setEnabled(true);
         if(show.contains("on",Qt::CaseSensitive)){
             ui->checkBox->setChecked(true);
         }
@@ -100,11 +110,14 @@ void classwind::on_tableView_clicked(const QModelIndex &index)
         ui->checkBox->setEnabled(false);
         ui->navigate->setEnabled(false);
     }
-
-    for(int i=0;i<show.length();i++){
-        if(show[i]=='\n')show[i]=' ';
+    QString underline,urls;
+    for(int i=0;i<5;i++){
+        underline+=sl[i]+"  ";
     }
-    ui->label->setText(show);
+    ui->label->setText(underline);
+    if(sl.length()==7)
+        urls=sl[5]+"  "+sl[6];
+    ui->url->setText(urls);
 }
 
 

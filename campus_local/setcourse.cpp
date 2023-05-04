@@ -16,10 +16,6 @@ setcourse::~setcourse()
     delete ui;
 }
 
-void setcourse::closeEvent(QCloseEvent *event)
-{
-
-}
 
 void setcourse::receivesetData(QModelIndex indx, QString show)
 {
@@ -54,11 +50,31 @@ void setcourse::on_endweek_currentIndexChanged(int index)
 
 void setcourse::on_set_clicked()
 {
-    QString classroom=ui->place->currentText()+ui->lineEdit->text();
-    int start=ui->starttime->currentIndex()+8, end =ui->period->currentIndex()+start, weekday=ui->weekday->currentIndex()+1;
+    QString classroom=ui->place->currentText()+ui->classroom->text();
+    int start;
+    if(ui->starttime->currentIndex()>8)
+        start=ui->starttime->currentIndex()+10;
+    else if(ui->starttime->currentIndex()>3)
+        start=ui->starttime->currentIndex()+9;
+    else
+        start=ui->starttime->currentIndex()+8;
+    int end =ui->period->currentIndex()+start, weekday=ui->weekday->currentIndex()+1;
     int startweek=ui->startweek->currentIndex()+1, endweek=ui->endweek->currentIndex()+1;
     int placeid=qstr_to_placeid(ui->place->currentText());
-    course check=course(name,school_online->idtopos[placeid],start,end,weekday,1<<(day-1),startweek,endweek,teacher,classroom);
+    course check=course(
+        name,
+        school_online->idtopos[placeid],
+        start,
+        end,
+        weekday,
+        1<<(day-1),
+        startweek,
+        endweek,
+        teacher,
+        classroom,
+        ui->platform->text(),
+        ui->url->text()
+        );
     if(admin_online->update_course(check,admin_online->get_classid(),day)){
         QMessageBox::information(this, "提示", "更改成功");
         emit change();

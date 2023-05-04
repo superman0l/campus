@@ -2,6 +2,8 @@
 #define AFFAIRWIN_H
 
 #include <QWidget>
+#include <QListWidgetItem>
+#include "basic.h"
 
 namespace Ui {
 class AffairWin;
@@ -18,7 +20,7 @@ public:
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
-    void load(int day, int tag);
+    void load(int day, int tag,int sorttype);
     void on_addactvt_clicked();
 
     void on_deleteactvt_clicked();
@@ -27,8 +29,25 @@ private slots:
 
     void on_tags_currentIndexChanged(int index);
 
+    void on_timesort_clicked();
+
 private:
     Ui::AffairWin *ui;
+};
+
+class listwidgetItem :public QListWidgetItem
+{
+public:
+    bool operator<(const QListWidgetItem &other) const;
+
+    void setSortType(int t)
+    {
+        mType = t;
+    }
+
+private:
+    int mType = 0;
+
 };
 
 #endif // AFFAIRWIN_H

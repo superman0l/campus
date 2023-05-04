@@ -22,21 +22,30 @@ void addactivity::on_add_clicked()
 {
     QJsonObject a;
     open_json("place_id.json",a);
-    int placeid=a[ui->place->currentText()].toInt();
+    int placeid;
+    if(ui->place->currentText()=="非线下活动")placeid=-1;
+    else placeid=a[ui->place->currentText()].toInt();
+    int s=0;
+    if(ui->day->currentIndex()==0){
+        for(int i=0;i<7;i++)s+=1<<i;
+    }
+    else s=1<<(ui->day->currentIndex()-1);
     activity newa=activity(
         ui->name->text(),
         ui->tag->currentIndex()+1,
         school_online->idtopos[placeid],
         ui->time->currentIndex()+8,
         ui->time->currentIndex()+8,
-        ui->day->currentIndex()+1,
-        1<<ui->day->currentIndex()
+        ui->day->currentIndex(),
+        ui->platform->text(),
+        ui->url->text(),
+        s
         );
     int min;
     if(!ui->check->isChecked())min=0;
     else min=ui->min->value();
     if(user_online->add_activity(newa,min)){
-        emit flash(0,0);
+        emit flash(newa.day,newa.tag,1);
         this->close();
     }
     else{

@@ -95,7 +95,9 @@ const std::vector<course> User::query(const QString& s, map* benbu, int tag) con
                             courseObject.value("startweek").toInt(),
                             courseObject.value("weekday").toInt(),
                             courseObject.value("teacher").toString(),
-                            courseObject.value("classroom").toString()
+                            courseObject.value("classroom").toString(),
+                            courseObject["platform"].toString(),
+                            courseObject["url"].toString()
                         )
                     );
                 }
@@ -153,7 +155,7 @@ bool User::add_activity(const activity &a, int min) const{
     QJsonArray activityArray = activityValue.toArray();//activity队列
     for(int i=0;i<activityArray.size();i++){
         QJsonObject activityObject=activityArray[i].toObject();
-        if(a.day==activityObject["day"].toInt()&&activityObject.value("time").toInt()==a.start){
+        if((activityObject["day"].toInt()==0||a.day==activityObject["day"].toInt()||a.day==0)&&activityObject.value("time").toInt()==a.start){
             qDebug()<<"time error:activity conflicts activity.";
             return false;
         }
@@ -168,7 +170,7 @@ bool User::add_activity(const activity &a, int min) const{
     for(int i=0;i<courseArray.size();i++){
         QJsonObject courseObject=courseArray[i].toObject();
         if(tim->get_week()<courseObject["startweek"].toInt()||tim->get_week()>courseObject["endweek"].toInt())continue;
-        if(a.day==courseObject["weekday"].toInt()
+        if((a.day==courseObject["weekday"].toInt()||a.day==0)
             && courseObject.value("starttime").toInt()<=a.start
             && courseObject.value("endtime").toInt()>=a.start){
             qDebug()<<"time error:activity conflicts course.";
@@ -206,6 +208,17 @@ bool User::del_activity(QString name, int day, int time) const
     }
     return false;
 }
+
+bool User::add_tmpaffair(const tmpaffair &t) const
+{
+
+}
+
+bool User::del_tmpaffair(QString name, int time) const
+{
+
+}
+
 bool User::set_clock_activity(const affair &a, int early_moment, bool enable)const{
     int day,hour,minute;
     day=a.day;

@@ -59,8 +59,9 @@ public:
     /// @return 查询时间结果，用字符串表示，“星期三 18:00-19:00”
     const std::vector<QString> query_time(int day)const;
 
-    /// @brief 添加活动,临时事务功能
-    /// @param a 添加的活动或临时事务
+    /// @brief 添加活动功能
+    /// @param a 添加的活动
+    /// @param min 添加事务用闹钟
     /// @return true表示活动添加成功,false表示由于冲突活动添加失败
     bool add_activity(const activity &a, int min)const;
 
@@ -70,6 +71,17 @@ public:
     /// @param time 删除的活动时间
     /// @return true表示活动删除成功,false表示未找到活动删除失败
     bool del_activity(QString name,int day,int time)const;
+
+    /// @brief 添加临时事务功能
+    /// @param a 添加的临时事务
+    /// @return true表示事务添加成功,false表示添加失败
+    bool add_tmpaffair(const tmpaffair &t)const;
+
+    /// @brief 删除临时事务功能
+    /// @param name 删除的名
+    /// @param time 删除的时间
+    /// @return true表示活动事务成功,false表示未找到事务删除失败
+    bool del_tmpaffair(QString name,int time)const;
 
     /// @brief 添加闹钟功能(activity类)
     /// @param a 为a事务添加闹钟
