@@ -143,6 +143,27 @@ const std::vector<QString> User::query_time(int day) const
         if(day!=0)break;
     }
     return result;
+}
+
+const std::vector<std::vector<tmpaffair> > User::query_tmpaffair() const
+{
+    std::vector<std::vector<tmpaffair>> result;
+    std::vector<std::vector<tmpaffair>> count(15);
+    QJsonObject user;
+    open_json(QString::number(id)+".json",user);
+    QJsonArray affairs=user["affairs"].toArray();
+    for(int i=0;i<affairs.size();i++){
+        QJsonObject affair=affairs.at(i).toObject();
+        int time=affair["time"].toInt();
+        tmpaffair ta=jsontotmpaffair(affair,*school_online);
+        count[time-8].push_back(ta);
+    }
+    for(int i=0;i<15;i++){
+        if(count[i].size()>1){
+            result.push_back(count[i]);
+        }
+    }
+    return result;
 };
 bool User::add_activity(const activity &a, int min) const{
     //int tag, position place, int start_time, int end_time, int day, int periodicity = 0
@@ -211,12 +232,53 @@ bool User::del_activity(QString name, int day, int time) const
 
 bool User::add_tmpaffair(const tmpaffair &t) const
 {
+    QJsonObject tmp=tmpaffairtojson(t);
+    QJsonArray course=load_student_class_coursearray(QString::number(user_online->get_id()));
+    for(int i=0;i<course.size();i++){
+        QJsonObject c=course.at(i).toObject();
+        if(tim->get_week()<c["startweek"].toInt()||tim->get_week()>c["endweek"].toInt())continue;
+        if((t.day==c["weekday"].toInt())
+            && c.value("starttime").toInt()<=t.start
+            && c.value("endtime").toInt()>=t.start){
+            qDebug()<<"time error:tmpaffair conflicts course.";
+            return false;
+        }
+    }
 
+    QJsonObject user;
+    open_json(QString::number(user_online->get_id())+".json", user);
+    QJsonArray act=user["activities"].toArray();
+    for(int i=0;i<act.size();i++){
+        QJsonObject a=act.at(i).toObject();
+        if(a["day"].toInt()==t.day&&a["time"].toInt()==t.start){
+            qDebug()<<"time error:tempaffair conflicts activity.";
+            return false;
+        }
+    }
+    QJsonArray ta=user["affairs"].toArray();
+    ta.append(tmp);
+    user["affairs"]=ta;
+    if(!write_json(QString::number(user_online->get_id())+".json",user))
+        return false;
+    return true;
 }
 
 bool User::del_tmpaffair(QString name, int time) const
 {
-
+    QJsonObject user;
+    open_json(QString::number(user_online->get_id())+".json", user);
+    QJsonArray ta=user["affairs"].toArray();
+    for(int i=0;i<ta.size();i++){
+        QJsonObject t=ta.at(i).toObject();
+        if(t["name"].toString()==name&&t["time"].toInt()==time){
+            ta.removeAt(i);
+            user["affairs"]=ta;
+            if(!write_json(QString::number(user_online->get_id())+".json", user))
+                return false;
+            return true;
+        }
+    }
+    return false;
 }
 
 bool User::set_clock_activity(const affair &a, int early_moment, bool enable)const{

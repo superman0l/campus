@@ -74,7 +74,7 @@ public:
 class tmpaffair : public affair
 {
 public:
-    int tag;//tmpaffair 1-4 购物 洗澡 取物 吃饭
+    int tag;//tmpaffair 1-5 购物 洗澡 取物 吃饭 就医
     tmpaffair(QString name, int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
         : affair(name, place, start_time, end_time, day, periodicity), tag(tag){};
     virtual ~tmpaffair(){};

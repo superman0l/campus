@@ -16,6 +16,8 @@ class AffairWin : public QWidget
 public:
     explicit AffairWin(QWidget *parent = nullptr);
     ~AffairWin();
+    std::vector<std::vector<tmpaffair> > queryaffairresult;
+    int f=0;
 
 
 private slots:
@@ -30,6 +32,23 @@ private slots:
     void on_tags_currentIndexChanged(int index);
 
     void on_timesort_clicked();
+    void load_affair(int tag, int sorttype);
+
+    void on_aff_timesort_clicked();
+
+    void on_aff_tags_currentIndexChanged(int index);
+
+    void on_addtmpaffair_clicked();
+
+    void on_deltmpaffair_clicked();
+
+    void on_queryta_clicked();
+
+    void on_next_clicked();
+
+    void on_pre_clicked();
+
+    void on_navigate_clicked();
 
 private:
     Ui::AffairWin *ui;
