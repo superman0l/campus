@@ -30,7 +30,7 @@
    <property name="title">
     <string>活动</string>
    </property>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="activitylist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>331</width>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -59,9 +59,9 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>370</x>
       <y>30</y>
-      <width>111</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -111,7 +111,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
+   <widget class="QListWidget" name="checktimelist">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -121,7 +121,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="querytime">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -139,7 +139,7 @@
      <string>查询可用时间</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="addactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -154,10 +154,10 @@
      </font>
     </property>
     <property name="text">
-     <string>添加事务</string>
+     <string>添加活动</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="deleteactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -172,18 +172,70 @@
      </font>
     </property>
     <property name="text">
-     <string>删除事务</string>
+     <string>删除活动</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QComboBox" name="tags">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>220</y>
-      <width>71</width>
+      <x>280</x>
+      <y>30</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>全部活动</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>自习</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>锻炼</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>外出</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>班会</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>小组作业</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>双创项目</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>聚餐</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="timesort">
+    <property name="geometry">
+     <rect>
+      <x>189</x>
+      <y>30</y>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -193,7 +245,7 @@
      </font>
     </property>
     <property name="text">
-     <string>设置闹钟</string>
+     <string>按时间升序</string>
     </property>
    </widget>
   </widget>
@@ -214,7 +266,7 @@
    <property name="title">
     <string>临时事务</string>
    </property>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="tmpaffairlist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -224,7 +276,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="naviresult">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -234,7 +286,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_4">
+   <widget class="QListWidget" name="checkafrlist">
     <property name="geometry">
      <rect>
       <x>480</x>

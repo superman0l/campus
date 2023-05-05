@@ -47,6 +47,8 @@ void classwind::load(int weeknum){
     int starttime,period,day;
     int stweek,edweek;
     bool alarm;
+    QString platform,url;
+    bool flag[91]={0};
     for(int i=0;i<courseArray.size();i++){
         QJsonObject course=courseArray.at(i).toObject();
         QString message;
@@ -58,18 +60,25 @@ void classwind::load(int weeknum){
 
         if(weeknum<stweek||weeknum>edweek){
             for(int j=0;j<period;j++){
+                if(flag[(starttime-8+j)*7+day-1])break;
                 model->setItem(starttime-8+j,day-1,new QStandardItem(""));
             }
         }
         else{
             name=course["name"].toString();
             teacher=course["teacher"].toString();
-            classroom=course["classroom"].toString();
-
+            if(course["destination_id"].toInt()!=-1)
+                classroom=course["classroom"].toString();
+            else classroom="非线下课程";
+            platform=course["platform"].toString();
+            url=course["url"].toString();
             alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
-            message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
+            if(url!=""&&platform!="")
+                message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al+"\n\n"+platform+"\n\n"+url;
+            else message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
             for(int j=0;j<period;j++){
+                flag[(starttime-8+j)*7+day-1]=1;
                 model->setItem(starttime-8+j,day-1,new QStandardItem(message));
                 model->item(starttime-8+j,day-1)->setTextAlignment(Qt::AlignCenter);
             }
@@ -83,8 +92,13 @@ void classwind::on_tableView_clicked(const QModelIndex &index)
     QModelIndex indx = ui->tableView->currentIndex();
     QVariant data = model->data(indx);
     QString show = data.toString();
+    QStringList sl=show.split("\n\n");
     if(show.length()!=0){
         ui->checkBox->setEnabled(true);
+        if(sl[2]=="非线下课程")
+            ui->navigate->setEnabled(false);
+        else
+            ui->navigate->setEnabled(true);
         if(show.contains("on",Qt::CaseSensitive)){
             ui->checkBox->setChecked(true);
         }
@@ -94,12 +108,16 @@ void classwind::on_tableView_clicked(const QModelIndex &index)
     }
     else{
         ui->checkBox->setEnabled(false);
+        ui->navigate->setEnabled(false);
     }
-
-    for(int i=0;i<show.length();i++){
-        if(show[i]=='\n')show[i]=' ';
+    QString underline,urls;
+    for(int i=0;i<5;i++){
+        underline+=sl[i]+"  ";
     }
-    ui->label->setText(show);
+    ui->label->setText(underline);
+    if(sl.length()==7)
+        urls=sl[5]+"  "+sl[6];
+    ui->url->setText(urls);
 }
 
 
@@ -138,6 +156,7 @@ void classwind::on_checkBox_stateChanged(int arg1)
 
 void classwind::on_search_clicked()
 {
+    ui->result->clearSelection();
     ui->result->clear();
     if(ui->course_line->text()==""){
         QString mesg="无有效输入";
@@ -175,7 +194,7 @@ void classwind::on_search_clicked()
 
 void classwind::on_result_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
-
+    if(current==NULL)return;
     ui->tableView->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableView->clearSelection();
     QString data=ui->result->currentItem()->text();
@@ -211,5 +230,11 @@ void classwind::on_week_currentIndexChanged(int index)
         else ui->tableView->setRowHeight(i,150);
     }
     for(int i=0;i<7;i++)ui->tableView->setColumnWidth(i,80);
+}
+
+
+void classwind::on_course_line_returnPressed()
+{
+    on_search_clicked();
 }
 

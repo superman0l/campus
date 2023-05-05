@@ -19,7 +19,6 @@ public:
 
 private:
     Ui::setcourse *ui;
-    void closeEvent(QCloseEvent *event);
 
 private slots:
     void receivesetData(QModelIndex indx, QString show);

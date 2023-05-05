@@ -19,11 +19,31 @@ addcourse::~addcourse()
 void addcourse::on_check_clicked()
 {
     QString name=ui->coursename->text(),classroom=ui->classroom->text(),teacher=ui->teacher->text();
-    int start=ui->start->currentIndex()+8, end =ui->period->currentIndex()+start, day=ui->day->currentIndex()+1;
+    int start;
+    if(ui->start->currentIndex()>8)
+        start=ui->start->currentIndex()+10;
+    else if(ui->start->currentIndex()>3)
+        start=ui->start->currentIndex()+9;
+    else
+        start=ui->start->currentIndex()+8;
+    int end =ui->period->currentIndex()+start, day=ui->day->currentIndex()+1;
     int startweek=ui->startweek->currentIndex()+1, endweek=ui->endweek->currentIndex()+1;
     int placeid=qstr_to_placeid(ui->placeid->currentText());
     classroom=ui->placeid->currentText()+classroom;
-    course check=course(name,school_online->idtopos[placeid],start,end,day,1<<(day-1),startweek,endweek,teacher,classroom);
+    course check=course(
+        name,
+        school_online->idtopos[placeid],
+        start,
+        end,
+        day,
+        1<<(day-1),
+        startweek,
+        endweek,
+        teacher,
+        classroom,
+        ui->platform->text(),
+        ui->url->text()
+        );
     QString classid =QString::number(admin_online->get_classid());
     QJsonObject classObject;open_json(classid+"_course.json",classObject);
     QJsonArray coursearray=classObject["courses"].toArray();

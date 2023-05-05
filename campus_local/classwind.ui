@@ -110,6 +110,9 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -118,7 +121,7 @@
      <x>30</x>
      <y>490</y>
      <width>901</width>
-     <height>81</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
@@ -133,9 +136,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>20</y>
       <width>611</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -153,7 +156,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>650</x>
       <y>40</y>
       <width>231</width>
       <height>18</height>
@@ -172,11 +175,14 @@
     </property>
    </widget>
    <widget class="QPushButton" name="navigate">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>570</x>
       <y>30</y>
-      <width>91</width>
+      <width>71</width>
       <height>41</height>
      </rect>
     </property>
@@ -187,6 +193,24 @@
     </property>
     <property name="text">
      <string>导航</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="url">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>611</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

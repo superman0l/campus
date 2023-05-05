@@ -64,6 +64,9 @@ set(PROJECT_SOURCES
         alarmwin.h
         alarmwin.cpp
         alarmwin.ui
+        addactivity.cpp
+        addactivity.h
+        addactivity.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
