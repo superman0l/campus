@@ -60,7 +60,7 @@ activity jsontoactivity(QJsonObject rootObject);
 /// @brief 把json转化为tmpaffair
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的tmpaffair
-tmpaffair jsontotmpaffair(QJsonObject rootObject);
+tmpaffair jsontotmpaffair(QJsonObject rootObject,  map school);
 
 /// @brief 把tmpaffair转化为json格式
 /// @param 参数为需要转化的tmpaffair类

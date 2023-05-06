@@ -67,6 +67,9 @@ set(PROJECT_SOURCES
         addactivity.cpp
         addactivity.h
         addactivity.ui
+        addtmpaffair.cpp
+        addtmpaffair.h
+        addtmpaffair.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

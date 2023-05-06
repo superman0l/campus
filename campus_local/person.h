@@ -59,6 +59,10 @@ public:
     /// @return 查询时间结果，用字符串表示，“星期三 18:00-19:00”
     const std::vector<QString> query_time(int day)const;
 
+    /// @brief 查询同一时间事务功能
+    /// @return 查询时间结果，用字符串表示，“星期三 18:00-19:00”
+    const std::vector<std::vector<tmpaffair>> query_tmpaffair()const;
+
     /// @brief 添加活动功能
     /// @param a 添加的活动
     /// @param min 添加事务用闹钟

@@ -324,6 +324,11 @@
    </item>
    <item>
     <property name="text">
+     <string>图书馆</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>西门</string>
     </property>
    </item>
@@ -334,7 +339,7 @@
    </item>
    <item>
     <property name="text">
-     <string>综合餐厅</string>
+     <string>综合食堂</string>
     </property>
    </item>
    <item>

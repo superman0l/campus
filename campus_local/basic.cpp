@@ -140,21 +140,19 @@ QJsonObject tmpaffairtojson(tmpaffair t){
     rootObject.insert("day",t.day);
     return rootObject;
 }
-activity jsontotmpaffair(QJsonObject rootObject, map school){
+tmpaffair jsontotmpaffair(QJsonObject rootObject, map school){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue tagValue=rootObject.value("tag");
     QJsonValue startValue=rootObject.value("time");
     QJsonValue weekdayValue=rootObject.value("day");
-    return activity(
+    return tmpaffair(
         nameValue.toString(),
         tagValue.toInt(),
         school.idtopos[idValue.toInt()],
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),
-        rootObject["platform"].toString(),
-        rootObject["url"].toString(),
         1<<(weekdayValue.toInt()-1)
     );
 }
