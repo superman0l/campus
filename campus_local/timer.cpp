@@ -26,7 +26,8 @@ void timer::update()
     {
         for(auto&e:this->alarm_st[d1])
         {
-            if(h1<=e.hour&&m1<=e.minute&&e.hour<h2&&e.minute<m2)
+
+            if((h1<e.hour||(h1==e.hour&&m1<=e.minute))&&(e.hour<h2||(e.hour==h2&&e.minute<m2)))
             {
                 toshow.push_back(e);
             }
@@ -35,14 +36,14 @@ void timer::update()
     {
         for(auto&e:this->alarm_st[d1])
         {
-            if(h1<=e.hour&&m1<=e.minute)
+            if(h1<e.hour||(h1==e.hour&&m1<=e.minute))
             {
                 toshow.push_back(e);
             }
         }
         for(auto&e:this->alarm_st[d2])
         {
-            if(e.hour<h2&&e.minute<m2)
+            if(e.hour<h2||(e.hour==h2&&e.minute<m2))
             {
                 toshow.push_back(e);
             }
@@ -51,7 +52,9 @@ void timer::update()
     for(auto&e:toshow)
     {
         this->erase(e);
-        new alarmwin(this,e,this->parent);
+        auto it=new alarmwin(this,e,this->parent);
+        it->setAttribute(Qt::WA_DeleteOnClose);
+        it->show();
     }
     last=tmp;
 }

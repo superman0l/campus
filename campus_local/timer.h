@@ -59,6 +59,8 @@ public:
 
     double get_ratio(){return ratio;}
 
+    bool get_paused(){return is_paused;}
+
     /// @brief update 根据clock()和is_paused更新时间
     void update();
 
@@ -84,6 +86,7 @@ public:
 
     bool erase(talarm ta);
     QString toString(const QString&);
+    const QDateTime& get_DateTime(){return now;}
 };
 
 #endif // TIMER_H

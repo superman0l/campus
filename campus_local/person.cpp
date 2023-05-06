@@ -253,6 +253,9 @@ bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
 bool User::set_clock_course(const course &a, bool enable)const{
     int day,hour,minute;
     day=a.day;hour=a.start-1;minute=30;
+    int periodicity=(1<<(day-1));
+    //添加闹钟
+    if(enable) tim->insert(talarm(day,hour,minute,periodicity,a.name+"\n"+a.teacher));
     QJsonArray coursearray=load_student_class_coursearray(QString::number(id));
     for(int i=0;i<coursearray.size();i++){
         QJsonObject courseobject=coursearray[i].toObject();

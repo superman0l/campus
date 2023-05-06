@@ -212,6 +212,7 @@ path map::route(position begin,const std::vector<position>&need)
         }
     }
     path ret;
+    ret.push_front(idtopos[pos[0]]);
     while(now_status!=1)
     {
         int pre_pos=pre[now_status][now_pos];

@@ -12,13 +12,13 @@ alarmwin::alarmwin(timer*mtm,talarm mta,QWidget *parent) :
 }
 void alarmwin::on_close_button_clicked()
 {
-    this->close();
+    this->hide();
 }
 void alarmwin::on_relay_button_clicked()
 {
     if(this->ta.cnt==MAX_RELAY_CNT)
     {
-        this->close();
+        this->hide();
         return;
     }
     int add=this->tm->get_ratio()/60;
@@ -38,7 +38,7 @@ void alarmwin::on_relay_button_clicked()
         }
     }
     this->tm->insert(nta);
-    this->close();
+    this->hide();
 }
 alarmwin::~alarmwin()
 {

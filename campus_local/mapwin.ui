@@ -121,8 +121,8 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>510</y>
-     <width>93</width>
+     <y>500</y>
+     <width>81</width>
      <height>29</height>
     </rect>
    </property>
@@ -162,7 +162,7 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>500</y>
      <width>131</width>
      <height>61</height>
@@ -180,7 +180,7 @@
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>370</x>
      <y>500</y>
      <width>141</width>
      <height>61</height>
@@ -252,6 +252,62 @@
    <property name="viewMode">
     <enum>QListView::ListMode</enum>
    </property>
+  </widget>
+  <widget class="QPushButton" name="search">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>570</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="search_line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>570</y>
+     <width>291</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="placeholderText">
+    <string>输入日程名称</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>570</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>搜索课程</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>搜索事务</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

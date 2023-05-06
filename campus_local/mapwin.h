@@ -58,6 +58,7 @@ private slots:
     void on_pushButton_4_clicked();//开始导航button
     void on_pushButton_5_clicked();//导航路线后一步button
     void on_pushButton_6_clicked();//导航路线前一步button
+    void on_search_clicked();//搜索按钮button
 private:
     Ui::MapWin *ui;
 };

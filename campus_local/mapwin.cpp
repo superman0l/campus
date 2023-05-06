@@ -1,5 +1,6 @@
 #include "mapwin.h"
 #include "ui_mapwin.h"
+#include"online_data.h"
 #include <QGraphicsPixmapItem>
 #include<QGraphicsProxyWidget>
 #include<QWheelEvent>
@@ -184,6 +185,15 @@ void MapWin::on_pushButton_4_clicked()
         delete tail.top();
         tail.pop();
     }
+    while(this->itemhead.size())
+    {
+        this->itemhead.pop();
+    }
+    while(this->itemtail.size())
+    {
+        this->itemtail.pop();
+    }
+    this->qsim->clear();
     path pth;
     if(end.size()==1)
     {
@@ -197,7 +207,6 @@ void MapWin::on_pushButton_4_clicked()
         }
         pth=mp->route(mp->idtopos[begin],need);
     }
-    //ui->textBrowser_3->setPlainText(pth.output(*mp));
     QStringList strlist;
     for(auto&e:pth.outputvec(*this->mp))
     {
@@ -269,6 +278,81 @@ void MapWin::on_pushButton_6_clicked()
     ui->listView->setCurrentIndex(this->qsim->indexFromItem(this->itemhead.top()));
     this->itemtail.push(this->itemhead.top());
     this->itemhead.pop();
+}
+void MapWin::on_search_clicked()
+{
+    bool flg=tim->get_paused();//暂存状态
+    tim->puase();
+    //this->end.clear();
+    bool ok=0;//判断是否存在非网课
+    if(ui->comboBox->currentText()==QString("搜索课程"))
+    {
+        QString s=ui->search_line->text();
+        auto ans=user_online->query(s,school_online,0);//统一按照课程名称搜索
+        int mx=0x3fffffff;
+        for(auto&e:ans)
+        {
+            if(e.day==tim->get_days()&&e.place.id!=-1)
+            {
+                int h1=tim->get_DateTime().time().hour();
+                int m1=tim->get_DateTime().time().msec();
+                if((e.start-h1)*24-m1>0&&(e.start-h1)*24-m1<mx)
+                {
+                    mx=(e.start-h1)*24-m1;
+                }
+            }
+            if(e.place.id!=-1){
+                ok=1;
+            }
+        }
+        if(mx!=0x3fffffff)
+        {
+            for(auto&e:ans)
+            {
+                if(e.day==tim->get_days()&&e.place.id!=-1)
+                {
+                    int h1=tim->get_DateTime().time().hour();
+                    int m1=tim->get_DateTime().time().msec();
+                    if((e.start-h1)*24-m1==mx)
+                    {
+                        QMessageBox::information(this,tr("搜索结果"),e.name+tr("\n已自动添加到目的地"));
+                        this->end.push_back(e.place.id);
+                        break;
+                    }
+                }
+            }
+        }else if(!ok)//不存在非网课
+        {
+            QMessageBox::information(this,tr("搜索结果"),tr("未找到对应课程"));
+        }else
+        {
+            if(QMessageBox::question(this,"今天无对应课程",tr("是否放宽范围?"))==QMessageBox::Yes)
+            {
+                for(auto&e:ans)
+                {
+                    if(e.place.id!=-1)
+                    {
+                        QMessageBox::information(this,tr("搜索结果"),e.name+tr("\n")+e.place.name+tr("已自动添加到目的地"));
+                        this->end.push_back(e.place.id);
+                        break;
+                    }
+                }
+            }
+        }
+    }else if(ui->comboBox->currentText()==QString("搜索事务"))
+    {
+
+    }
+    QString now;
+    for(auto&e:end)
+    {
+        now.append(mp->idtopos[e].name);
+        now.append("\n");
+    }
+    this->ui->textBrowser_2->setPlainText(now);
+    if(flg){
+        tim->begin();
+    }
 }
 MapWin::~MapWin()
 {
