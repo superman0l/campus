@@ -105,19 +105,20 @@ void classwind::on_tableView_clicked(const QModelIndex &index)
         else{
             ui->checkBox->setChecked(false);
         }
+        QString underline,urls;
+        for(int i=0;i<5;i++){
+            underline+=sl[i]+"  ";
+        }
+        ui->label->setText(underline);
+        if(sl.length()==7)
+            urls=sl[5]+"  "+sl[6];
+        ui->url->setText(urls);
     }
     else{
         ui->checkBox->setEnabled(false);
         ui->navigate->setEnabled(false);
     }
-    QString underline,urls;
-    for(int i=0;i<5;i++){
-        underline+=sl[i]+"  ";
-    }
-    ui->label->setText(underline);
-    if(sl.length()==7)
-        urls=sl[5]+"  "+sl[6];
-    ui->url->setText(urls);
+
 }
 
 
@@ -127,30 +128,38 @@ void classwind::on_checkBox_stateChanged(int arg1)
     QString data= model->data(ui->tableView->currentIndex()).toString();
     QStringList datalist=data.split("\n\n");
     coursename=datalist[0];
-    QJsonObject course1=load_course_json(QString::number(user_online->get_id()),coursename);
+    QJsonObject course1=load_course_json(QString::number(user_online->get_id()),coursename,ui->tableView->currentIndex().column()+1);
     course course2= jsontocourse(course1,school_online);
+    QModelIndex indx=ui->tableView->currentIndex();
     if(ui->checkBox->isChecked()){
         user_online->set_clock_course(course2,true);
-        QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+"alarm:on";
+
+        //load(tim->get_week());
+        /*
+        QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+datalist[3]+"\n\n"+"alarm:on";
         for(int j=0;j<course2.end-course2.start+1;j++){
             model->setItem(course2.start-8+j,course2.day-1,new QStandardItem(newdata));
             model->item(course2.start-8+j,course2.day-1)->setTextAlignment(Qt::AlignCenter);
         }
         ui->tableView->setModel(model);
-        QString newunderdata=datalist[0]+"  "+datalist[1]+"  "+datalist[2]+"  "+"alarm:on";
-        ui->label->setText(newunderdata);
+        QString newunderdata=datalist[0]+"  "+datalist[1]+"  "+datalist[2]+"  "+datalist[3]+"  "+"alarm:on";
+        ui->label->setText(newunderdata);*/
     }
     else{
         user_online->set_clock_course(course2,false);
-        QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+"alarm:off";
+        /*
+        QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+datalist[3]+"\n\n"+"alarm:off";
         for(int j=0;j<course2.end-course2.start+1;j++){
             model->setItem(course2.start-8+j,course2.day-1,new QStandardItem(newdata));
             model->item(course2.start-8+j,course2.day-1)->setTextAlignment(Qt::AlignCenter);
         }
         ui->tableView->setModel(model);
-        QString newunderdata=datalist[0]+"  "+datalist[1]+"  "+datalist[2]+"  "+"alarm:off";
-        ui->label->setText(newunderdata);
+        QString newunderdata=datalist[0]+"  "+datalist[1]+"  "+datalist[2]+"  "+datalist[3]+"  "+"alarm:off";
+        ui->label->setText(newunderdata);*/
     }
+    ui->week->setCurrentIndex(tim->get_week()-1);
+    on_week_currentIndexChanged(tim->get_week()-1);
+    on_tableView_clicked(indx);
 }
 
 
