@@ -302,6 +302,7 @@ bool User::set_clock_activity(const affair &a, int early_moment, bool enable)con
         if(activityobject.value("name").toString()==a.name){
             activityobject["alarm"]=alarm(enable, day, hour, minute, a.period);
             activityarray[i]=activityobject;
+            break;
         }
     }
     rootObject1["activities"]=activityarray;
@@ -310,6 +311,24 @@ bool User::set_clock_activity(const affair &a, int early_moment, bool enable)con
     return true;
 }
 bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
+    int day,hour,minute;
+    day=a.day;hour=a.start;minute=0;
+    QJsonObject rootObject1;//存储学生信息的json
+    QString filepath = QString::number(id)+".json";
+    if(!open_json(filepath,rootObject1))
+        return false;
+    QJsonArray tmpaffairarray=rootObject1["affairs"].toArray();
+    for(int i=0;i<tmpaffairarray.size();i++){
+        QJsonObject affair=tmpaffairarray.at(i).toObject();
+        if(affair["name"].toString()==a.name&&affair["time"].toInt()==a.start){
+            affair["alarm"]=alarm(enable, day, hour, minute, a.period);
+            tmpaffairarray[i]=affair;
+            break;
+        }
+    }
+    rootObject1["affairs"]=tmpaffairarray;
+    if(!write_json(filepath,rootObject1))
+        return false;
     return true;
 }
 bool User::set_clock_course(const course &a, bool enable)const{
@@ -321,7 +340,7 @@ bool User::set_clock_course(const course &a, bool enable)const{
     QJsonArray coursearray=load_student_class_coursearray(QString::number(id));
     for(int i=0;i<coursearray.size();i++){
         QJsonObject courseobject=coursearray[i].toObject();
-        if(courseobject.value("name").toString()==a.name){
+        if(courseobject.value("name").toString()==a.name&&courseobject["weekday"].toInt()==a.day){
             courseobject["alarm"]=alarm(enable, day, hour, minute, a.period);
             coursearray[i]=courseobject;
             write_coursearray(QString::number(id),coursearray);

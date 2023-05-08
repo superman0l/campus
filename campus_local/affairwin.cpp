@@ -437,3 +437,53 @@ void AffairWin::on_navigate_clicked()
     ui->naviresult->setText(school_online->navigate(stid,edid));
 }
 
+
+void AffairWin::on_aff_alarmcheck_stateChanged(int arg1)
+{
+    QString data=ui->tmpaffairlist->currentItem()->text();
+    QStringList list=data.split("  ");
+    QJsonObject user;
+    open_json(QString::number(user_online->get_id())+".json",user);
+    QJsonArray affairs=user["affairs"].toArray();
+    for(int i=0;i<affairs.size();i++){
+        QJsonObject affair=affairs.at(i).toObject();
+        int st,ed;qstr_to_time(list[2],st,ed);
+        if(affair["name"].toString()==list[0]&&affair["time"].toInt()==st){
+                tmpaffair a=jsontotmpaffair(affair,*school_online);
+                if(ui->aff_alarmcheck->isChecked()==true){
+                    user_online->set_clock_tmpaffair(a,true);
+                }
+                else{
+                    user_online->set_clock_tmpaffair(a,false);
+                }
+                break;
+
+        }
+    }
+}
+
+
+void AffairWin::on_tmpaffairlist_itemClicked(QListWidgetItem *item)
+{
+    QString data=item->text();
+    QStringList list=data.split("  ");
+    QJsonObject user;
+    open_json(QString::number(user_online->get_id())+".json",user);
+    QJsonArray affairs=user["affairs"].toArray();
+    for(int i=0;i<affairs.size();i++){
+        QJsonObject affair=affairs.at(i).toObject();
+        int st,ed;qstr_to_time(list[2],st,ed);
+        if(affair["name"].toString()==list[0]&&affair["time"].toInt()==st){
+                QJsonObject al=affair["alarm"].toObject();
+                ui->aff_alarmcheck->setEnabled("true");
+                if(al["enable"].toBool()==true){
+                    ui->aff_alarmcheck->setChecked(true);
+                }
+                else{
+                    ui->aff_alarmcheck->setChecked(false);
+                }
+                break;
+        }
+    }
+}
+

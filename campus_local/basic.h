@@ -80,8 +80,9 @@ void write_coursearray(QString id,QJsonArray coursearray);
 /// @brief 根据课程名称读取json返回object
 /// @param id为学生学号
 /// @param name为课程名称
+/// @param day课程日期（存在不同天但重名的课程）
 /// @return 返回读出的的QJsonObject
-QJsonObject load_course_json(QString id, QString name);
+QJsonObject load_course_json(QString id, QString name, int day);
 
 /// @brief 根据数字返回星期几
 /// @param num为星期天数

@@ -35,6 +35,10 @@ public:
         return classid;
     }
 
+    //更改place_id信息
+    void set_place_id(int plcid){
+        place_id = plcid;
+    }
     /// @brief 判断当前用户是否是管理员
     /// @return true表示当前用户是管理员,false则相反
     virtual bool is_admin() const

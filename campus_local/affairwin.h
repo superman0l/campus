@@ -50,6 +50,10 @@ private slots:
 
     void on_navigate_clicked();
 
+    void on_aff_alarmcheck_stateChanged(int arg1);
+
+    void on_tmpaffairlist_itemClicked(QListWidgetItem *item);
+
 private:
     Ui::AffairWin *ui;
 };

@@ -57,6 +57,14 @@ public:
     /// @return 设置成功返回true,设置失败返回false(新倍率小于等于0)
     bool set_ratio(double nratio);
 
+    ///@brief set_Date 更新日期
+    /// @param date 一个QDate类型的引用，用以更新日期
+    void set_Date(QDate& date);
+
+    ///@brief set_Time 更新时间
+    /// @param date 一个QTime类型的引用，用以更新时间
+    void set_Time(QTime& time);
+
     double get_ratio(){return ratio;}
 
     bool get_paused(){return is_paused;}

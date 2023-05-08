@@ -174,12 +174,13 @@ void write_coursearray(QString id,QJsonArray coursearray){
     classObject["courses"]=coursearray;
     write_json(classid+"_course.json", classObject);
 }
-QJsonObject load_course_json(QString id, QString name){
+QJsonObject load_course_json(QString id, QString name, int day){
     QJsonArray coursearray = load_student_class_coursearray(id);
     for(int i=0;i<coursearray.size();i++){
         QJsonObject course=coursearray.at(i).toObject();
         QString cname=course["name"].toString();
-        if(cname==name){
+        int cday=course["weekday"].toInt();
+        if(cname==name&&cday==day){
             return course;
         }
     }
