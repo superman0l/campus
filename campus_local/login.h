@@ -24,7 +24,6 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *event);//处理关闭窗口事件
-    void resizeEvent(QResizeEvent *);//重写resize事件
 private slots:
 
     void on_LogIn_2_clicked();

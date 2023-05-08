@@ -231,14 +231,15 @@ constexpr int north=1;
 constexpr int south=2;
 constexpr int west=4;
 constexpr int east=8;
-const QString path::output(map&mp)const
+const std::vector<QString> path::outputvec(map&mp)const
 {
-
+    std::vector<QString>ans;
     if(!this->size())
     {
         qDebug()<<"there is nothing in path!\n";
+        return ans;
     }
-    QString ret="从"+this->road[0].name+"出发";
+    QString tems="从"+this->road[0].name+"出发";
     double nowx=this->road[0].x,nowy=this->road[0].y;
     int nowid=this->road[0].id;
     //lamda表达式
@@ -273,25 +274,38 @@ const QString path::output(map&mp)const
             nowid=this->road[i].id;
             nowx=this->road[i].x;
             nowy=this->road[i].y;
-            ret=ret+QString("到达%1\n").arg(this->road[i].name);
+            tems=tems+QString("到达%1").arg(this->road[i].name);
             continue;
         }
         //根据相对相对位置得出对应string
         int dir=judge(nowx,nowy,this->road[i].x,this->road[i].y);
-        ret=ret+QString("然后向");
+        tems=tems+QString("向");
         for(int j=3;j>=0;j--)
         {
             if((dir>>j)&1)
             {
-                ret=ret+tmp[(1<<j)];
+                tems=tems+tmp[(1<<j)];
             }
         }
-        ret=ret+QString("方走大约%1米到达%2\n").arg(len).arg(this->road[i].name);
+        tems=tems+QString("方走大约%1米到达%2").arg(len).arg(this->road[i].name);
+        ans.push_back(tems);
+        tems.clear();
         nowid=this->road[i].id;
         nowx=this->road[i].x;
         nowy=this->road[i].y;
     }
-    return ret;
+    return ans;
+
+}
+const QString path::output(map&mp)const
+{
+    auto tmp=outputvec(mp);
+    QString ans;
+    for(auto&e:tmp)
+    {
+        ans=ans+e+QString("\n");
+    }
+    return ans;
 }
 const QString map::navigate(const int stid,const int edid)
 {

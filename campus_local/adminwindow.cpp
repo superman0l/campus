@@ -6,6 +6,7 @@
 //已添加person.cpp
 #include <QMessageBox>
 #include <QStandardItem>
+#include <QAbstractItemView>
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,7 +27,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
         else ui->tableView->setRowHeight(i,150);
     }
     for(int i=0;i<7;i++)ui->tableView->setColumnWidth(i,80);
-
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 AdminWindow::~AdminWindow()

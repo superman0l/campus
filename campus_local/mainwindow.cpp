@@ -8,7 +8,6 @@
 #include <QDialog>
 #include <QInputDialog>
 #include <QPushButton>
-#include "basic.h"
 #include "CustomTabStyle.h"
 #include "classwind.h"
 #include "mapwin.h"
@@ -43,8 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(tab);
 
     //实现信息传递
-    connect(person, SIGNAL(DestroyCount()), this, SLOT(DestroyCount()));
-
+        connect(person, SIGNAL(DestroyCount()), this, SLOT(DestroyCount()));
 
     //初始化并美化时间标签
     timlabl = new QLabel(this);//显示时间的标签
@@ -91,7 +89,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
 }
-
 void MainWindow::on_action_S_triggered()
 {
     //实现学生端切换用户的功能
@@ -126,9 +123,8 @@ void MainWindow::on_actionChgTimRa_T_triggered()
         tim->set_ratio(raio*60);
 }
 
+
 void MainWindow::DestroyCount()
 {
     on_action_S_triggered();
 }
-
-

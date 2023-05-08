@@ -59,6 +59,7 @@ public:
         road.clear();
     }
     const QString output(map&)const;
+    const std::vector<QString> outputvec(map&)const;
 };
 class map
 {

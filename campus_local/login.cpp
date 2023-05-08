@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QRegularExpressionValidator>
-#include <QRect>
 #include "person.h"
 #include "mainwindow.h"
 #include "adminwindow.h"
@@ -70,15 +69,6 @@ void LogIn::closeEvent(QCloseEvent *event)
     }
 }
 
-void LogIn::resizeEvent(QResizeEvent *)
-{
-    //记录当前窗口的宽度、高度
-    int CurW = this->size().width();
-    int CurH = this->size().height();
-    //开始重设控件大小
-    //标签
-
-}
 
 void LogIn::on_LogIn_2_clicked()
 {

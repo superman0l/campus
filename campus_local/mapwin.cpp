@@ -8,6 +8,8 @@
 #include<QMessageBox>
 #include<QUndoStack>
 #include<QPainter>
+#include<QListView>
+#include<QStandardItemModel>
 MapButton::MapButton(const position&pos,QWidget*parent):QRadioButton(parent)
 {
 }
@@ -86,11 +88,14 @@ MapWin::MapWin(QWidget *parent) :
         }
         auto button=new MapButton(e);
         auto proxy=sce->addWidget(button);
+        proxy->setScale(1.2);
         proxy->setPos(e.bx,e.by);
         proxy->setParentItem(qpi);
         bg->addButton(button,e.id);
     }
     bg->setExclusive(true);
+    qsim=new QStandardItemModel(this);
+    ui->listView->setModel(qsim);
 }
 void MapWin::on_pushButton_clicked()
 {
@@ -132,17 +137,27 @@ void MapWin::on_pushButton_3_clicked()
     }
     ui->textBrowser->setPlainText("");
     ui->textBrowser_2->setPlainText("");
-    ui->textBrowser_3->setPlainText("");
     while(this->head.size())
     {
         this->mv->scene()->removeItem(head.top());
         delete head.top();
         head.pop();
     }
+    qsim->clear();
     while(this->tail.size())
     {
         delete tail.top();
         tail.pop();
+    }
+    while(this->itemhead.size())
+    {
+        //delete itemhead.top();
+        itemhead.pop();
+    }
+    while(this->itemtail.size())
+    {
+        //delete itemtail.top();
+        itemtail.pop();
     }
 }
 void MapWin::on_pushButton_4_clicked()
@@ -182,22 +197,33 @@ void MapWin::on_pushButton_4_clicked()
         }
         pth=mp->route(mp->idtopos[begin],need);
     }
-    ui->textBrowser_3->setPlainText(pth.output(*mp));
+    //ui->textBrowser_3->setPlainText(pth.output(*mp));
+    QStringList strlist;
+    for(auto&e:pth.outputvec(*this->mp))
+    {
+        strlist.append(e);
+        QStandardItem*item=new QStandardItem(e);
+        this->itemhead.push(item);
+        qsim->appendRow(item);
+    }
     int nowx,nowy;
     nowx=mp->idtopos[begin].x;
     nowy=mp->idtopos[begin].y;
-    QPen qp(QColor(174 ,238, 238));
+    QPen qp(QColor(238 ,99, 99));
     qp.setWidth(7);
     qp.setCapStyle(Qt::RoundCap);
     qp.setJoinStyle(Qt::MiterJoin);
-    for(int i=0;i<pth.size();i++)
+    for(int i=1;i<pth.size();i++)
     {
+        /*
         if(pth[i].x==-1||pth[i].y==-1||nowx==-1||nowy==-1)
         {
             nowx=pth[i].x;
             nowy=pth[i].y;
             continue;
         }
+        */
+        //已经不存在权值为0的边了
         QGraphicsLineItem* line=new QGraphicsLineItem(qreal(nowx),qreal(nowy),qreal(pth[i].x),qreal(pth[i].y));
         line->setPen(qp);
         //this->mv->scene()->addItem(line);
@@ -209,6 +235,11 @@ void MapWin::on_pushButton_4_clicked()
     {
         this->tail.push(this->head.top());
         this->head.pop();
+    }
+    while(this->itemhead.size())
+    {
+        this->itemtail.push(this->itemhead.top());
+        this->itemhead.pop();
     }
     this->bg->setExclusive(true);
 }
@@ -222,6 +253,9 @@ void MapWin::on_pushButton_5_clicked()
     this->mv->scene()->addItem(this->tail.top());
     this->head.push(this->tail.top());
     this->tail.pop();
+    ui->listView->setCurrentIndex(this->qsim->indexFromItem(this->itemtail.top()));
+    this->itemhead.push(this->itemtail.top());
+    this->itemtail.pop();
 }
 void MapWin::on_pushButton_6_clicked()
 {
@@ -232,6 +266,9 @@ void MapWin::on_pushButton_6_clicked()
     this->mv->scene()->removeItem(this->head.top());
     this->tail.push(this->head.top());
     this->head.pop();
+    ui->listView->setCurrentIndex(this->qsim->indexFromItem(this->itemhead.top()));
+    this->itemtail.push(this->itemhead.top());
+    this->itemhead.pop();
 }
 MapWin::~MapWin()
 {

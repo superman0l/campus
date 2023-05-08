@@ -36,6 +36,8 @@ private slots:
 
     void on_week_currentIndexChanged(int index);
 
+    void on_course_line_returnPressed();
+
 private:
     Ui::classwind *ui;
 

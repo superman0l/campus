@@ -30,7 +30,7 @@
    <property name="title">
     <string>活动</string>
    </property>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="activitylist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>331</width>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -59,9 +59,9 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>370</x>
       <y>30</y>
-      <width>111</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -111,7 +111,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
+   <widget class="QListWidget" name="checktimelist">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -121,7 +121,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="querytime">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -139,7 +139,7 @@
      <string>查询可用时间</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="addactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -154,10 +154,10 @@
      </font>
     </property>
     <property name="text">
-     <string>添加事务</string>
+     <string>添加活动</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="deleteactvt">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -172,18 +172,70 @@
      </font>
     </property>
     <property name="text">
-     <string>删除事务</string>
+     <string>删除活动</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QComboBox" name="tags">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>220</y>
-      <width>71</width>
+      <x>280</x>
+      <y>30</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>全部活动</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>自习</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>锻炼</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>外出</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>班会</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>小组作业</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>双创项目</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>聚餐</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="timesort">
+    <property name="geometry">
+     <rect>
+      <x>189</x>
+      <y>30</y>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -193,7 +245,7 @@
      </font>
     </property>
     <property name="text">
-     <string>设置闹钟</string>
+     <string>按时间升序</string>
     </property>
    </widget>
   </widget>
@@ -214,7 +266,7 @@
    <property name="title">
     <string>临时事务</string>
    </property>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="tmpaffairlist">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -224,7 +276,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="naviresult">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -233,8 +285,13 @@
       <height>141</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_4">
+   <widget class="QListWidget" name="checkafrlist">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -249,7 +306,7 @@
      <rect>
       <x>0</x>
       <y>30</y>
-      <width>281</width>
+      <width>191</width>
       <height>31</height>
      </rect>
     </property>
@@ -260,15 +317,15 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="aff_alarmcheck">
     <property name="enabled">
      <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>170</x>
       <y>30</y>
-      <width>81</width>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
@@ -281,11 +338,11 @@
      <string>设置闹钟</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="queryta">
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>90</y>
+      <y>70</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -294,11 +351,11 @@
      <string>查询</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="navigate">
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>230</y>
+      <y>220</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -311,7 +368,7 @@
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>50</y>
+      <y>30</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -328,7 +385,7 @@
      <rect>
       <x>740</x>
       <y>160</y>
-      <width>171</width>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
@@ -340,10 +397,10 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="addtmpaffair">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>400</x>
       <y>30</y>
       <width>31</width>
       <height>31</height>
@@ -359,7 +416,7 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="deltmpaffair">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -376,6 +433,111 @@
     </property>
     <property name="text">
      <string>-</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="aff_tags">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>30</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>全部活动</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>购物</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>洗澡</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>取物</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>吃饭</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>就医</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="aff_timesort">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>30</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>按时间升序</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pre">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>100</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>▲</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="next">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>100</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>▼</string>
     </property>
    </widget>
   </widget>

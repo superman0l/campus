@@ -36,9 +36,11 @@ public:
     int end_week;
     QString teacher;
     QString classroom;
+    QString platform;
+    QString url;
 
-    course(QString name, position place, int start_time, int end_time, int day, int periodicity, int startweek, int endweek, QString teacher, QString classroom)
-        : affair(name, place, start_time, end_time, day, periodicity), start_week(startweek), end_week(endweek), teacher(teacher), classroom(classroom){};
+    course(QString name, position place, int start_time, int end_time, int day, int periodicity, int startweek, int endweek, QString teacher, QString classroom, QString platform, QString url)
+        : affair(name, place, start_time, end_time, day, periodicity), start_week(startweek), end_week(endweek), teacher(teacher), classroom(classroom), platform(platform), url(url){};
     virtual ~course(){};
     //virtual bool write_in(const std::string fname);
 };
@@ -47,9 +49,11 @@ class activity : public affair
 
 public:
     int tag;//activity 1-7 自习 锻炼 外出 班会 小组作业 双创 聚餐
+    QString platform;
+    QString url;
 
-    activity(QString name, int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
-        : affair(name, place, start_time, end_time, day, periodicity), tag(tag){};
+    activity(QString name, int tag, position place, int start_time, int end_time, int day, QString platform, QString url, int periodicity = 0)
+        : affair(name, place, start_time, end_time, day, periodicity), tag(tag), platform(platform), url(url){};
     virtual ~activity(){};
 
     /// @brief 设置tag属性
@@ -67,12 +71,12 @@ public:
     }
     //virtual bool write_in(const std::string fname);
 };
-class tmpaffair : public activity
+class tmpaffair : public affair
 {
 public:
-    int tag;//tmpaffair 1-4 购物 洗澡 取物 吃饭
+    int tag;//tmpaffair 1-5 购物 洗澡 取物 吃饭 就医
     tmpaffair(QString name, int tag, position place, int start_time, int end_time, int day, int periodicity = 0)
-        : activity(name, tag, place, start_time, end_time, day, periodicity){};
+        : affair(name, place, start_time, end_time, day, periodicity), tag(tag){};
     virtual ~tmpaffair(){};
 
 };
