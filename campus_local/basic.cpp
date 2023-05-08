@@ -1,6 +1,7 @@
 #include "basic.h"
 #include "affair.h"
 #include "map.h"
+#include <QJsonObject>
 bool write_json(QString jsonname,QJsonObject objectname){
     QJsonDocument doc;
     doc.setObject(objectname);
@@ -69,9 +70,10 @@ QJsonObject coursetojson(course c){
     rootObject.insert("startweek",c.start_week);
     rootObject.insert("endweek",c.end_week);
     rootObject.insert("weekday",c.day);
+    rootObject.insert("classroom",c.classroom);
     return rootObject;
 }
-course jsontocourse(QJsonObject rootObject, map school){
+course jsontocourse(QJsonObject rootObject, map* school){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue teacherValue=rootObject.value("teacher");
@@ -80,15 +82,18 @@ course jsontocourse(QJsonObject rootObject, map school){
     QJsonValue startweekValue=rootObject.value("startweek");
     QJsonValue endweekValue=rootObject.value("endweek");
     QJsonValue weekdayValue=rootObject.value("weekday");
+    QJsonValue classroomValue=rootObject.value("classroom");
     return course(
         nameValue.toString(),
-        school.idtopos[idValue.toInt()],
+        school->idtopos[idValue.toInt()],
         startValue.toInt(),
         endValue.toInt(),
         weekdayValue.toInt(),
         1<<(weekdayValue.toInt()-1),
         startweekValue.toInt(),
-        endweekValue.toInt()
+        endweekValue.toInt(),
+        teacherValue.toString(),
+        classroomValue.toString()
     );
 }
 QJsonObject activitytojson(activity a){
@@ -142,4 +147,123 @@ activity jsontotmpaffair(QJsonObject rootObject, map school){
         weekdayValue.toInt(),
         1<<(weekdayValue.toInt()-1)
     );
+}
+QJsonArray load_student_class_coursearray(QString id){
+    QJsonObject studentObject;
+    open_json(id+".json", studentObject);
+    QString classid = studentObject["class"].toString();
+    QJsonObject classObject;
+    open_json(classid+"_course.json", classObject);
+    QJsonArray courseArray=classObject["courses"].toArray();
+    return courseArray;
+}
+void write_coursearray(QString id,QJsonArray coursearray){
+    QJsonObject studentObject;
+    open_json(id+".json", studentObject);
+    QString classid = studentObject["class"].toString();
+    QJsonObject classObject;
+    open_json(classid+"_course.json", classObject);
+    classObject["courses"]=coursearray;
+    write_json(classid+"_course.json", classObject);
+}
+QJsonObject load_course_json(QString id, QString name){
+    QJsonArray coursearray = load_student_class_coursearray(id);
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course=coursearray.at(i).toObject();
+        QString cname=course["name"].toString();
+        if(cname==name){
+            return course;
+        }
+    }
+    return QJsonObject();
+}
+QString num_to_qstr(int num){
+    switch (num) {
+    case 1:
+        return "星期一";
+    case 2:
+        return "星期二";
+    case 3:
+        return "星期三";
+    case 4:
+        return "星期四";
+    case 5:
+        return "星期五";
+    case 6:
+        return "星期六";
+    case 7:
+        return "星期日";
+    default:
+        return "错误输入";
+    }
+    return "错误输入";
+}
+int qstr_to_num(QString day){
+    if(day=="星期一")
+        return 1;
+    else if(day=="星期二")
+        return 2;
+    else if(day=="星期三")
+        return 3;
+    else if(day=="星期四")
+        return 4;
+    else if(day=="星期五")
+        return 5;
+    else if(day=="星期六")
+        return 6;
+    else if(day=="星期日")
+        return 7;
+    else
+        return 0;
+}
+void qstr_to_time(QString time, int& st, int& ed){
+    QString start,end;
+    int f,c=0;
+    for(int i=0;i<time.length();i++){
+        if(time[i]==':'){
+            if(c==0){
+                start=time.mid(0,i);
+                c=1;
+            }
+            else if(c==1){
+                end=time.mid(f,i-f);
+                break;
+            }
+        }
+        else if(time[i]=='-'){
+            f=i+1;
+        }
+    }
+    st=start.toInt();
+    ed=end.toInt();
+}
+int qstr_to_placeid(QString classroom){
+    if(classroom.contains("教一",Qt::CaseSensitive))
+        return 61;
+    else if(classroom.contains("教四",Qt::CaseSensitive))
+        return 65;
+    else if(classroom.contains("主楼",Qt::CaseSensitive))
+        return 71;
+    else if(classroom.contains("教三",Qt::CaseSensitive))
+        return 77;
+    else if(classroom.contains("教二",Qt::CaseSensitive))
+        return 80;
+    else if(classroom.contains("操场",Qt::CaseSensitive))
+        return 50;
+    else if(classroom.contains("体育馆",Qt::CaseSensitive))
+        return 55;
+    else
+        return -1;
+}
+
+bool course_check(course cr, QJsonArray coursearray)
+{
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course = coursearray.at(i).toObject();
+        if(cr.start_week<=course["endweek"].toInt()&&cr.end_week>=course["startweek"].toInt()
+            &&cr.day==course["weekday"].toInt()
+            &&cr.start<=course["endtime"].toInt()&&cr.end>=course["starttime"].toInt())
+            return false;
+    }
+    return true;
 }

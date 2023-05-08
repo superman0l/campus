@@ -13,14 +13,240 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>581</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="textElideMode">
+     <enum>Qt::ElideRight</enum>
+    </property>
+    <property name="gridStyle">
+     <enum>Qt::SolidLine</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="set">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>80</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>修改课程</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="add">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>150</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>新增课程</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="set_quiz">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>290</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>发布考试</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>20</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>当前课表</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>20</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>第1周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第2周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第3周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第4周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第5周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第6周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第7周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第8周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第9周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第10周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第11周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第12周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第13周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第14周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第15周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第16周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第17周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第18周</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>第19周</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="delete_2">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>220</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>删除课程</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_U">

@@ -8,11 +8,13 @@
 #include <QDialog>
 #include <QInputDialog>
 #include <QPushButton>
+#include "basic.h"
 #include "CustomTabStyle.h"
-#include "classeswind.h"
+#include "classwind.h"
 #include "mapwin.h"
 #include "affairwin.h"
 #include "personwin.h"
+#include "online_data.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -22,9 +24,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle(tr("学生端"));
 
+    //初始化时间
+    tim = new timer();
+
     //建立切换页面
     QTabWidget* tab = new QTabWidget(this);
-    QWidget* Classes = new ClassesWind(tab);
+    QWidget* Classes = new classwind(tab);
     QWidget* Map = new MapWin(tab);
     QWidget* Affair = new AffairWin(tab);
     QWidget* person = new PersonWin(tab);
@@ -37,9 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
     tab->tabBar()->setStyle(new CustomTabStyle);//注意，设置上述代码风格 就可以实现QTabBar横向
     setCentralWidget(tab);
 
+    //实现信息传递
+    connect(person, SIGNAL(DestroyCount()), this, SLOT(DestroyCount()));
 
-    //初始化时间
-    tim = new timer();
+
     //初始化并美化时间标签
     timlabl = new QLabel(this);//显示时间的标签
     timlabl->setFrameShape(QLabel::WinPanel);
@@ -73,6 +79,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMessageBox::StandardButton button;
     button=QMessageBox::question(this,tr("退出程序"),QString(tr("确认退出程序")),QMessageBox::Yes|QMessageBox::No);
     if(button == QMessageBox::Yes){
+        //退出登录时，存储用户placeid信息,建议改到User的析构函数里
+        QJsonObject obj;
+        open_json(QString::number(user_online->get_id()) + ".json", obj);
+        obj["place_id"] = user_online->get_place_id();
+        write_json(QString::number(user_online->get_id()) + ".json", obj);
+        qDebug() << "Saved";
         qApp->quit();
     }
     else if(button == QMessageBox::No){
@@ -87,10 +99,6 @@ void MainWindow::on_action_S_triggered()
     this->hide();
 }
 
-void MainWindow::ReiceiveUser(const User * data)
-{
-    per = data;
-}
 
 void MainWindow::timShowNewest()
 {
@@ -116,6 +124,11 @@ void MainWindow::on_actionChgTimRa_T_triggered()
     int raio = QInputDialog::getInt(this, tr("调整时间倍率"), tr("请设置\n   程序1秒钟/现实1分钟\n的比值"), 1, 0, 60, 1, &ok);
     if(ok)
         tim->set_ratio(raio*60);
+}
+
+void MainWindow::DestroyCount()
+{
+    on_action_S_triggered();
 }
 
 

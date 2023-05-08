@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         basic.h
         basic.cpp
         timer.h
+        timer.cpp
         main.cpp
         login.cpp
         login.h
@@ -37,9 +38,6 @@ set(PROJECT_SOURCES
         adminwindow.cpp
         adminwindow.ui
         CustomTabStyle.h
-        classeswind.h
-        classeswind.cpp
-        classeswind.ui
         mapwin.h
         mapwin.cpp
         mapwin.ui
@@ -49,6 +47,20 @@ set(PROJECT_SOURCES
         personwin.h
         personwin.cpp
         personwin.ui
+        classwind.h
+        classwind.cpp
+        classwind.ui
+        online_data.h
+        online_data.cpp
+        setcourse.cpp
+        setcourse.h
+        setcourse.ui
+        addcourse.cpp
+        addcourse.h
+        addcourse.ui
+        addexam.cpp
+        addexam.h
+        addexam.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

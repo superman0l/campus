@@ -8,6 +8,7 @@
 class timer:public QDateTime
 {
 private:
+        QDateTime term_begin;//记录学期开始时间点,默认为2023年9月5日
         /// @brief last记录时间点
         clock_t last;
         /// @brief ratio记录时间比率
@@ -15,8 +16,8 @@ private:
         /// @brief is_paused 表示时间是否暂停
         bool is_paused;
 public:
-    timer():QDateTime(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false){}
-    timer(QDateTime qt,clock_t tnow,int tratio,bool tis_paused):QDateTime(qt),last(tnow),ratio(tratio),is_paused(tis_paused){}
+    timer():QDateTime(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(QString("20230220000000"),QString("yyyyMMddHHmmss"))){}
+    timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused):QDateTime(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(QString("20230220000000"),QString("yyyyMMddHHmmss"))){}
 
     /// @brief puase 设置暂停
     void puase(){ is_paused=true;}
@@ -36,28 +37,14 @@ public:
 
     /// @brief output 输出当前时间(Debug中使用)
     void output();
+
+    /// @brief set_term_begin 设置学期开始时间点
+    /// @param qs 以字符串形式传入时间点,形式为"yyyyMMddHHmmss",如"20220905000000"
+    void set_term_begin(QString qs);
+
+    /// @brief get_week 获取当前时间点对应周数(从1开始),如第1周,第2周等
+    /// @return 周数
+    int get_week();
 };
-bool timer::set_ratio(double nratio){
-    if(nratio>0)
-    {
-        ratio=nratio;
-        return true;
-    }else
-    {
-        return false;
-    }
-}
-void timer::update()
-{
-    if(is_paused){
-        last=clock();
-        return;
-    }
-    clock_t now=clock();
-    *this=timer(addSecs(1L*ratio*(now-last)/CLOCKS_PER_SEC),now,ratio,is_paused);
-}
-void timer::output()
-{
-    qDebug() << this->toString(" yyyy-MM-dd hh:mm:ss");
-}
+
 #endif // TIMER_H

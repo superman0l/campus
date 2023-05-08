@@ -21,8 +21,10 @@ class LogIn : public QDialog
 public:
     explicit LogIn(QWidget *parent = nullptr);
     ~LogIn();
+
 protected:
     void closeEvent(QCloseEvent *event);//处理关闭窗口事件
+    void resizeEvent(QResizeEvent *);//重写resize事件
 private slots:
 
     void on_LogIn_2_clicked();
@@ -32,16 +34,15 @@ private slots:
     void Receive_RegData(QString, QString, QString, QString);//接受注册窗口传来的信息
 
     void ToIdInput();//从注册窗口返回时，定位光标
+
 private:
     Ui::LogIn *ui;
     Regste* reg;//保存一个注册窗口的指针
-    const User* userptr;//保存用户登录信息
-    const Admin* admnptr;//保存管理员登录信息
     MainWindow* useWin;//用户的主功能窗口
     AdminWindow* admWin;//管理员的功能窗口
 signals:
-    void SendUser(const User*);//发送普通用户信息
-    void SendAdmn(const Admin*);//发送管理员信息
+    //void SendUser(const User*);//发送普通用户信息
+    //void SendAdmn(const Admin*);//发送管理员信息
 };
 
 #endif // LOGIN_H

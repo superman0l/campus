@@ -6,16 +6,18 @@
 #include<QFile>
 #include<QJsonObject>
 #include<QString>
-#include"basic.h"
+//#include"basic.h"
 
 class User
 {
 private:
     std::string name;
+    int place_id=-1;
     int64_t id;
+    int64_t classid;
 
 public:
-    User(const std::string &username, int64_t id) : name(username), id(id) {}
+    User(const std::string &username, int64_t id, int64_t classid, int place_id) : name(username), id(id), classid(classid), place_id(place_id){}
     virtual ~User() {}
     const std::string get_name() const
     {
@@ -24,6 +26,16 @@ public:
     int64_t get_id() const
     {
         return id;
+    }
+    int get_place_id()const{
+        return place_id;
+    }
+    int64_t get_classid() const
+    {
+        return classid;
+    }
+    void set_place_id(int ID){
+        place_id = ID;
     }
 
     /// @brief 判断当前用户是否是管理员
@@ -36,7 +48,7 @@ public:
     /// @brief 课程查询功能
     /// @param s 课程名
     /// @return 查询结果
-    const std::vector<course> query(const QString& s, map school)const;
+    const std::vector<course> query(const QString& s, map* school, int tag)const;
 
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间
@@ -52,20 +64,27 @@ public:
 
     /// @brief 添加闹钟功能(activity类)
     /// @param a 为a事务添加闹钟
-    /// @param periodicity 闹钟的周期
+    /// @param early_moment 决定提前响铃多久
+    /// @param enable 闹钟开关
     /// @return true表示设置闹钟成功，反之失败
     bool set_clock_activity(const affair &a, int early_moment, bool enable)const;
 
     /// @brief 添加闹钟功能(tmpaffair类)
     /// @param a 为a事务添加闹钟
-    /// @param periodicity 闹钟的周期
+    /// @param enable 闹钟开关
     /// @return true表示设置闹钟成功，反之失败
-    bool set_clock_tmpaffair(const affair &a, int early_moment, bool enable)const;
+    bool set_clock_tmpaffair(const affair &a, bool enable)const;
+
+    /// @brief 添加闹钟功能(course类)
+    /// @param a 为a事务添加闹钟
+    /// @param enable 闹钟开关
+    /// @return true表示设置闹钟成功，反之失败
+    bool set_clock_course(const course &a, bool enable)const;
 };
 class Admin : public User
 {
 public:
-    Admin(const std::string &username, int64_t id) : User(username, id) {}
+    Admin(const std::string &username, int64_t id, int64_t classid,int place_id) : User(username, id, classid, place_id) {}
     virtual ~Admin() {}
 
     /// @brief 判断当前用户是否是管理员
@@ -85,15 +104,14 @@ public:
     /// @param cr 要删除的课程(该参数仅供索引使用)
     /// @param id 班级编号
     /// @return true表示删除成功,false表示删除失败
-    bool erase_course(const course&cr,int64_t id)const;
+    bool erase_course(QString name, int day, int64_t id)const;
 
     /// @brief 管理员修改课程功能
     /// @param old 要修改的旧的课程(该参数仅供索引使用)
     /// @param now 新课程
     /// @param id 班级编号
     /// @return true表示修改成功,false表示修改失败
-    bool update_course(const course&old,const course&now,int64_t id)const;
-
+    bool update_course(const course&now, int64_t id, int old_day)const;
 
 };
 /// @brief 账号登录功能
@@ -102,7 +120,7 @@ public:
 /// @param user 一个用户指针的引用，登录失败或登录上管理员用户为NULL值
 /// @param adm  一个管理员指针的引用，登录失败或登陆上普通用户为NULL值
 /// @return 若登录成功返回true,若登录失败返回flase
-bool login(QString user_id,QString user_pswd,const User*& user,const Admin*& adm);
+bool login(QString user_id,QString user_pswd);
 
 /// @brief 账号注册功能
 /// @param rgs_id 注册者使用的学号/id
@@ -121,5 +139,6 @@ class Group{
     /// @param id 班级编号
     Group(QString fname,int64_t id):id(id){};
 };
+
 
 #endif // PERSON_H
