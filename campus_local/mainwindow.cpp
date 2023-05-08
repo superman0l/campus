@@ -8,6 +8,8 @@
 #include <QDialog>
 #include <QInputDialog>
 #include <QPushButton>
+#include <QDateTimeEdit>
+#include <QGridLayout.h>
 #include "CustomTabStyle.h"
 #include "classwind.h"
 #include "mapwin.h"
@@ -46,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //初始化并美化时间标签
     timlabl = new QLabel(this);//显示时间的标签
+    timlabl->setMinimumSize(QSize(250, 40));
+    timlabl->setFont(QFont("宋体", 14));
     timlabl->setFrameShape(QLabel::WinPanel);
     timlabl->setFrameShadow(QLabel::Sunken);
     timlabl->setText(tim->toString("yyyy年MM月dd日 hh:mm"));
@@ -56,8 +60,20 @@ MainWindow::MainWindow(QWidget *parent)
     //连接倒计时与时间数据更新
     connect(UpgraCount, SIGNAL(timeout()), this, SLOT(timShowNewest()));
 
+    //在状态栏添加一个暂停时间和一个更改时间的按钮
+    QPushButton* pasbtn = new QPushButton("暂停时间", this);
+    pasbtn->setMinimumSize(QSize(50, 40));
+    QPushButton* setbtn = new QPushButton("设置时间", this);
+    setbtn->setMinimumSize(QSize(50, 40));
+    ui->statusbar->addPermanentWidget(pasbtn, 8);
+    ui->statusbar->addPermanentWidget(setbtn, 9);
+    connect(pasbtn, &QPushButton::clicked, this, &MainWindow::on_actionPauseTim_P_triggered);
+    connect(setbtn, &QPushButton::clicked, this, &MainWindow::on_actionsettime_S_triggered);
+
     //在状态栏显示项目地址信息
     QLabel *perm = new QLabel(this);
+    perm->setMinimumSize(QSize(0, 30));
+    perm->setFont(QFont("楷体", 14));
     perm->setFrameStyle(QFrame::Box|QFrame::Sunken);
     perm->setText(tr("<a href=\"https://live.bilibili.com/22603245?live_from=85001&spm_id_from=444.41.live_users.item.click\">项目源码地址<a>"));
     perm->setTextFormat(Qt::RichText);
@@ -127,4 +143,46 @@ void MainWindow::on_actionChgTimRa_T_triggered()
 void MainWindow::DestroyCount()
 {
     on_action_S_triggered();
+}
+
+void MainWindow::on_actionsettime_S_triggered()
+{
+    //暂停时间
+    on_actionPauseTim_P_triggered();
+    //初始化一个改变时间的窗口
+    QDialog* TimeGeter = new QDialog(this, Qt::FramelessWindowHint);
+    TimeGeter->setMinimumSize(QSize(500,250));
+    TimeGeter->setWindowTitle("设置时间");
+    QGridLayout* gridLay = new QGridLayout(TimeGeter);
+    //qDebug() << tim->toString("yyyyMMdd") << tim->toString("hhmm");
+    QDateTimeEdit* dataedit = new QDateTimeEdit(QDate::fromString(tim->toString("yyyyMMdd"), "yyyyMMdd"), TimeGeter);
+    dataedit->setMinimumSize(QSize(250, 100));
+    dataedit->setFont(QFont("楷体", 14));
+    dataedit->setCalendarPopup(true);
+    QDateTimeEdit* timeedit = new QDateTimeEdit(QTime::fromString(tim->toString("hhmm"), "hhmm"), TimeGeter);
+    timeedit->setMinimumSize(QSize(250, 100));
+    timeedit->setFont(QFont("楷体", 14));
+    QPushButton* okbut = new QPushButton("确认", TimeGeter);
+    okbut->setMinimumSize(QSize(125, 50));
+    gridLay->addWidget(dataedit);
+    gridLay->addWidget(timeedit);
+    gridLay->addWidget(okbut);
+    TimeGeter->show();
+    //实现按钮与窗口之间的逻辑
+    connect(dataedit, &QDateTimeEdit::dateChanged, this, &MainWindow::DateChanged);
+    connect(timeedit, &QDateTimeEdit::timeChanged, this, &MainWindow::TimeChanged);
+    connect(okbut, &QPushButton::clicked, TimeGeter, &QDialog::close);
+    connect(okbut, &QPushButton::clicked, this, &MainWindow::on_actionBeginTim_B_triggered);
+}
+
+void MainWindow::DateChanged(QDate date)
+{
+    //更新日期
+    tim->set_Date(date);
+}
+
+void MainWindow::TimeChanged(QTime time)
+{
+    //更新时间
+    tim->set_Time(time);
 }

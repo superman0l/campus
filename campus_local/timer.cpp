@@ -1,5 +1,6 @@
 #include "timer.h"
 #include"alarmwin.h"
+#include <QDate>
 bool timer::set_ratio(double nratio){
     if(nratio>0)
     {
@@ -10,6 +11,16 @@ bool timer::set_ratio(double nratio){
     {
         return false;
     }
+}
+
+void timer::set_Date(QDate &date)
+{
+    now.setDate(date);
+}
+
+void timer::set_Time(QTime &time)
+{
+    now.setTime(time);
 }
 void timer::update()
 {

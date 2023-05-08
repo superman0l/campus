@@ -39,6 +39,7 @@
     <addaction name="actionChgTimRa_T"/>
     <addaction name="actionPauseTim_P"/>
     <addaction name="actionBeginTim_B"/>
+    <addaction name="actionsettime_S"/>
    </widget>
    <widget class="QMenu" name="menu_U">
     <property name="title">
@@ -132,6 +133,11 @@
   <action name="actionPerson_P">
    <property name="text">
     <string>个人</string>
+   </property>
+  </action>
+  <action name="actionsettime_S">
+   <property name="text">
+    <string>设置时间(&amp;S)</string>
    </property>
   </action>
  </widget>
