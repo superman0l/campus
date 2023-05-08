@@ -12,7 +12,6 @@ bool timer::set_ratio(double nratio){
         return false;
     }
 }
-
 void timer::set_Date(QDate &date)
 {
     now.setDate(date);
