@@ -150,8 +150,8 @@ void MainWindow::on_actionsettime_S_triggered()
     //暂停时间
     on_actionPauseTim_P_triggered();
     //初始化一个改变时间的窗口
-    QDialog* TimeGeter = new QDialog(this, Qt::FramelessWindowHint);
-    TimeGeter->setMinimumSize(QSize(500,250));
+    QDialog* TimeGeter = new QDialog(this);
+    TimeGeter->setGeometry(QRect(1200, 500, 250, 250));
     TimeGeter->setWindowTitle("设置时间");
     QGridLayout* gridLay = new QGridLayout(TimeGeter);
     //qDebug() << tim->toString("yyyyMMdd") << tim->toString("hhmm");
