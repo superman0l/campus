@@ -158,6 +158,15 @@ void LogIn::Receive_RegData(QString id, QString pswd, QString name, QString clas
 
 void LogIn::ToIdInput()
 {
+    if(useWin)
+    {
+        //退出登录时，存储用户placeid信息,建议改到User的析构函数里
+        QJsonObject obj;
+        open_json(QString::number(user_online->get_id()) + ".json", obj);
+        obj["place_id"] = user_online->get_place_id();
+        write_json(QString::number(user_online->get_id()) + ".json", obj);
+        qDebug() << "Saved";
+    }
     this->show();
     ui->UserId->setFocus();
 }

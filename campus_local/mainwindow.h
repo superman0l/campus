@@ -37,6 +37,14 @@ private slots:
 
     void on_actionChgTimRa_T_triggered();
 
+    void DestroyCount();
+
+    void on_actionsettime_S_triggered();
+
+    void DateChanged(QDate);
+
+    void TimeChanged(QTime);
+
 signals:
     void LogOut();
     //void UserOut(const User*);
