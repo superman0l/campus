@@ -305,6 +305,11 @@
    </item>
    <item>
     <property name="text">
+     <string>搜索活动</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>搜索事务</string>
     </property>
    </item>

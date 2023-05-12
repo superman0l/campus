@@ -106,7 +106,64 @@ const std::vector<course> User::query(const QString& s, map* benbu, int tag) con
     }
     return result;
 }
-
+const std::vector<activity>User::query_activity(const QString&s,map*school)const
+{
+    std::vector<activity>result;
+    QJsonObject rootobject;
+    if(!open_json(QString::number(this->id)+".json",rootobject))
+    {
+        return result;
+    }
+    QJsonValue tmp=rootobject.value("activities");
+    if(tmp.isArray())
+    {
+        QJsonArray array=tmp.toArray();
+        for(int i=0;i<array.size();i++)
+        {
+            QJsonObject obj=array.at(i).toObject();
+            int day=obj.value("day").toInt();
+            int dest_id=obj.value("destination_id").toInt();
+            QString name=obj.value("name").toString();
+            QString platform=obj.value("platform").toString();
+            int tag=obj.value("tag").toInt();
+            int time=obj.value("time").toInt();
+            QString url=obj.value("url").toString();
+            if(name.contains(s))
+            {
+                result.push_back(activity(name,tag,school->idtopos[dest_id],time,time,day,platform,url,(1<<(day-1))));
+            }
+        }
+    }
+    return result;
+}
+const std::vector<tmpaffair>User::query_tmpaffair(const QString&s,map*school)const
+{
+    std::vector<tmpaffair>result;
+    QJsonObject rootobject;
+    if(!open_json(QString::number(this->id)+".json",rootobject))
+    {
+        return result;
+    }
+    QJsonValue tmp=rootobject.value("affairs");
+    if(tmp.isArray())
+    {
+        QJsonArray array=tmp.toArray();
+        for(int i=0;i<array.size();i++)
+        {
+            QJsonObject obj=array.at(i).toObject();
+            int day=obj.value("day").toInt();
+            int dest_id=obj.value("destination_id").toInt();
+            QString name=obj.value("name").toString();
+            int tag=obj.value("tag").toInt();
+            int time=obj.value("time").toInt();
+            if(name.contains(s))
+            {
+                result.push_back(tmpaffair(name,tag,school->idtopos[dest_id],time,time,day,(1<<(day-1))));
+            }
+        }
+    }
+    return result;
+}
 const std::vector<QString> User::query_time(int day) const
 {
     bool flag[7][14];

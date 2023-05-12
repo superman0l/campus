@@ -1,6 +1,8 @@
 #include "timer.h"
-#include"alarmwin.h"
 #include <QDate>
+#include<QMessageBox>
+#include<QSoundEffect>
+#include"online_data.h"
 bool timer::set_ratio(double nratio){
     if(nratio>0)
     {
@@ -62,9 +64,8 @@ void timer::update()
     for(auto&e:toshow)
     {
         this->erase(e);
-        auto it=new alarmwin(this,e,this->parent);
-        it->setAttribute(Qt::WA_DeleteOnClose);
-        it->show();
+        bell.play();
+        QMessageBox::information(NULL, QString("闹钟"), e.info, QMessageBox::Yes);
     }
     last=tmp;
 }

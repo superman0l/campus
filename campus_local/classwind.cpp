@@ -74,6 +74,10 @@ void classwind::load(int weeknum){
             url=course["url"].toString();
             alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
+            if(alarm==true)
+            {
+                tim->insert(talarm(day,starttime-1,30,(1<<(day-1)),name+"\n"+teacher));//插入闹钟
+            }
             if(url!=""&&platform!="")
                 message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al+"\n\n"+platform+"\n\n"+url;
             else message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;

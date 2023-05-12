@@ -27,7 +27,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     //初始化时间
     tim = new timer();
-
+    //铃声初始化
+    bell.setSource(QUrl::fromLocalFile("../music/alarm.wav"));
+    bell.setLoopCount(1);
+    bell.setVolume(0.25f);
     //建立切换页面
     QTabWidget* tab = new QTabWidget(this);
     QWidget* Classes = new classwind(tab);

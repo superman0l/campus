@@ -51,6 +51,18 @@ public:
     /// @return 查询结果
     const std::vector<course> query(const QString& s, map* school, int tag)const;
 
+    /// @brief 按照关键字搜索活动
+    /// @param s 关键字
+    /// @param school 学校地图
+    /// @return 查询结果
+    const std::vector<activity> query_activity(const QString&s,map*school)const;
+
+    /// @brief 按照关键字搜索临时事务
+    /// @param s 关键字
+    /// @param school 学校地图
+    /// @return 查询结果
+    const std::vector<tmpaffair> query_tmpaffair(const QString&s,map*school)const;
+
     /// @brief 临时事务查询功能
     /// @param begin_time 查询的起始时间
     /// @param end_time 查询的最终时间

@@ -339,9 +339,80 @@ void MapWin::on_search_clicked()
                 }
             }
         }
+    }else if(ui->comboBox->currentText()==QString("搜索活动"))
+    {
+        QString s=ui->search_line->text();
+        auto ans=user_online->query_activity(s,school_online);
+        int mx=0x3fffffff;
+        for(auto&e:ans)
+        {
+            if(e.day==tim->get_days()&&e.place.id!=-1)
+            {
+                int h1=tim->get_DateTime().time().hour();
+                int m1=tim->get_DateTime().time().msec();
+                if((e.start-h1)*24-m1>0&&(e.start-h1)*24-m1<mx)
+                {
+                    mx=(e.start-h1)*24-m1;
+                }
+            }
+        }
+        if(mx!=0x3fffffff)
+        {
+            for(auto&e:ans)
+            {
+                if(e.day==tim->get_days()&&e.place.id!=-1)
+                {
+                    int h1=tim->get_DateTime().time().hour();
+                    int m1=tim->get_DateTime().time().msec();
+                    if((e.start-h1)*24-m1==mx)
+                    {
+                        QMessageBox::information(this,tr("搜索结果"),e.name+tr("\n已自动添加到目的地"));
+                        this->end.push_back(e.place.id);
+                        break;
+                    }
+                }
+            }
+        }else
+        {
+            QMessageBox::information(this,tr("搜索结果"),tr("未找到对应活动"));
+        }
     }else if(ui->comboBox->currentText()==QString("搜索事务"))
     {
-
+        QString s=ui->search_line->text();
+        auto ans=user_online->query_tmpaffair(s,school_online);
+        int mx=0x3fffffff;
+        for(auto&e:ans)
+        {
+            if(e.day==tim->get_days()&&e.place.id!=-1)
+            {
+                int h1=tim->get_DateTime().time().hour();
+                int m1=tim->get_DateTime().time().msec();
+                if((e.start-h1)*24-m1>0&&(e.start-h1)*24-m1<mx)
+                {
+                    mx=(e.start-h1)*24-m1;
+                }
+            }
+        }
+        if(mx!=0x3fffffff)
+        {
+            for(auto&e:ans)
+            {
+                if(e.day==tim->get_days()&&e.place.id!=-1)
+                {
+                    int h1=tim->get_DateTime().time().hour();
+                    int m1=tim->get_DateTime().time().msec();
+                    if((e.start-h1)*24-m1==mx)
+                    {
+                        QMessageBox::information(this,tr("搜索结果"),e.name+tr("\n已自动添加到目的地"));
+                        this->end.push_back(e.place.id);
+                        break;
+                    }
+                }
+            }
+        }else
+        {
+            QMessageBox::information(this,tr("搜索结果"),tr("未找到对应事务"));
+        }
     }
     QString now;
     for(auto&e:end)

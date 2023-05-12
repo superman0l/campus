@@ -5,6 +5,7 @@
 #include "map.h"
 int main(int argc, char *argv[])
 {
+    QApplication::setQuitOnLastWindowClosed(false);
     school_online=new map("../Json/map.json");
     if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
         QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);

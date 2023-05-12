@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
 
 include_directories(../)
 
@@ -61,9 +61,6 @@ set(PROJECT_SOURCES
         addexam.cpp
         addexam.h
         addexam.ui
-        alarmwin.h
-        alarmwin.cpp
-        alarmwin.ui
         addactivity.cpp
         addactivity.h
         addactivity.ui
@@ -95,7 +92,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(campus_local PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(campus_local PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
 
 set_target_properties(campus_local PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

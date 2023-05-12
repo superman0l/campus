@@ -67,6 +67,7 @@ public:
     /// @brief mp[i][j]表示编号为i的点,其第j条边所连端点和权值
     std::vector<std::vector<std::pair<int, int>>> mp;
 
+    std::unordered_map<QString,int>strtoid;
     /// @brief 0~tot-1为现有position编号
     int tot;
 
@@ -122,5 +123,9 @@ public:
     /// @param edids 目的地点
     /// @return QString即为文字说明
     const QString navigate(const int stid,const std::vector<int>&edids);
+    /// @brief get_id 地名转化为特定id
+    /// @param s 地名
+    /// @return id
+    int get_id(const QString&s);
 };
 #endif // MAP_H

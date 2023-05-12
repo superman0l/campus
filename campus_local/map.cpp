@@ -38,6 +38,7 @@ map::map(const QString fname)
         bposx=tmp2.value("ButtonPos").toArray().at(0).toString().toInt();
         bposy=tmp2.value("ButtonPos").toArray().at(1).toString().toInt();
         idtopos[id]=position(id,name,posx,posy,bposx,bposy);
+        strtoid[name]=id;
         QJsonArray edge=tmp2.value("NearestNeighbor").toArray();
         for(int i=0,nxt,len;i<edge.size();i++)
         {
@@ -212,7 +213,11 @@ path map::route(position begin,const std::vector<position>&need)
         }
     }
     path ret;
-    ret.push_front(idtopos[pos[0]]);
+    path tmp=map::route(idtopos[pos[now_pos]],idtopos[pos[0]]);
+    for(int i=tmp.size()-1;i>=1;i--)
+    {
+        ret.push_front(tmp[i]);
+    }
     while(now_status!=1)
     {
         int pre_pos=pre[now_status][now_pos];
