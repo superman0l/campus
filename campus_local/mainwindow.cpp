@@ -19,11 +19,12 @@
 
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow()
 , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("学生端"));
+    //setWindowFlags(Qt::Popup);
 
     //初始化时间
     tim = new timer();

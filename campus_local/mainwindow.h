@@ -8,16 +8,16 @@
 class timer;
 class QLabel;
 
-QT_BEGIN_NAMESPACE
+//QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+//QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:

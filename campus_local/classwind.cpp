@@ -14,7 +14,7 @@ classwind::classwind(QWidget *parent) :
     ui(new Ui::classwind)
 {
     ui->setupUi(this);
-
+    ui->tableView->setFixedSize(671,441);
 
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectItems);
 

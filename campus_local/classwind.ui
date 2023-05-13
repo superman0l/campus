@@ -10,8 +10,14 @@
     <x>0</x>
     <y>0</y>
     <width>1030</width>
-    <height>750</height>
+    <height>670</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -27,7 +33,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -37,7 +43,7 @@
   <widget class="QPushButton" name="search">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>450</x>
      <y>30</y>
      <width>101</width>
      <height>31</height>
@@ -45,7 +51,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -58,12 +64,30 @@
      <x>30</x>
      <y>70</y>
      <width>671</width>
-     <height>411</height>
+     <height>441</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>671</width>
+     <height>441</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>671</width>
+     <height>441</height>
+    </size>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="layoutDirection">
@@ -85,12 +109,18 @@
      <x>720</x>
      <y>30</y>
      <width>211</width>
-     <height>211</height>
+     <height>221</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="title">
@@ -102,12 +132,12 @@
       <x>0</x>
       <y>20</y>
       <width>211</width>
-      <height>191</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="editTriggers">
@@ -119,14 +149,14 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>490</y>
+     <y>520</y>
      <width>901</width>
      <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="title">
@@ -137,13 +167,13 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>611</width>
+      <width>541</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -157,14 +187,14 @@
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>40</y>
-      <width>231</width>
-      <height>18</height>
+      <y>30</y>
+      <width>331</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>13</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
@@ -188,7 +218,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>13</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -200,13 +230,13 @@
      <rect>
       <x>10</x>
       <y>50</y>
-      <width>611</width>
+      <width>551</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -219,7 +249,7 @@
     <rect>
      <x>320</x>
      <y>30</y>
-     <width>101</width>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>
@@ -231,7 +261,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="layoutDirection">
@@ -366,14 +396,14 @@
    <property name="geometry">
     <rect>
      <x>720</x>
-     <y>250</y>
+     <y>260</y>
      <width>211</width>
-     <height>231</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="title">
@@ -385,13 +415,16 @@
       <x>0</x>
       <y>20</y>
       <width>211</width>
-      <height>211</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>10</pointsize>
      </font>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

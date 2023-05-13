@@ -45,7 +45,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -57,13 +57,13 @@
     <rect>
      <x>80</x>
      <y>50</y>
-     <width>141</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -81,7 +81,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -93,13 +93,13 @@
     <rect>
      <x>300</x>
      <y>50</y>
-     <width>141</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -117,7 +117,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -250,7 +250,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -268,7 +268,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -286,7 +286,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -304,7 +304,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -365,7 +365,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -630,9 +630,9 @@
   <widget class="QPushButton" name="check">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>340</y>
-     <width>101</width>
+     <x>360</x>
+     <y>330</y>
+     <width>91</width>
      <height>31</height>
     </rect>
    </property>
@@ -650,7 +650,7 @@
     <rect>
      <x>80</x>
      <y>280</y>
-     <width>141</width>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -660,7 +660,7 @@
     </font>
    </property>
    <property name="placeholderText">
-    <string>腾讯会议等（无则为空）</string>
+    <string>腾讯会议等（无线上课程则不填写）</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -674,7 +674,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -684,15 +684,15 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>280</y>
+     <x>20</x>
+     <y>330</y>
      <width>61</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -702,9 +702,9 @@
   <widget class="QLineEdit" name="url">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>280</y>
-     <width>141</width>
+     <x>80</x>
+     <y>330</y>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -714,7 +714,7 @@
     </font>
    </property>
    <property name="placeholderText">
-    <string>若无线上课程则不填</string>
+    <string>若无线上课程则不填写</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_12">
@@ -728,7 +728,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">

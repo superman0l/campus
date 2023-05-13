@@ -86,7 +86,7 @@
      <x>20</x>
      <y>270</y>
      <width>161</width>
-     <height>211</height>
+     <height>201</height>
     </rect>
    </property>
    <property name="font">
@@ -122,7 +122,7 @@
     <rect>
      <x>50</x>
      <y>500</y>
-     <width>81</width>
+     <width>91</width>
      <height>29</height>
     </rect>
    </property>
@@ -139,9 +139,9 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>60</y>
+     <y>49</y>
      <width>91</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -162,15 +162,16 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>230</x>
      <y>500</y>
-     <width>131</width>
-     <height>61</height>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>宋体</family>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -182,13 +183,14 @@
     <rect>
      <x>370</x>
      <y>500</y>
-     <width>141</width>
-     <height>61</height>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>宋体</family>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">

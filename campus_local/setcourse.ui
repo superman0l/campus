@@ -45,7 +45,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -63,7 +63,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -81,7 +81,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -99,7 +99,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -117,7 +117,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -135,7 +135,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -456,6 +456,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
    <item>
     <property name="text">
      <string>第一节课(8:00)</string>
@@ -569,7 +574,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -581,7 +586,7 @@
     <rect>
      <x>90</x>
      <y>250</y>
-     <width>131</width>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -623,7 +628,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -635,7 +640,7 @@
     <rect>
      <x>90</x>
      <y>300</y>
-     <width>131</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -659,7 +664,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">

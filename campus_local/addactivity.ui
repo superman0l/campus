@@ -45,7 +45,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -63,7 +63,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <item>
@@ -118,7 +118,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <item>
@@ -198,7 +198,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -216,7 +216,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <item>
@@ -266,7 +266,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -284,7 +284,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <item>
@@ -364,7 +364,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -382,7 +382,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -394,13 +394,13 @@
     <rect>
      <x>80</x>
      <y>160</y>
-     <width>131</width>
+     <width>291</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -418,7 +418,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -436,7 +436,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -454,7 +454,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -496,7 +496,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>13</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -506,7 +506,7 @@
   <widget class="QPushButton" name="add">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>270</x>
      <y>310</y>
      <width>111</width>
      <height>31</height>
@@ -532,11 +532,11 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="placeholderText">
-    <string>若无线上活动则不填</string>
+    <string>无线上活动则不填</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -550,7 +550,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
@@ -568,11 +568,11 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="placeholderText">
-    <string>若无线上活动则不填</string>
+    <string>无线上活动则不填</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_11">
@@ -586,7 +586,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="text">
