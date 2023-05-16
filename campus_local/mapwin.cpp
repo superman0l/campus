@@ -75,7 +75,7 @@ MapWin::MapWin(QWidget *parent) :
     begin=-1;
     mv=new MapView(this);
     bg=new ButtonGroup(this);
-    mp=new map(QString("map.json"));
+    mp=school_online;
     auto sce=new QGraphicsScene(mv);
 
     mv->setScene(sce);
@@ -174,6 +174,14 @@ void MapWin::on_pushButton_4_clicked()
         QMessageBox::warning(this, tr("失败！"), tr("目的地未确定，请重试！"), QMessageBox::Ok);
         return;
     }
+    QString tmp1=mp->idtopos[this->begin].name;
+    QString tmp2;
+    for(auto&e:this->end)
+    {
+        tmp2.append(mp->idtopos[e].name);
+        tmp2.append(" ");
+    }
+    log_action(tr("查询从%1到%2的最佳路线").arg(tmp1).arg(tmp2));
     while(this->head.size())
     {
         this->mv->scene()->removeItem(head.top());
@@ -288,6 +296,7 @@ void MapWin::on_search_clicked()
     if(ui->comboBox->currentText()==QString("搜索课程"))
     {
         QString s=ui->search_line->text();
+        log_action(tr("搜索课程：%1并进行导航").arg(s));
         auto ans=user_online->query(s,school_online,0);//统一按照课程名称搜索
         int mx=0x3fffffff;
         for(auto&e:ans)
@@ -342,6 +351,7 @@ void MapWin::on_search_clicked()
     }else if(ui->comboBox->currentText()==QString("搜索活动"))
     {
         QString s=ui->search_line->text();
+        log_action(tr("搜索活动：%1并进行导航").arg(s));
         auto ans=user_online->query_activity(s,school_online);
         int mx=0x3fffffff;
         for(auto&e:ans)
@@ -378,7 +388,9 @@ void MapWin::on_search_clicked()
         }
     }else if(ui->comboBox->currentText()==QString("搜索事务"))
     {
+
         QString s=ui->search_line->text();
+        log_action(tr("搜索事务：%1并进行导航").arg(s));
         auto ans=user_online->query_tmpaffair(s,school_online);
         int mx=0x3fffffff;
         for(auto&e:ans)

@@ -34,9 +34,11 @@ void addtmpaffair::on_add_clicked()
         );
     if(user_online->add_tmpaffair(t)){
         emit flash(ui->tag->currentIndex()+1,1);
+        log_action(tr("添加临时事务%1成功").arg(t.name));
         this->close();
     }
     else{
+        log_action(tr("添加临时事务%1失败").arg(t.name));
         QMessageBox::critical(this, "错误","存在时间冲突，请更正！");
     }
 }

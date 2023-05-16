@@ -76,11 +76,14 @@ void setcourse::on_set_clicked()
         ui->url->text()
         );
     if(admin_online->update_course(check,admin_online->get_classid(),day)){
+        log_action(tr("更改班级：%1的课程：%2成功").arg(admin_online->get_classid()).arg(check.name));
         QMessageBox::information(this, "提示", "更改成功");
         emit change();
         this->close();
     }
     else{
+
+        log_action(tr("更改班级：%1的课程：%2失败").arg(admin_online->get_classid()).arg(check.name));
         QMessageBox::critical(this, "错误","更改的课程存在时间冲突\n请修改时间后再进行添加");
     }
 }

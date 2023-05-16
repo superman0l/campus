@@ -137,7 +137,7 @@ void classwind::on_checkBox_stateChanged(int arg1)
     QModelIndex indx=ui->tableView->currentIndex();
     if(ui->checkBox->isChecked()){
         user_online->set_clock_course(course2,true);
-
+        log_action(tr("设置%1的闹钟").arg(course2.name));
         //load(tim->get_week());
         /*
         QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+datalist[3]+"\n\n"+"alarm:on";
@@ -151,6 +151,8 @@ void classwind::on_checkBox_stateChanged(int arg1)
     }
     else{
         user_online->set_clock_course(course2,false);
+
+        log_action(tr("取消%1的闹钟").arg(course2.name));
         /*
         QString newdata=datalist[0]+"\n\n"+datalist[1]+"\n\n"+datalist[2]+"\n\n"+datalist[3]+"\n\n"+"alarm:off";
         for(int j=0;j<course2.end-course2.start+1;j++){
@@ -190,6 +192,7 @@ void classwind::on_search_clicked()
     else if(ui->comboBox->currentText()=="搜索教师名称")
         tag=1;
     std::vector<course> courses=user_online->query(ui->course_line->text(),school_online,tag);
+    log_action(tr("搜索%1：%2").arg(tag?"课程名称":"教师名称").arg(ui->course_line->text()));
     if(courses.empty()){
         QString error="无结果。请检查搜索内容";
         QListWidgetItem * item = new QListWidgetItem;
@@ -233,6 +236,8 @@ void classwind::on_navigate_clicked()
     QString text;
     if(edid!=-1)text=school_online->navigate(stid,edid);
     else text="无有效课程目的地，请重新选择";
+
+    log_action(tr("查询从%1到%2的最佳路线").arg(school_online->idtopos[stid].name).arg(school_online->idtopos[edid].name));
     ui->naviresult->setText(text);
 }
 

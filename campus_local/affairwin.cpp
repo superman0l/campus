@@ -159,11 +159,14 @@ void AffairWin::on_deleteactvt_clicked()
         button=QMessageBox::question(this,tr("删除活动"),"确认删除活动：\n"+name,QMessageBox::Yes|QMessageBox::No);
         if(button == QMessageBox::Yes){
             if(user_online->del_activity(name,day,st)){
+                    log_action(tr("删除活动%1成功").arg(name));
                     QMessageBox::information(this, "提示", "删除成功");
                 int a=ui->timesort->text()=="按时间升序"?1:2;
                 load(ui->comboBox->currentIndex(),ui->tags->currentIndex(),a);
                 }
                 else{
+
+                log_action(tr("删除活动%1失败").arg(name));
                     QMessageBox::information(this, "提示", "删除失败，请重新尝试");
                 }
         }
@@ -183,6 +186,7 @@ void AffairWin::on_querytime_clicked()
     for(int i=0;i<result.size();i++){
         ui->checktimelist->addItem(result[i]);
     }
+    log_action(tr("查询事务可行时间"));
 }
 
 
@@ -340,10 +344,12 @@ void AffairWin::on_deltmpaffair_clicked()
         if(button == QMessageBox::Yes){
             if(user_online->del_tmpaffair(name,st)){
                     QMessageBox::information(this, "提示", "删除成功");
+                    log_action(tr("删除临时事务%1成功").arg(name));
                 int a=ui->timesort->text()=="按时间升序"?1:2;
                 load_affair(ui->aff_tags->currentIndex(),a);
                 }
                 else{
+                    log_action(tr("删除临时事务%1失败").arg(name));
                     QMessageBox::information(this, "提示", "删除失败，请重新尝试");
                 }
         }
@@ -358,6 +364,7 @@ void AffairWin::on_deltmpaffair_clicked()
 
 void AffairWin::on_queryta_clicked()
 {
+    log_action("查询同时临时事务");
     ui->checkafrlist->clear();
     queryaffairresult=user_online->query_tmpaffair();
     if(queryaffairresult.empty()){
@@ -433,9 +440,14 @@ void AffairWin::on_navigate_clicked()
     int stid;
     stid=user_online->get_place_id();
     std::vector<int> edid;
+    QString tmp1=school_online->idtopos[stid].name;
+    QString tmp2;
     for(int i=0;i<queryaffairresult[f].size();i++){
         edid.push_back(queryaffairresult[f][i].place.id);
+        tmp2.append(school_online->idtopos[edid[i]].name);
+        tmp2.append(" ");
     }
+    log_action(tr("查询从%1到%2的最佳路线").arg(tmp1).arg(tmp2));
     ui->naviresult->setText(school_online->navigate(stid,edid));
 }
 
@@ -454,9 +466,11 @@ void AffairWin::on_aff_alarmcheck_stateChanged(int arg1)
                 tmpaffair a=jsontotmpaffair(affair,*school_online);
                 if(ui->aff_alarmcheck->isChecked()==true){
                     user_online->set_clock_tmpaffair(a,true);
+                    log_action(tr("设置%1的闹钟").arg(a.name));
                 }
                 else{
                     user_online->set_clock_tmpaffair(a,false);
+                    log_action(tr("取消%1的闹钟").arg(a.name));
                 }
                 break;
 

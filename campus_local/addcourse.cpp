@@ -49,11 +49,14 @@ void addcourse::on_check_clicked()
     QJsonArray coursearray=classObject["courses"].toArray();
     if(admin_online->add_course(check,admin_online->get_classid())){
         QMessageBox::information(this, "提示", "添加成功");
+        log_action(tr("添加课程%1成功").arg(check.name));
         emit change();
         this->close();
     }
-    else
+    else{
         QMessageBox::critical(this, "错误","添加的课程存在时间冲突\n请修改时间后再进行添加");
+        log_action(tr("添加课程%1失败").arg(check.name));
+    }
 }
 
 
