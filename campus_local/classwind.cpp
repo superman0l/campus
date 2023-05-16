@@ -178,7 +178,11 @@ void classwind::on_search_clicked()
         item->setSizeHint(QSize(ui->result->height(),25));
         item->setText(QString(mesg));
         ui->result->addItem(item);
+        ui->result->setEnabled(false);
         return;
+    }
+    else{
+        ui->result->setEnabled(true);
     }
     int tag;
     if(ui->comboBox->currentText()=="搜索课程名称")

@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon("../icon.png"));
     this->setWindowTitle(tr("学生端"));
     //setWindowFlags(Qt::Popup);
 
@@ -38,7 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget* Map = new MapWin(tab);
     QWidget* Affair = new AffairWin(tab);
     QWidget* person = new PersonWin(tab);
-    //tab->addTab(Classes, "关闭");
     tab->addTab(Classes, "课表");
     tab->addTab(Map, "导航");
     tab->addTab(Affair, "事务");

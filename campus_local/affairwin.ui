@@ -39,6 +39,11 @@
       <height>211</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -285,6 +290,11 @@
       <width>461</width>
       <height>221</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
    </widget>
    <widget class="QTextBrowser" name="naviresult">

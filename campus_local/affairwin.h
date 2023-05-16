@@ -54,6 +54,10 @@ private slots:
 
     void on_tmpaffairlist_itemClicked(QListWidgetItem *item);
 
+    void on_activitylist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_tmpaffairlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
 private:
     Ui::AffairWin *ui;
 };

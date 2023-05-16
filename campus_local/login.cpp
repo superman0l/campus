@@ -18,6 +18,7 @@ LogIn::LogIn(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LogIn)
 {
+    this->setWindowIcon(QIcon("../icon.png"));
     ui->setupUi(this);
     //初始化指针
     admWin = nullptr;

@@ -34,7 +34,14 @@ public:
                 if (tab->state & QStyle::State_Selected) {
                     //save用以保护坐标，restore用来退出状态
                     painter->save();
-                    painter->setBrush(QBrush(0xFFFAFA));
+
+                    QLinearGradient ling(QPoint(0,60),QPoint(120,60));//参数1指定起始点，参数2指定结束点
+                    ling.setColorAt(0,QColor(14,120,255,220));//指定起点颜色
+                    ling.setColorAt(1,QColor(226,226,226,150));//指定终点颜色
+                    ling.setSpread(QGradient::PadSpread);//设置起点和终点之外的显示模式
+                    QBrush brush(ling);
+                    painter->setBrush(brush);
+                    //painter->setBrush(QColor(34,190,255,150));
                     //矩形
                     //painter->drawRect(allRect.adjusted(0, 0, 0, 0));
                     //带有弧线矩形
@@ -44,13 +51,19 @@ public:
                 //hover状态
                 else if(tab->state & QStyle::State_MouseOver){
                     painter->save();
-                    painter->setBrush(QBrush(0x696969));
+                    QLinearGradient ling(QPoint(0,60),QPoint(120,60));//参数1指定起始点，参数2指定结束点
+                    ling.setColorAt(0,QColor(44,180,255,200));//指定起点颜色
+                    ling.setColorAt(1,QColor(226,226,226,150));//指定终点颜色
+                    ling.setSpread(QGradient::PadSpread);//设置起点和终点之外的显示模式
+                    QBrush brush(ling);
+                    painter->setBrush(brush);
+                    //painter->setBrush(QBrush(0x696969));
                     painter->drawRoundedRect(allRect, 8, 8);
                     painter->restore();
                 }
                 else{
                     painter->save();
-                    painter->setBrush(QBrush(0xFFFAF0));
+                    painter->setBrush(QColor(34,190,255,10));
                     painter->drawRoundedRect(allRect, 8, 8);
                     painter->restore();
                 }

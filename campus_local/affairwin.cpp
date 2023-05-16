@@ -14,6 +14,8 @@ AffairWin::AffairWin(QWidget *parent) :
     ui->setupUi(this);
     load(0,0,1);
     load_affair(0, 1);
+    ui->activitylist->setCurrentRow(0);
+    ui->tmpaffairlist->setCurrentRow(0);
 }
 
 AffairWin::~AffairWin()
@@ -334,7 +336,7 @@ void AffairWin::on_deltmpaffair_clicked()
     int st,ed;qstr_to_time(strlist[2],st,ed);
     if(name!=""){
         QMessageBox::StandardButton button;
-        button=QMessageBox::question(this,tr("删除活动"),"确认删除活动：\n"+name,QMessageBox::Yes|QMessageBox::No);
+        button=QMessageBox::question(this,tr("删除事务"),"确认删除事务：\n"+name,QMessageBox::Yes|QMessageBox::No);
         if(button == QMessageBox::Yes){
             if(user_online->del_tmpaffair(name,st)){
                     QMessageBox::information(this, "提示", "删除成功");
@@ -485,5 +487,17 @@ void AffairWin::on_tmpaffairlist_itemClicked(QListWidgetItem *item)
                 break;
         }
     }
+}
+
+
+void AffairWin::on_activitylist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    if (current == NULL) return;
+}
+
+
+void AffairWin::on_tmpaffairlist_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    if (current == NULL) return;
 }
 
