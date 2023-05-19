@@ -46,10 +46,12 @@ void addactivity::on_add_clicked()
     else min=ui->min->value();
     if(user_online->add_activity(newa,min)){
         emit flash(newa.day,newa.tag,1);
+        log_action(tr("添加活动%1成功").arg(newa.name));
         this->close();
     }
     else{
         QMessageBox::critical(this, "错误","存在时间冲突，请更正！");
+        log_action(tr("添加活动%1失败").arg(newa.name));
     }
 }
 

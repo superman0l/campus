@@ -62,10 +62,14 @@ void addexam::on_set_clicked()
     QJsonArray coursearray=classObject["courses"].toArray();
     if(admin_online->add_course(check,admin_online->get_classid())){
         QMessageBox::information(this, "提示", "发布考试成功");
+        log_action(tr("为班级：%1 课程：%2发布考试成功").arg(classid).arg(check.name));
         emit change();
         this->close();
     }
-    else
+    else{
+        log_action(tr("为班级：%1 课程：%2发布考试失败").arg(classid).arg(check.name));
         QMessageBox::critical(this, "错误","发布的考试存在时间冲突\n请修改时间后再进行添加");
+    }
+
 }
 

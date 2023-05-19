@@ -4,6 +4,7 @@
 #include "person.h"
 #include "map.h"
 #include "timer.h"
+#include"log.h"
 #include<QSoundEffect>
 
 extern const User* user_online;//保存用户登录信息
@@ -14,4 +15,5 @@ extern map* school_online;
 extern QSoundEffect bell;//铃声
 
 extern timer* tim;
+extern Log user_log;
 #endif // ONLINE_DATA_H

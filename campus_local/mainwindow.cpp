@@ -16,7 +16,7 @@
 #include "affairwin.h"
 #include "personwin.h"
 #include "online_data.h"
-
+#include"log.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow()
@@ -33,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
     bell.setSource(QUrl::fromLocalFile("../music/alarm.wav"));
     bell.setLoopCount(1);
     bell.setVolume(0.25f);
+    //日志初始化
+    logvar.init(user_online);
+    log_action(QString("登录!"));
     //建立切换页面
     QTabWidget* tab = new QTabWidget(this);
     QWidget* Classes = new classwind(tab);
@@ -139,8 +142,10 @@ void MainWindow::on_actionChgTimRa_T_triggered()
 {
     bool ok;
     int raio = QInputDialog::getInt(this, tr("调整时间倍率"), tr("请设置\n   程序1秒钟/现实1分钟\n的比值"), 1, 0, 60, 1, &ok);
-    if(ok)
-        tim->set_ratio(raio*60);
+    if(ok&&tim->set_ratio(raio*60))
+    {
+        log_action(tr("调整时间倍率为1秒钟%1分钟").arg(raio));
+    }
 }
 
 

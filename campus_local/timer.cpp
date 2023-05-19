@@ -1,6 +1,8 @@
 #include "timer.h"
 #include <QDate>
 #include<QMessageBox>
+#include<QString>
+#include<QDialog>
 #include<QSoundEffect>
 #include"online_data.h"
 bool timer::set_ratio(double nratio){
@@ -66,6 +68,7 @@ void timer::update()
         this->erase(e);
         bell.play();
         QMessageBox::information(NULL, QString("闹钟"), e.info, QMessageBox::Yes);
+        log_event(QString("闹钟%1").arg(e.info));
     }
     last=tmp;
 }

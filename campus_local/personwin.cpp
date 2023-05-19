@@ -73,7 +73,10 @@ void PersonWin::on_ChangePswd_clicked()
 {
     if(CheckPswd()){
         if(ChangePswd())
+            {
             QMessageBox::information(this, "通知", "成功修改了密码！！");
+        }
+
     }
     else{
         QMessageBox::warning(this, "错误", "输入了错误的密码！！");

@@ -67,6 +67,8 @@ set(PROJECT_SOURCES
         addtmpaffair.cpp
         addtmpaffair.h
         addtmpaffair.ui
+        log.h
+        log.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
