@@ -19,13 +19,13 @@ public:
 #define logvar user_log
 #define log_action(x)\
     do{\
-    QString s=QString("[ACTION] %1 %2 %3\n").arg(tim->get_DateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(QString::fromStdString(user_online->get_name())).arg(x);\
-    logvar.write(s);\
+    QString __log_s=QString("[ACTION] %1 %2 %3\n").arg(tim->get_DateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(QString::fromStdString(user_online->get_name())).arg(x);\
+    logvar.write(__log_s);\
     }while(false);
 
 #define log_event(x)\
     do{\
-    QString s=QString("[EVENT] %1 %2 %3\n").arg(tim->get_DateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(QString::fromStdString(user_online->get_name())).arg(x);\
-    logvar.write(s);\
+    QString __log_s=QString("[EVENT] %1 %2 %3\n").arg(tim->get_DateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(QString::fromStdString(user_online->get_name())).arg(x);\
+    logvar.write(__log_s);\
     }while(false);
 #endif // LOG_H

@@ -17,7 +17,7 @@ MapButton::MapButton(const position&pos,QWidget*parent):QRadioButton(parent)
 ButtonGroup::ButtonGroup(QWidget*parent):QButtonGroup(parent)
 {
 }
-//来源:https://zhuanlan.zhihu.com/p/469523496?utm_id=0
+
 MapView::MapView(QWidget*parent):QGraphicsView(parent){
 
         this->m_scale=1;
@@ -31,7 +31,6 @@ MapView::MapView(QWidget*parent):QGraphicsView(parent){
         setDragMode(QGraphicsView::ScrollHandDrag);
 };
 
-//来源:https://blog.csdn.net/GoForwardToStep/article/details/77035287
 void MapView::wheelEvent(QWheelEvent *event)
 {
     // 获取当前鼠标相对于view的位置;
@@ -296,7 +295,7 @@ void MapWin::on_search_clicked()
     if(ui->comboBox->currentText()==QString("搜索课程"))
     {
         QString s=ui->search_line->text();
-        log_action(tr("搜索课程：%1并进行导航").arg(s));
+        log_action(QString("搜索课程：%1并进行导航").arg(s));
         auto ans=user_online->query(s,school_online,0);//统一按照课程名称搜索
         int mx=0x3fffffff;
         for(auto&e:ans)
@@ -440,4 +439,27 @@ void MapWin::on_search_clicked()
 MapWin::~MapWin()
 {
     delete ui;
+    if(bg)
+    {
+        delete bg;
+    }
+    if(mv)
+    {
+        delete mv;
+    }
+    if(qsim)
+    {
+        qsim->clear();
+        delete qsim;
+    }
+    while(head.size())
+    {
+        delete head.top();
+        head.pop();
+    }
+    while(tail.size())
+    {
+        delete tail.top();
+        tail.pop();
+    }
 }
