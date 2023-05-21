@@ -15,7 +15,7 @@ classwind::classwind(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableView->setFixedSize(671,441);
-
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectItems);
 
     model->setHorizontalHeaderLabels({"周一", "周二", "周三", "周四", "周五", "周六", "周日"});

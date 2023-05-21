@@ -182,6 +182,7 @@ void MainWindow::on_actionsettime_S_triggered()
     connect(timeedit, &QDateTimeEdit::timeChanged, this, &MainWindow::TimeChanged);
     connect(okbut, &QPushButton::clicked, TimeGeter, &QDialog::close);
     connect(okbut, &QPushButton::clicked, this, &MainWindow::on_actionBeginTim_B_triggered);
+    connect(TimeGeter, &QDialog::rejected, this, &MainWindow::on_actionBeginTim_B_triggered);
 }
 
 void MainWindow::DateChanged(QDate date)

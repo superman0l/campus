@@ -1,12 +1,14 @@
 /*
 Aqua Style Sheet for QT Applications
-Author: Jaime A. Quiroga P.
-Company: GTRONICK
-Last updated: 22/01/2019, 07:55.
-Available at: https://github.com/GTRONICK/QSS/blob/master/Aqua.qss
+Author: XCR.
+For Data Structure
 */
 QMainWindow {
-	background-color:#ececec;
+	border-radius: 10px;
+	background-color:qlineargradient(spread:pad, x1:0, y1:0.5, x2:1.5, y2:0.5, stop:0 rgba(226, 226, 226, 255), stop:1 rgba(61, 131, 252, 125));
+}
+QWidget {
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1.5, y2:1.5, stop:0 rgba(226, 226, 226, 155), stop:1 rgba(91, 171, 255, 125));
 }
 QTextEdit {
 	border-width: 1px;
@@ -38,7 +40,7 @@ QToolButton {
 	border-radius: 5px;
 	color: rgb(0,0,0);
 	padding: 2px;
-	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,175);
 }
 QToolButton:hover{
 	border-style: solid;
@@ -50,7 +52,7 @@ QToolButton:hover{
 	border-radius: 5px;
 	color: rgb(0,0,0);
 	padding: 2px;
-	background-color: rgb(255,255,255);
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:1.5, x2:0.5, y2:0.3, stop:0 rgb(25, 195, 255), stop:1 rgb(255, 255, 255));
 }
 QToolButton:pressed{
 	border-style: solid;
@@ -62,7 +64,7 @@ QToolButton:pressed{
 	border-radius: 5px;
 	color: rgb(0,0,0);
 	padding: 2px;
-	background-color: rgb(142,142,142);
+	background-color: rgba(142,142,142,175);
 }
 QPushButton{
 	border-style: solid;
@@ -74,7 +76,7 @@ QPushButton{
 	border-radius: 5px;
 	color: rgb(0,0,0);
 	padding: 2px;
-	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,125);
 }
 QPushButton::default{
 	border-style: solid;
@@ -86,7 +88,7 @@ QPushButton::default{
 	border-radius: 5px;
 	color: rgb(0,0,0);
 	padding: 2px;
-	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,125);
 }
 QPushButton:hover{
 	border-style: solid;
@@ -129,12 +131,14 @@ QLineEdit {
 	border-width: 1px; border-radius: 4px;
 	border-style: solid;
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(91, 171, 252, 255));
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:3, x2:0.5, y2:0, stop:0 rgba(91, 171, 252, 125), stop:1 rgba(255,255,255,125));
 }
 QLineEdit:hover {
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 201, 252, 255));
 }
 QLabel {
 	color: #000000;
+	background-color:transparent;
 }
 QLCDNumber {
 	color: rgb(0, 113, 255, 255);
@@ -194,9 +198,40 @@ QMenu::item {
 	padding-bottom:4px;
 	padding-right:7px;
 }
+QTableView{
+
+}
+QHeaderView::section{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(20, 100, 200, 125), stop:1 rgba(70, 170, 255, 125));
+    color: rgb(240, 240, 240);
+    padding-left: 4px;
+    border: 1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(80, 255, 255, 125), stop:1 rgba(70, 170, 255, 125));
+    min-height: 30px;
+}
+QTableView QTableCornerButton::section {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(20, 100, 200, 125), stop:1 rgba(70, 170, 255, 125));
+    color: rgb(240, 240, 240);
+    padding-left: 4px;
+    border: 1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(80, 255, 255, 125), stop:1 rgba(70, 170, 255, 125));
+    min-height: 30px;
+ }
 QTabWidget {
 	color:rgb(0,0,0);
 	background-color:#000000;
+}
+QTableView::item::selected
+{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1.5, stop:0 rgba(0, 170, 120, 145), stop:1 rgba(20, 120, 255, 155));
+    color: rgb(240, 240, 240);
+    padding-left: 4px;
+    min-height: 30px;
+}
+QTableView::item::hover
+{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 220, 150, 105), stop:1 rgba(80, 190, 255, 125));
+    color: rgb(240, 240, 240);
+    padding-left: 4px;
+    min-height: 30px;
 }
 QTabWidget::pane {
 		border-color: rgb(223,223,223);
@@ -205,7 +240,12 @@ QTabWidget::pane {
 		border-width: 2px;
     	border-radius: 6px;
 }
-
+QListWidget::item:selected{
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
+}
+QListView::item:selected{
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
+}
 /*
 QTabBar::tab:selected, QTabBar::tab:first:selected, QTabBar::tab:hover {
   	border-style: solid;
@@ -315,7 +355,17 @@ QDateEdit {
 	border-width: 1px;
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
 }
-
+QComboBox {
+	background-color:rgba(255,255,255,125);
+	border-top-left-radius: 7px;
+    	border-bottom-left-radius: 7px;
+}
+QComboBox::down-arrow {
+	background-color:rgba(51,155,255,125);
+}
+QComboBox QAbstractItemView{
+	background-color:qlineargradient(spread:pad, x1:2, y1:2, x2:0, y2:0, stop:0 rgba(0, 113, 255, 155), stop:1 rgba(243, 243, 243,205));
+}
 QToolBox {
 	color: #a9b7c6;
 	background-color:#000000;

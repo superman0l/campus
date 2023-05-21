@@ -258,7 +258,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>按时间升序</string>
@@ -476,7 +476,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>+</string>
@@ -507,7 +507,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>-</string>
@@ -528,7 +528,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <item>
      <property name="text">
@@ -576,7 +576,7 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>按时间升序</string>
