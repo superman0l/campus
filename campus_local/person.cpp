@@ -370,6 +370,7 @@ bool User::set_clock_activity(const affair &a, int early_moment, bool enable)con
 bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
     int day,hour,minute;
     day=a.day;hour=a.start;minute=0;
+    QString s=QString("事务：%1\n地点：%2").arg(a.name).arg(a.place.name);
     QJsonObject rootObject1;//存储学生信息的json
     QString filepath = QString::number(id)+".json";
     if(!open_json(filepath,rootObject1))
@@ -380,6 +381,13 @@ bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
         if(affair["name"].toString()==a.name&&affair["time"].toInt()==a.start){
             affair["alarm"]=alarm(enable, day, hour, minute, a.period);
             tmpaffairarray[i]=affair;
+            if(enable)
+            {
+                tim->insert(talarm(a.day,a.start,0,0,s));
+            }else
+            {
+                tim->erase(talarm(a.day,a.start,0,0,s));
+            }
             break;
         }
     }
@@ -393,7 +401,29 @@ bool User::set_clock_course(const course &a, bool enable)const{
     day=a.day;hour=a.start-1;minute=30;
     int periodicity=(1<<(day-1));
     //添加闹钟
-    if(enable) tim->insert(talarm(day,hour,minute,periodicity,a.name+"\n"+a.teacher));
+    if(enable)
+    {
+        QString s=QString("课程名称：%1\n教师：%2\n").arg(a.name).arg(a.teacher);
+        if(a.classroom!="非线下课程")
+        {
+            s=s+QString("上课地点：%1\n导航路线：%2").arg(a.classroom).arg(school_online->navigate(user_online->get_place_id(),a.place.id));
+        }else
+        {
+            s=s+QString("上课平台：%1\n上课链接：%2").arg(a.platform).arg(a.url);
+        }
+        tim->insert(talarm(day,hour,minute,periodicity,s));
+    }else
+    {
+        QString s=QString("课程名称：%1\n教师：%2\n").arg(a.name).arg(a.teacher);
+        if(a.classroom!="非线下课程")
+        {
+            s=s+QString("上课地点：%1\n导航路线：%2").arg(a.classroom).arg(school_online->navigate(user_online->get_place_id(),a.place.id));
+        }else
+        {
+            s=s+QString("上课平台：%1\n上课链接：%2").arg(a.platform).arg(a.url);
+        }
+        tim->erase(talarm(day,hour,minute,periodicity,s));
+    }
     QJsonArray coursearray=load_student_class_coursearray(QString::number(id));
     for(int i=0;i<coursearray.size();i++){
         QJsonObject courseobject=coursearray[i].toObject();

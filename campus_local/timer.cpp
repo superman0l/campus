@@ -5,6 +5,7 @@
 #include<QDialog>
 #include<QSoundEffect>
 #include"online_data.h"
+#include"basic.h"
 bool timer::set_ratio(double nratio){
     if(nratio>0)
     {
@@ -36,6 +37,7 @@ void timer::update()
     this->now=this->now.addSecs(1L*ratio*(tmp-this->last)/CLOCKS_PER_SEC);
     auto [d2,h2,m2]=std::make_tuple(this->get_days(),this->now.time().hour(),this->now.time().minute());
     std::vector<talarm>toshow;
+    bool flg=false;
     if(d1==d2)
     {
         for(auto&e:this->alarm_st[d1])
@@ -44,6 +46,10 @@ void timer::update()
             if((h1<e.hour||(h1==e.hour&&m1<=e.minute))&&(e.hour<h2||(e.hour==h2&&e.minute<m2)))
             {
                 toshow.push_back(e);
+            }
+            if(h1<23||(h1==23&&m1<=0)&&(23<h2||(23==h2&&0<m2)))
+            {
+                flg=true;
             }
         }
     }else
@@ -61,6 +67,34 @@ void timer::update()
             {
                 toshow.push_back(e);
             }
+            if(23<h2||(23==h2&&0<m2))
+            {
+                flg=1;
+            }
+        }
+    }
+    //统一晚上23:00进行提醒
+    std::vector<course>next_day;
+    if(flg)
+    {
+        QJsonArray courseArray=load_student_class_coursearray(QString::number(user_online->get_id()));
+        for(int i=0;i<courseArray.size();i++)
+        {
+            course tmp= jsontocourse(courseArray.at(i).toObject(),school_online);
+            if(tmp.end_week<=tim->get_week()&&tmp.day==(d1%7+1))
+            {
+                next_day.push_back(tmp);
+            }
+        }
+        if(next_day.size())
+        {
+            QString s("明日课程如下：");
+            for(auto&e:next_day)
+            {
+                s=QString("\n%1:00-%2:00 %3").arg(e.start).arg(e.end).arg(e.name);
+            }
+            QMessageBox::information(NULL, QString("提醒"), s, QMessageBox::Yes);
+            log_event(QString("提前提醒%1").arg(s));
         }
     }
     for(auto&e:toshow)
