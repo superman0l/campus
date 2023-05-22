@@ -76,7 +76,26 @@ void classwind::load(int weeknum){
             al=alarm==true?"alarm:on":"alarm:off";
             if(alarm==true)
             {
-                tim->insert(talarm(day,starttime-1,30,(1<<(day-1)),name+"\n"+teacher));//插入闹钟
+                QString s=QString("课程名称：%1\n教师：%2\n").arg(name).arg(teacher);
+                if(course["destination_id"].toInt()!=-1)
+                {
+                    s=s+QString("上课地点：%1\n导航路线：%2").arg(classroom).arg(school_online->navigate(user_online->get_place_id(),course["destination_id"].toInt()));
+                }else
+                {
+                    s=s+QString("上课平台：%1\n上课链接：%2").arg(platform).arg(url);
+                }
+                tim->insert(talarm(day,starttime-1,30,(1<<(day-1)),s));//插入闹钟
+            }else
+            {
+                QString s=QString("课程名称：%1\n教师：%2\n").arg(name).arg(teacher);
+                if(course["destination_id"].toInt()!=-1)
+                {
+                    s=s+QString("上课地点：%1\n导航路线：%2").arg(classroom).arg(school_online->navigate(user_online->get_place_id(),course["destination_id"].toInt()));
+                }else
+                {
+                    s=s+QString("上课平台：%1\n上课链接：%2").arg(platform).arg(url);
+                }
+                tim->erase(talarm(day,starttime-1,30,(1<<(day-1)),s));//插入闹钟
             }
             if(url!=""&&platform!="")
                 message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al+"\n\n"+platform+"\n\n"+url;
