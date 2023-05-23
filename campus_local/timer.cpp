@@ -85,7 +85,7 @@ void timer::update()
         for(int i=0;i<courseArray.size();i++)
         {
             course tmp= jsontocourse(courseArray.at(i).toObject(),school_online);
-            if(tmp.end_week<=tim->get_week()&&tmp.day==(d1%7+1))
+            if(tmp.end_week>=tim->get_week()&&tmp.start_week<=tim->get_week()&&tmp.day==(d1%7+1))
             {
                 next_day.push_back(tmp);
             }

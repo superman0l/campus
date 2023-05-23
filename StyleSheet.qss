@@ -217,7 +217,7 @@ QTableView QTableCornerButton::section {
  }
 QTabWidget {
 	color:rgb(0,0,0);
-	background-color:#000000;
+	background-color:#FFFFFF;
 }
 QTableView::item::selected
 {
@@ -303,7 +303,7 @@ QCheckBox::indicator:unchecked {
 	color: #000000;
 }
 QRadioButton {
-	color: 000000;
+	color: #000000;
 	padding: 1px;
 	background-color: transparent;
 }
@@ -343,16 +343,24 @@ QDoubleSpinBox {
 QTimeEdit {
 	border-style: solid;
 	border-width: 1px;
+	background-color:rgba(255,255,255,125);
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
 }
 QDateTimeEdit {
 	border-style: solid;
 	border-width: 1px;
+	background-color:rgba(255,255,255,125);
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
+}
+QCalendarWidget QTableView 
+{
+    alternate-background-color: rgba(68, 158, 255, 200);
+    background-color: rgb(128, 208, 255);
 }
 QDateEdit {
 	border-style: solid;
 	border-width: 1px;
+	background-color:rgba(255,255,255,125);
 	border-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(0, 113, 255, 255), stop:1 rgba(91, 171, 252, 255));
 }
 QComboBox {
@@ -368,19 +376,19 @@ QComboBox QAbstractItemView{
 }
 QToolBox {
 	color: #a9b7c6;
-	background-color:#000000;
+	background-color:#FFFFFF;
 }
 QToolBox::tab {
 	color: #a9b7c6;
-	background-color:#000000;
+	background-color:#FFFFFF;
 }
 QToolBox::tab:selected {
 	color: #FFFFFF;
-	background-color:#000000;
+	background-color:#FFFFFF;
 }
 QScrollArea {
 	color: #FFFFFF;
-	background-color:#000000;
+	background-color:#FFFFFF;
 }
 QSlider::groove:horizontal {
 	height: 5px;

@@ -19,6 +19,7 @@ LogIn::LogIn(QWidget *parent) :
     ui(new Ui::LogIn)
 {
     this->setWindowIcon(QIcon("../icon.png"));
+    this->setWindowFlags(Qt::WindowCloseButtonHint|Qt::WindowMinimizeButtonHint);
     ui->setupUi(this);
     //初始化指针
     admWin = nullptr;
@@ -73,12 +74,13 @@ void LogIn::closeEvent(QCloseEvent *event)
 
 void LogIn::on_LogIn_2_clicked()
 {
-    //emit SendUser(ui->UserId->text().trimmed(), ui->PassWord->text());//传输内容到主窗口，其中用户名忽略了前置空格
     if(ui->UserId->text().isEmpty()||ui->PassWord->text().isEmpty()){
         //处理为空时的情况
         QMessageBox::warning(this, tr("警告！"), tr("用户ID或密码不能为空！"), QMessageBox::Ok);
+        return;
     }
-    else if(login(ui->UserId->text(), ui->PassWord->text())){
+    int flag=login(ui->UserId->text(), ui->PassWord->text());
+    if(flag==1){
         //logdlg->LogConfirm(true);//改变登录状态，避免弹出警告框
         this->hide();//隐藏登录窗口
         if(admin_online){
@@ -117,11 +119,15 @@ void LogIn::on_LogIn_2_clicked()
             qDebug() << "Fatal error!";
         }
     }
-    else{
+    else if(flag==0){
         //登录失败，弹出一个警告框
         QMessageBox::warning(this, tr("失败！"), tr("用户ID不存在或密码错误，请重试！"), QMessageBox::Ok);
         qDebug() << "登陆失败";
     }
+    else if(flag==-1)
+        QMessageBox::warning(this, tr("失败！"), tr("当前管理员正在维护教务系统，请稍后再试。"), QMessageBox::Ok);
+    else if(flag==-3)
+        QMessageBox::warning(this, tr("失败！"), tr("打开文件失败，请联系管理员更新信息。"), QMessageBox::Ok);
     ui->UserId->clear();ui->PassWord->clear();//清理输入框内的内容
     ui->UserId->setFocus();//定位光标
 }
@@ -144,7 +150,7 @@ void LogIn::Receive_RegData(QString id, QString pswd, QString name, QString clas
     //emit SendRegs(id, pswd, name, clas);//向主窗口发送信息
     if(!sign_up(id, pswd, name, clas)){
         //弹出警告框
-        QMessageBox::information(this, tr("注册失败"), tr("注册失败，请重试"), QMessageBox::Ok);
+        QMessageBox::information(this, tr("注册失败"), tr("该用户已经注册，请更换用户"), QMessageBox::Ok);
         qDebug() << "注册失败";
     }
     else{

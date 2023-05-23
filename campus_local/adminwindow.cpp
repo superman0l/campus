@@ -9,7 +9,7 @@
 #include <QAbstractItemView>
 
 AdminWindow::AdminWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QMainWindow(),
     ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
@@ -80,6 +80,8 @@ void AdminWindow::closeEvent(QCloseEvent *event)
         QMessageBox::StandardButton button;
         button=QMessageBox::question(this,tr("退出管理员界面"),QString(tr("确认退出管理员界面？这将退出整个程序！")),QMessageBox::Yes|QMessageBox::No);
         if(button == QMessageBox::Yes){
+            QFile flagfile("../"+QString::number(admin_online->get_classid())+"_busy");
+            flagfile.remove();
             qApp->quit();
         }
         else if(button == QMessageBox::No){

@@ -6,6 +6,7 @@
 #include<QFile>
 #include<QJsonObject>
 #include<QString>
+#include <QTemporaryFile>
 //#include"basic.h"
 
 class User
@@ -125,7 +126,8 @@ public:
 class Admin : public User
 {
 public:
-    Admin(const std::string &username, int64_t id, int64_t classid,int place_id) : User(username, id, classid, place_id) {}
+    Admin(const std::string &username, int64_t id, int64_t classid,int place_id) : User(username, id, classid, place_id) {
+    }
     virtual ~Admin() {}
 
     /// @brief 判断当前用户是否是管理员
@@ -161,7 +163,7 @@ public:
 /// @param user 一个用户指针的引用，登录失败或登录上管理员用户为NULL值
 /// @param adm  一个管理员指针的引用，登录失败或登陆上普通用户为NULL值
 /// @return 若登录成功返回true,若登录失败返回flase
-bool login(QString user_id,QString user_pswd);
+int login(QString user_id,QString user_pswd);
 
 /// @brief 账号注册功能
 /// @param rgs_id 注册者使用的学号/id

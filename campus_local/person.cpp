@@ -4,6 +4,7 @@
 #include "affair.h"
 #include "basic.h"
 #include "online_data.h"
+#include <QTemporaryFile>
 
 //extern const User* user_online;
 //extern const Admin* admin_online;
@@ -12,6 +13,7 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
         return false;
+    if (rootObject.contains(rgs_id))return false;
     rootObject.insert(rgs_id,rgs_pswd);
     if(!write_json("id_pswd.json",rootObject))//将账号密码数据写入json
         return false;
@@ -26,19 +28,19 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
         return false;
     return true;
 };
-bool login(QString user_id,QString user_pswd){
+int login(QString user_id,QString user_pswd){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
-        return false;
+        return -3;
     QJsonValue pswdValue = rootObject.value(user_id);
     if(pswdValue.toString()!=user_pswd){
         qDebug()<<"id or password error, please retry.";
-        return false;
+        return 0;
     }
     QJsonObject rootObject2;
     if(!open_json(user_id+".json",rootObject2)){
         qDebug()<<"account data exception, read failed.";
-        return false;
+        return -3;
     }
     QJsonValue nameValue = rootObject2.value("name");
     QString classid = rootObject2["class"].toString();
@@ -46,16 +48,22 @@ bool login(QString user_id,QString user_pswd){
 
     if(rootObject2.value("isAdmin").toBool()){
         //鉴定为管理员用户
+        QFile flagfile("../"+classid+"_busy");
+        flagfile.open(QIODevice::WriteOnly);
         admin_online = new Admin(nameValue.toString().toStdString(), user_id.toLongLong(),classid.toLongLong(),-1);
         user_online = NULL;
     }
     else{
         //鉴定为普通用户
+        QFile check("../"+classid+"_busy");
+        if(check.open(QIODevice::ReadOnly)){
+            return -1;
+        }
         user_online =new User(nameValue.toString().toStdString(),user_id.toLongLong(),classid.toLongLong(),placeid);
         admin_online = NULL;
     }
 
-    return true;
+    return 1;
 };
 const std::vector<course> User::query(const QString& s, map* benbu, int tag) const{
     //tag=0 课程名字 tag=1老师名字
