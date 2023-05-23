@@ -47,7 +47,7 @@ void timer::update()
             {
                 toshow.push_back(e);
             }
-            if(h1<23||(h1==23&&m1<=0)&&(23<h2||(23==h2&&0<m2)))
+            if((h1<23||(h1==23&&m1<=0))&&(23<h2||(23==h2&&0<m2)))
             {
                 flg=true;
             }
@@ -60,6 +60,10 @@ void timer::update()
             {
                 toshow.push_back(e);
             }
+            if(h1<23||(h1==23&&m1<=0))
+            {
+                flg=true;
+            }
         }
         for(auto&e:this->alarm_st[d2])
         {
@@ -69,7 +73,7 @@ void timer::update()
             }
             if(23<h2||(23==h2&&0<m2))
             {
-                flg=1;
+                flg=true;
             }
         }
     }
@@ -88,13 +92,13 @@ void timer::update()
         }
         if(next_day.size())
         {
-            QString s("明日课程如下：");
+            QString s;
             for(auto&e:next_day)
             {
-                s=QString("\n%1:00-%2:00 %3").arg(e.start).arg(e.end).arg(e.name);
+                s=s+QString("\n%1:00-%2:00 %3").arg(e.start).arg(e.end).arg(e.name);
             }
-            QMessageBox::information(NULL, QString("提醒"), s, QMessageBox::Yes);
-            log_event(QString("提前提醒%1").arg(s));
+            QMessageBox::information(NULL, QString("明日课程"), s, QMessageBox::Yes);
+            log_event(QString("提醒第二天课程%1").arg(s));
         }
     }
     for(auto&e:toshow)
