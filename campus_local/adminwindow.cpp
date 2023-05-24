@@ -25,10 +25,12 @@ AdminWindow::AdminWindow(QWidget *parent) :
     for(int i=0;i<13;i++){
         if(i==4 || i==10)
             ui->tableView->setRowHeight(i,20);
-        else ui->tableView->setRowHeight(i,150);
+        else ui->tableView->setRowHeight(i,180);
     }
     for(int i=0;i<7;i++)ui->tableView->setColumnWidth(i,80);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->admin_id->setText(ui->admin_id->text()+QObject::tr("<font color = blue>%1</font>").arg(QString::number(admin_online->get_id())));
+    ui->admin_class->setText(ui->admin_class->text()+QObject::tr("<font color = blue>%1</font>").arg(QString::number(admin_online->get_classid())));
 }
 
 AdminWindow::~AdminWindow()
@@ -39,10 +41,9 @@ AdminWindow::~AdminWindow()
 void AdminWindow::load(int weeknum)
 {
     QJsonArray courseArray=load_student_class_coursearray(QString::number(admin_online->get_id()));
-    QString name,teacher,al,classroom;
+    QString name,teacher,classroom;
     int starttime,period,day;
     int stweek,edweek;
-    bool alarm;
     for(int i=0;i<courseArray.size();i++){
         QJsonObject course=courseArray.at(i).toObject();
         QString message;
@@ -62,9 +63,7 @@ void AdminWindow::load(int weeknum)
             teacher=course["teacher"].toString();
             classroom=course["classroom"].toString();
 
-            alarm=course["alarm"].toObject()["enable"].toBool();
-            al=alarm==true?"alarm:on":"alarm:off";
-            message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00"+"\n\n"+al;
+            message=name+"\n\n"+teacher+"\n\n"+classroom+"\n\n"+QString::number(starttime)+":00"+"-"+QString::number(starttime+period)+":00";
             for(int j=0;j<period;j++){
                 model->setItem(starttime-8+j,day-1,new QStandardItem(message));
                 model->item(starttime-8+j,day-1)->setTextAlignment(Qt::AlignCenter);

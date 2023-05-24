@@ -23,7 +23,7 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
     rootObject1.insert("id",rgs_id);
     rootObject1.insert("isAdmin", false);
     rootObject1.insert("class",rgs_class);
-    rootObject1.insert("place_id",-1);
+    rootObject1.insert("place_id",35);
     if(!write_json(rgs_id+".json",rootObject1))//将个人相关数据写入json
         return false;
     return true;
@@ -432,16 +432,27 @@ bool User::set_clock_course(const course &a, bool enable)const{
         }
         tim->erase(talarm(day,hour,minute,periodicity,s));
     }
-    QJsonArray coursearray=load_student_class_coursearray(QString::number(id));
+
+    //用户写入闹钟json
+    QJsonObject user;open_json(QString::number(user_online->id)+".json",user);
+    QJsonArray coursearray=user["course_alarm"].toArray();
     for(int i=0;i<coursearray.size();i++){
         QJsonObject courseobject=coursearray[i].toObject();
-        if(courseobject.value("name").toString()==a.name&&courseobject["weekday"].toInt()==a.day){
+        QJsonObject calarm=courseobject["alarm"].toObject();
+        if(courseobject.value("name").toString()==a.name&&calarm["day"].toInt()==a.day){
             courseobject["alarm"]=alarm(enable, day, hour, minute, a.period);
             coursearray[i]=courseobject;
-            write_coursearray(QString::number(id),coursearray);
+            user["course_alarm"]=coursearray;
+            write_json(QString::number(user_online->id)+".json",user);
             return true;
         }
     }
+    QJsonObject newalarm;
+    newalarm.insert("alarm",alarm(enable, day, hour, minute, a.period));
+    newalarm.insert("name",a.name);
+    coursearray.append(newalarm);
+    user["course_alarm"]=coursearray;
+    if(write_json(QString::number(user_online->id)+".json",user))return true;
     return false;
 }
 bool Admin::add_course(const course&cr,int64_t id)const{

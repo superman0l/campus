@@ -72,7 +72,20 @@ void classwind::load(int weeknum){
             else classroom="非线下课程";
             platform=course["platform"].toString();
             url=course["url"].toString();
-            alarm=course["alarm"].toObject()["enable"].toBool();
+
+            //改格式傻逼问题之读不同的文件
+            QJsonObject tempuser;open_json(QString::number(user_online->get_id())+".json",tempuser);bool isread=0;
+            QJsonArray alarmarray=tempuser["course_alarm"].toArray();
+            for(int i=0;i<alarmarray.count();i++){
+                if(alarmarray[i].toObject()["name"]==name&&alarmarray[i].toObject()["alarm"].toObject()["day"].toInt()==day){
+                    isread=1;
+                    if(alarmarray[i].toObject()["alarm"].toObject()["enable"].toBool())alarm=true;
+                    else alarm=false;
+                }
+            }
+            if(!isread)alarm=false;
+
+            //alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
             if(alarm==true)
             {
