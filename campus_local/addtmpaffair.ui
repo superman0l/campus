@@ -211,6 +211,16 @@
    </property>
    <item>
     <property name="text">
+     <string>6:00-7:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>7:00-8:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>8:00-9:00</string>
     </property>
    </item>
@@ -272,6 +282,11 @@
    <item>
     <property name="text">
      <string>20:00-21:00</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>21:00-22:00</string>
     </property>
    </item>
   </widget>

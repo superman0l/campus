@@ -9,14 +9,36 @@
 //extern const User* user_online;
 //extern const Admin* admin_online;
 
-bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
+int sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class){
     QJsonObject rootObject;
     if(!open_json("id_pswd.json",rootObject))
-        return false;
-    if (rootObject.contains(rgs_id))return false;
+        return 0;//文件问题失败返回0
+    if (rootObject.contains(rgs_id))return -2;//学号已被注册返回-2
     rootObject.insert(rgs_id,rgs_pswd);
     if(!write_json("id_pswd.json",rootObject))//将账号密码数据写入json
-        return false;
+        return 0;
+
+    QJsonObject classobject;
+    if(!open_json(rgs_class+"_course.json",classobject))return -1;//不存在班级失败返回-1
+
+    QJsonArray coursearray;
+    int timetable[7][16]={0};
+    coursearray=classobject["courses"].toArray();
+    tim=new timer();
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course=coursearray[i].toObject();
+        if(tim->get_week()>=course["startweek"].toInt()&&tim->get_week()<=course["endweek"].toInt()){
+            for(int j=course["starttime"].toInt()-6;j<=course["endtime"].toInt()-6;j++)
+                timetable[course["weekday"].toInt()-1][j]=4;
+        }
+    }
+    QJsonArray table;
+    for(int i=0;i<7;i++){
+        QJsonArray daytable;
+        for(int j=0;j<16;j++)
+            daytable.append(timetable[i][j]);
+        table.append(daytable);
+    }
 
     QJsonObject rootObject1;
     rootObject1.insert("name",rgs_name);
@@ -24,9 +46,10 @@ bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_cla
     rootObject1.insert("isAdmin", false);
     rootObject1.insert("class",rgs_class);
     rootObject1.insert("place_id",35);
+    rootObject1.insert("timetable",table);
     if(!write_json(rgs_id+".json",rootObject1))//将个人相关数据写入json
-        return false;
-    return true;
+        return 0;
+    return 1;
 };
 int login(QString user_id,QString user_pswd){
     QJsonObject rootObject;
@@ -55,16 +78,18 @@ int login(QString user_id,QString user_pswd){
     }
     else{
         //鉴定为普通用户
-        QFile check("../"+classid+"_busy");
+        QFile check("../"+classid+"_busy");//管理员登陆维护时普通用户无法登录
         if(check.open(QIODevice::ReadOnly)){
             return -1;
         }
         user_online =new User(nameValue.toString().toStdString(),user_id.toLongLong(),classid.toLongLong(),placeid);
+        user_online->check_timetable();
         admin_online = NULL;
     }
 
     return 1;
 };
+
 const std::vector<course> User::query(const QString& s, map* benbu, int tag) const{
     //tag=0 课程名字 tag=1老师名字
     std::vector<course> result;
@@ -232,6 +257,7 @@ const std::vector<std::vector<tmpaffair> > User::query_tmpaffair() const
 };
 bool User::add_activity(const activity &a, int min) const{
     //int tag, position place, int start_time, int end_time, int day, int periodicity = 0
+
     QJsonObject rootObject1;//存储学生信息的json
     QString filepath = QString::number(id)+".json";
     if(!open_json(filepath,rootObject1))
@@ -265,6 +291,13 @@ bool User::add_activity(const activity &a, int min) const{
     }
     //分别遍历activity和course以确定能够正常添加activity
 
+    if(a.day==0){
+        for(int i=0;i<7;i++){
+            timetable_online[i][a.start-6]|=2;
+        }
+    }
+    else timetable_online[a.day-1][a.start-6]|=2;
+
     if(min!=0){
         rootObject2["alarm"]=alarm(true, a.day, a.start-1, 60-min, a.day==0?((1<<7)-1):(1<<(a.day-1)));
         QString tmp;
@@ -290,6 +323,7 @@ bool User::add_activity(const activity &a, int min) const{
     }
     activityArray.append(rootObject2);
     rootObject1["activities"]=activityArray;
+    rootObject1["timetable"]=timetable_to_array();
     if(!write_json(filepath,rootObject1))
         return false;
     return true;
@@ -306,6 +340,12 @@ bool User::del_activity(QString name, int day, int time) const
     for(int i=0;i<activityArray.size();i++){
         if(activityArray.at(i).toObject()["name"].toString()==name&&activityArray.at(i).toObject()["day"].toInt()==day&&activityArray.at(i).toObject()["time"].toInt()==time){
             activityArray.removeAt(i);
+            if(day==0){
+                for(int i=0;i<7;i++)
+                    timetable_online[i][time-6]&=~2;
+            }
+            else timetable_online[day-1][time-6]&=~2;
+            rootObject1["timetable"]=timetable_to_array();
             rootObject1["activities"]=activityArray;
             if(!write_json(filepath,rootObject1))
                 return false;
@@ -342,6 +382,8 @@ bool User::add_tmpaffair(const tmpaffair &t) const
     }
     QJsonArray ta=user["affairs"].toArray();
     ta.append(tmp);
+    timetable_online[t.day-1][t.start-6]|=1;
+    user["timetable"]=timetable_to_array();
     user["affairs"]=ta;
     if(!write_json(QString::number(user_online->get_id())+".json",user))
         return false;
@@ -357,6 +399,8 @@ bool User::del_tmpaffair(QString name, int time) const
         QJsonObject t=ta.at(i).toObject();
         if(t["name"].toString()==name&&t["time"].toInt()==time){
             ta.removeAt(i);
+            timetable_online[t["day"].toInt()-1][time-6]&=~1;
+            user["timetable"]=timetable_to_array();
             user["affairs"]=ta;
             if(!write_json(QString::number(user_online->get_id())+".json", user))
                 return false;
@@ -474,6 +518,42 @@ bool User::set_clock_course(const course &a, bool enable)const{
     user["course_alarm"]=coursearray;
     if(write_json(QString::number(user_online->id)+".json",user))return true;
     return false;
+}
+
+void User::check_timetable() const
+{
+    QJsonObject userobject;open_json(QString::number(this->id)+".json",userobject);
+    QJsonObject classobject;open_json(QString::number(this->classid)+"_course.json",classobject);
+    QJsonArray coursearray=classobject["courses"].toArray(),activityarray=userobject["activities"].toArray(),affairarray=userobject["affairs"].toArray();
+    timer* c=new timer();
+    QJsonArray table;
+    for(int i=0;i<coursearray.size();i++){
+        QJsonObject course=coursearray[i].toObject();
+        if(c->get_week()>=course["startweek"].toInt()&&c->get_week()<=course["endweek"].toInt()){
+            for(int j=course["starttime"].toInt()-6;j<=course["endtime"].toInt()-6;j++)
+                timetable_online[course["weekday"].toInt()-1][j]|=4;
+        }
+    }
+    for(int i=0;i<activityarray.size();i++){
+        QJsonObject activity = activityarray[i].toObject();
+        if(activity["day"].toInt()==0){
+            for(int i=0;i<7;i++)
+                timetable_online[i][activity["time"].toInt()-6]+=2;
+        }
+        else timetable_online[activity["day"].toInt()-1][activity["time"].toInt()-6]|=2;
+    }
+    for(int i=0;i<affairarray.size();i++){
+        QJsonObject affair = affairarray[i].toObject();
+        timetable_online[affair["day"].toInt()-1][affair["time"].toInt()-6]|=1;
+    }
+    for(int i=0;i<7;i++){
+        QJsonArray daytable;
+        for(int j=0;j<16;j++)
+            daytable.append(timetable_online[i][j]);
+        table.append(daytable);
+    }
+    userobject.insert("timetable",table);
+    write_json(QString::number(this->id)+".json",userobject);
 }
 bool Admin::add_course(const course&cr,int64_t id)const{
     QJsonObject classObject;

@@ -49,7 +49,7 @@ void AffairWin::load(int day,int tag, int sorttype){
         }
         else{
             ui->activitylist->clear();
-            for(int i=0;i<actvtarray.size();i++){
+            for(int i=0;i<actvtarray.size();i++){                
                 QJsonObject activity=actvtarray.at(i).toObject();
                 int time=activity["time"].toInt();
                 QString timestr=QString::number(time)+":00-"+QString::number(time+1)+":00";
@@ -85,10 +85,33 @@ void AffairWin::load(int day,int tag, int sorttype){
                     }
                 }
                 listwidgetItem* item=new listwidgetItem();
+                bool isavailable=1;//失效活动处理
+                if(activity["day"].toInt()==0){
+                    for(int i=0;i<7;i++)
+                        if(timetable_online[i][time-6]>=4)
+                            isavailable=0;
+                }
+                else if(timetable_online[activity["day"].toInt()-1][time-6]>=4)isavailable=0;
+                if(!isavailable){
+                    item->setBackground(QColor(255,150,30));
+                    data+="（已失效）";
+
+                    //timetable update
+                    if(activity["day"].toInt()==0){
+                        for(int i=0;i<7;i++)
+                            timetable_online[i][time-6]&=~2;
+                    }
+                    else timetable_online[activity["day"].toInt()-1][time-6]&=~2;
+
+                    actvtarray.removeAt(i);stuobject["activities"]=actvtarray;i--;
+                    stuobject["timetable"]=timetable_to_array();
+
+                }
                 item->setText(data);
                 item->setSortType(sorttype);
                 ui->activitylist->addItem(item);
             }
+            write_json(QString::number(user_online->get_id())+".json",stuobject);
         }
     }
     else if(day==0&&tag!=0){
@@ -167,6 +190,7 @@ void AffairWin::on_addactvt_clicked()
 {
     addactivity* addwind = new addactivity(this);
     connect(addwind,SIGNAL(flash(int,int,int)),this,SLOT(load(int,int,int)));
+    connect(addwind,SIGNAL(flash_2(int,int)),this,SLOT(load_affair(int,int)));
     addwind->setWindowTitle("新增活动");
     addwind->show();
     addwind->setAttribute(Qt::WA_DeleteOnClose);
@@ -175,6 +199,10 @@ void AffairWin::on_addactvt_clicked()
 
 void AffairWin::on_deleteactvt_clicked()
 {
+    if(ui->activitylist->currentItem()->background()==QColor(255,150,30)){
+        load(0,0,1);
+        return;
+    }
     QString data = ui->activitylist->currentItem()->text();
     QStringList strlist=data.split("  ");
 
@@ -307,10 +335,26 @@ void AffairWin::load_affair(int tag, int sorttype){
                         tim->insert(tmpalarm);
                     }
                     listwidgetItem* item=new listwidgetItem();
+
+                    //无效事务处理
+                    bool isavailable=1;
+                    if(timetable_online[tmp["day"].toInt()-1][time-6]>=2)isavailable=0;
+                    if(!isavailable){
+                        item->setBackground(QColor(255,150,30));
+                        data+="（已失效）";
+
+                        //timetable update
+                        timetable_online[tmp["day"].toInt()-1][time-6]&=~1;
+
+                        array.removeAt(i);stuobject["affairs"]=array;i--;
+                        stuobject["timetable"]=timetable_to_array();
+
+                    }
                     item->setText(data);
                     item->setSortType(sorttype);
                     ui->tmpaffairlist->addItem(item);
             }
+            write_json(QString::number(user_online->get_id())+".json",stuobject);
         }
     }
     else{
@@ -370,6 +414,10 @@ void AffairWin::on_addtmpaffair_clicked()
 
 void AffairWin::on_deltmpaffair_clicked()
 {
+    if(ui->tmpaffairlist->currentItem()->background()==QColor(255,150,30)){
+        load_affair(0,1);
+    }
+
     QString data = ui->tmpaffairlist->currentItem()->text();
     QStringList strlist=data.split("  ");
 
@@ -518,6 +566,9 @@ void AffairWin::on_aff_alarmcheck_stateChanged(int arg1)
 
 void AffairWin::on_tmpaffairlist_itemClicked(QListWidgetItem *item)
 {
+    if(item->background()==QColor(255,150,30)){
+        ui->aff_alarmcheck->setEnabled(false);
+    }
     QString data=item->text();
     QStringList list=data.split("  ");
     QJsonObject user;
@@ -528,7 +579,7 @@ void AffairWin::on_tmpaffairlist_itemClicked(QListWidgetItem *item)
         int st,ed;qstr_to_time(list[2],st,ed);
         if(affair["name"].toString()==list[0]&&affair["time"].toInt()==st){
                 QJsonObject al=affair["alarm"].toObject();
-                ui->aff_alarmcheck->setEnabled("true");
+                ui->aff_alarmcheck->setEnabled(true);
                 if(al["enable"].toBool()==true){
                     ui->aff_alarmcheck->setChecked(true);
                 }
@@ -537,6 +588,7 @@ void AffairWin::on_tmpaffairlist_itemClicked(QListWidgetItem *item)
                 }
                 break;
         }
+        else ui->aff_alarmcheck->setEnabled(false);
     }
 }
 

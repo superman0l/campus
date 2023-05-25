@@ -16,3 +16,5 @@ timer* tim;
 QSoundEffect bell;
 
 Log user_log;
+
+std::vector<std::vector<int>> timetable_online = std::vector(7, std::vector<int>(16,0));
