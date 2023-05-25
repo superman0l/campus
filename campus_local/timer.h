@@ -48,7 +48,8 @@ public:
 
     /// @brief load_affair 表示affairwin的闹钟是否加载
     bool load_affair;
-
+    /// @brief load_course 表示课表闹钟是否加载
+    bool load_course;
     /// @brief puase 设置暂停
     void puase(){ is_paused=true;}
 
