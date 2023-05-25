@@ -16,4 +16,5 @@ extern QSoundEffect bell;//铃声
 
 extern timer* tim;
 extern Log user_log;
+extern std::vector<std::vector<int>> timetable_online;//当前用户时间表信息
 #endif // ONLINE_DATA_H

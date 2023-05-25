@@ -14,14 +14,22 @@ class addactivity : public QDialog
 public:
     explicit addactivity(QWidget *parent = nullptr);
     ~addactivity();
+    std::vector<QJsonArray> checktables;
 
 private slots:
     void on_add_clicked();
 
     void on_check_stateChanged(int arg1);
 
+    void on_tag_currentIndexChanged(int index);
+
+    void on_add_2_clicked();
+
+    void on_day_currentIndexChanged(int index);
+
 signals:
     void flash(int a,int b,int c);
+    void flash_2(int a, int b);
 
 private:
     Ui::addactivity *ui;

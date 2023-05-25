@@ -111,4 +111,7 @@ int qstr_to_placeid(QString classroom);
 /// @return 不冲突返回true，冲突返回false
 bool course_check(course cr, QJsonArray coursearray);
 
+/// @brief 时间表二维数组转为QJsonArray
+QJsonArray timetable_to_array();
+
 #endif // BASIC_H

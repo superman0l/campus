@@ -27,8 +27,8 @@ void addtmpaffair::on_add_clicked()
         ui->name->text(),
         ui->tag->currentIndex()+1,
         school_online->idtopos[placeid],
-        ui->time->currentIndex()+8,
-        ui->time->currentIndex()+8,
+        ui->time->currentIndex()+6,
+        ui->time->currentIndex()+6,
         tim->get_days(),
         1<<(tim->get_days()-1)
         );

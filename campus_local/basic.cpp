@@ -1,6 +1,7 @@
 #include "basic.h"
 #include "affair.h"
 #include "map.h"
+#include "online_data.h"
 #include <QJsonObject>
 bool write_json(QString jsonname,QJsonObject objectname){
     QJsonDocument doc;
@@ -275,4 +276,17 @@ bool course_check(course cr, QJsonArray coursearray)
             return false;
     }
     return true;
+}
+
+QJsonArray timetable_to_array()
+{
+    QJsonArray array;
+    for(int i=0;i<7;i++){
+        QJsonArray dayarray;
+        for(int j=0;j<16;j++){
+            dayarray.append(timetable_online[i][j]);
+        }
+        array.append(dayarray);
+    }
+    return array;
 }

@@ -20,6 +20,7 @@ private:
 public:
     User(const std::string &username, int64_t id, int64_t classid, int place_id) : name(username), id(id), classid(classid), place_id(place_id){}
     virtual ~User() {}
+
     const std::string get_name() const
     {
         return name;
@@ -122,6 +123,9 @@ public:
     /// @param enable 闹钟开关
     /// @return true表示设置闹钟成功，反之失败
     bool set_clock_course(const course &a, bool enable)const;
+
+    /// @brief 用于生成空闲时间表
+    void check_timetable()const;
 };
 class Admin : public User
 {
@@ -171,7 +175,7 @@ int login(QString user_id,QString user_pswd);
 /// @param rgs_name 注册者姓名
 /// @param rgs_class 注册者所在班级
 /// @return true表示注册成功,false表示注册失败
-bool sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class);
+int sign_up(QString rgs_id, QString rgs_pswd, QString rgs_name, QString rgs_class);
 class Group{
     public:
         std::vector<User> ug;

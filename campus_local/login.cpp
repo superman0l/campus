@@ -106,9 +106,6 @@ void LogIn::on_LogIn_2_clicked()
             if(useWin != nullptr)
                 delete useWin;
             useWin = new MainWindow(this);
-            //实现数据传输
-            //connect(this, SIGNAL(SendUser(const User*)), useWin, SLOT(ReiceiveUser(const User*)));
-            //emit SendUser(userptr);
             //实现切换用户
             connect(useWin, SIGNAL(LogOut()), this, SLOT(ToIdInput()));
             //进入学生界面
@@ -147,13 +144,21 @@ void LogIn::on_Regester_clicked()
 
 void LogIn::Receive_RegData(QString id, QString pswd, QString name, QString clas)
 {
-    //emit SendRegs(id, pswd, name, clas);//向主窗口发送信息
-    if(!sign_up(id, pswd, name, clas)){
+    int flag=sign_up(id, pswd, name, clas);
+    if(flag==-2){
         //弹出警告框
         QMessageBox::information(this, tr("注册失败"), tr("该用户已经注册，请更换用户"), QMessageBox::Ok);
-        qDebug() << "注册失败";
+        qDebug() << "注册失败,用户已被注册";
     }
-    else{
+    else if(flag==-1){
+        QMessageBox::information(this, tr("注册失败"), tr("该班级尚不存在，请联系管理员"), QMessageBox::Ok);
+        qDebug() << "注册失败,该班级不存在";
+    }
+    else if(flag==0){
+        QMessageBox::information(this, tr("注册失败"), tr("文件读写失败，请联系管理员"), QMessageBox::Ok);
+        qDebug() << "注册失败,文件读取失败";
+    }
+    else if(flag==1){
         //注册成功，登录后自动进入主窗口
         //先弹出一个告知窗口
         QMessageBox::information(this, tr("注册成功"), tr("正在为您自动登录"), QMessageBox::Ok);
