@@ -20,9 +20,7 @@ addtmpaffair::~addtmpaffair()
 
 void addtmpaffair::on_add_clicked()
 {
-    QJsonObject m;
-    open_json("place_id.json",m);
-    int placeid=m[ui->place->currentText()].toInt();
+    int placeid=school_online->get_id(ui->place->currentText());
     tmpaffair t=tmpaffair(
         ui->name->text(),
         ui->tag->currentIndex()+1,

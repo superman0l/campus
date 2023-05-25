@@ -40,6 +40,10 @@ void timer::update()
     bool flg=false;
     if(d1==d2)
     {
+        if((h1<23||(h1==23&&m1<=0))&&(23<h2||(23==h2&&0<m2)))
+        {
+            flg=true;
+        }
         for(auto&e:this->alarm_st[d1])
         {
 
@@ -47,33 +51,30 @@ void timer::update()
             {
                 toshow.push_back(e);
             }
-            if((h1<23||(h1==23&&m1<=0))&&(23<h2||(23==h2&&0<m2)))
-            {
-                flg=true;
-            }
         }
     }else
     {
+        if(h1<23||(h1==23&&m1<=0))
+        {
+            flg=true;
+        }
+        if(23<h2||(23==h2&&0<m2))
+        {
+            flg=true;
+        }
         for(auto&e:this->alarm_st[d1])
         {
             if(h1<e.hour||(h1==e.hour&&m1<=e.minute))
             {
                 toshow.push_back(e);
             }
-            if(h1<23||(h1==23&&m1<=0))
-            {
-                flg=true;
-            }
+
         }
         for(auto&e:this->alarm_st[d2])
         {
             if(e.hour<h2||(e.hour==h2&&e.minute<m2))
             {
                 toshow.push_back(e);
-            }
-            if(23<h2||(23==h2&&0<m2))
-            {
-                flg=true;
             }
         }
     }
@@ -95,7 +96,17 @@ void timer::update()
             QString s;
             for(auto&e:next_day)
             {
-                s=s+QString("\n%1:00-%2:00 %3").arg(e.start).arg(e.end).arg(e.name);
+                s=s+QString("\n");
+                if(e.start<10)
+                {
+                    s=s+("0");
+                }
+                s=s+QString("%1:00-").arg(e.start);
+                if(e.end<10)
+                {
+                    s=s+("0");
+                }
+                s=s+QString("%1:00 %2").arg(e.end).arg(e.name);
             }
             QMessageBox::information(NULL, QString("明日课程"), s, QMessageBox::Yes);
             log_event(QString("提醒第二天课程%1").arg(s));
@@ -103,7 +114,10 @@ void timer::update()
     }
     for(auto&e:toshow)
     {
-        this->erase(e);
+        if(!e.periodicity)
+        {
+            this->erase(e);
+        }
         bell.play();
         QMessageBox::information(NULL, QString("闹钟"), e.info, QMessageBox::Yes);
         log_event(QString("闹钟%1").arg(e.info));

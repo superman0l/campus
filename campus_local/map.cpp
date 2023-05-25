@@ -27,7 +27,6 @@ map::map(const QString fname)
             qDebug()<<QString("read the data at %1 %2").arg(i).arg("error!\n");
             return;
         }
-        //tnnd 不类型检查了 开摆
         QJsonObject tmp2=tmp.toObject();
         QString name;
         int id,posx,posy,bposx,bposy;
@@ -45,10 +44,18 @@ map::map(const QString fname)
             nxt=edge.at(i).toObject().value("PlaceCode").toString().toInt();
             len=edge.at(i).toObject().value("Distance").toString().toInt();
             this->mp[id].push_back({nxt,len});
-            this->mp[nxt].push_back({id,len});
+            //this->mp[nxt].push_back({id,len});
         }
     }
 
+}
+int map::get_id(const QString&s)
+{
+    if(strtoid.count(s))
+    {
+        return strtoid[s];
+    }
+    return -1;
 }
 std::vector<int> map::dijkstra(position begin)
 {

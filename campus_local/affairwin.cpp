@@ -12,8 +12,10 @@ AffairWin::AffairWin(QWidget *parent) :
     ui(new Ui::AffairWin)
 {
     ui->setupUi(this);
+    tim->load_affair=false;
     load(0,0,1);
     load_affair(0, 1);
+    tim->load_affair=true;//初次加载闹钟
     ui->activitylist->setCurrentRow(0);
     ui->tmpaffairlist->setCurrentRow(0);
 }
@@ -56,7 +58,32 @@ void AffairWin::load(int day,int tag, int sorttype){
                 QString data=activity["name"].toString()+"  "+num_to_qstr(activity["day"].toInt())+"  "+timestr+"  "+place;
                 if(activity["platform"].toString()!=""&&activity["url"].toString()!="")
                     data+="  "+activity["platform"].toString()+"  "+activity["url"].toString();
-
+                QJsonObject alarm=activity["alarm"].toObject();
+                if(!tim->load_affair&&!alarm.isEmpty()&&alarm["enable"].toBool())
+                {
+                    talarm tmp;
+                    tmp.day=alarm["day"].toInt();
+                    tmp.hour=alarm["hour"].toInt();
+                    tmp.minute=alarm["minute"].toInt();
+                    tmp.periodicity=alarm["minute"].toInt();
+                    if(placeid==-1)
+                    {
+                        tmp.info=QString("活动：%1\n活动平台：%2\n活动链接：%3").arg(activity["name"].toString()).arg(activity["platform"].toString()).arg(activity["url"].toString());
+                    }else
+                    {
+                        tmp.info=QString("活动：%1\n地点：%2\n导航路径：%3").arg(activity["name"].toString()).arg(activity["platform"].toString()).arg(school_online->navigate(user_online->get_place_id(),placeid));
+                    }
+                    if(tmp.day==0)
+                    {
+                        for(int i=1;i<=7;i++)
+                        {
+                            tim->insert(talarm(i,tmp.hour,tmp.minute,(1<<(i-1)),tmp.info));
+                        }
+                    }else
+                    {
+                        tim->insert(tmp);
+                    }
+                }
                 listwidgetItem* item=new listwidgetItem();
                 item->setText(data);
                 item->setSortType(sorttype);
@@ -268,7 +295,17 @@ void AffairWin::load_affair(int tag, int sorttype){
                     int placeid=tmp["destination_id"].toInt();
                     QString place=school_online->idtopos[placeid].name;
                     QString data=tmp["name"].toString()+"  "+num_to_qstr(tmp["day"].toInt())+"  "+timestr+"  "+place;
-
+                    QJsonObject alarm=tmp["alarm"].toObject();
+                    if(!tim->load_affair&&!alarm.isEmpty()&&alarm["enable"].toBool())
+                    {
+                        talarm tmpalarm;
+                        tmpalarm.day=alarm["day"].toInt();
+                        tmpalarm.hour=alarm["hour"].toInt();
+                        tmpalarm.minute=alarm["minute"].toInt();
+                        tmpalarm.periodicity=alarm["minute"].toInt();
+                        tmpalarm.info=QString("活动：%1\n地点：%2\n导航路径：%3").arg(tmp["name"].toString()).arg(tmp["platform"].toString()).arg(school_online->navigate(user_online->get_place_id(),placeid));
+                        tim->insert(tmpalarm);
+                    }
                     listwidgetItem* item=new listwidgetItem();
                     item->setText(data);
                     item->setSortType(sorttype);
