@@ -16,7 +16,8 @@ AdminWindow::AdminWindow(QWidget *parent) :
     this->setWindowIcon(QIcon("../icon.png"));
     this->setWindowTitle("管理端");
     tim=new timer();
-
+    logvar.init(admin_online);
+    log_action(QString("登录!"));
     model->setHorizontalHeaderLabels({"周一", "周二", "周三", "周四", "周五", "周六", "周日"});
     model->setVerticalHeaderLabels({"8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "休息", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "休息", "19:00-20:00", "20:00-21:00"});
     ui->comboBox->setCurrentIndex(tim->get_week()-1);

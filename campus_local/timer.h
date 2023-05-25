@@ -46,6 +46,9 @@ public:
     timer(QWidget*parent=nullptr):now(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),alarm_st(std::vector<std::set<talarm>>(8)),parent(parent){}
     timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused,QWidget*parent=nullptr):now(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),parent(parent){}
 
+    /// @brief load_affair 表示affairwin的闹钟是否加载
+    bool load_affair;
+
     /// @brief puase 设置暂停
     void puase(){ is_paused=true;}
 

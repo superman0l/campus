@@ -87,7 +87,7 @@ void classwind::load(int weeknum){
 
             //alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
-            if(alarm==true)
+            if(alarm==true&&stweek<=tim->get_week()&&edweek>=tim->get_week())
             {
                 QString s=QString("课程名称：%1\n教师：%2\n").arg(name).arg(teacher);
                 if(course["destination_id"].toInt()!=-1)

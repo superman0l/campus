@@ -289,22 +289,22 @@
    </property>
    <item>
     <property name="text">
-     <string>教一</string>
+     <string>教一楼</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教二</string>
+     <string>教二楼</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教三</string>
+     <string>教三楼</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>教四</string>
+     <string>教四楼</string>
     </property>
    </item>
    <item>
@@ -319,7 +319,7 @@
    </item>
    <item>
     <property name="text">
-     <string>体育馆</string>
+     <string>北邮体育馆</string>
     </property>
    </item>
    <item>
