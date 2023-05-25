@@ -32,7 +32,7 @@ void addcourse::on_check_clicked()
     classroom=ui->placeid->currentText()+classroom;
     course check=course(
         name,
-        school_online->idtopos[placeid],
+        placeid==-1?position(-1,""):school_online->idtopos[placeid],
         start,
         end,
         day,

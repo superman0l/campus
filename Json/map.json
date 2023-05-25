@@ -1,6 +1,6 @@
 {
   
-  "PlaceNumber" : "87",
+  "PlaceNumber" : "88",
   "Places": [
     {
       "PlaceName" : "北邮邮驿站",
@@ -50,6 +50,10 @@
         {
           "PlaceCode": "3",
           "Distance": "130"
+        },
+        {
+          "PlaceCode": "0",
+          "Distance": "18"
         }
       ]
     },
@@ -63,6 +67,10 @@
         {
           "PlaceCode": "4",
           "Distance": "76"
+        },
+        {
+          "PlaceCode": "2",
+          "Distance": "130"
         }
       ]
     },
@@ -80,6 +88,14 @@
         {
           "PlaceCode": "9",
           "Distance": "123"
+        },
+        {
+          "PlaceCode": "3",
+          "Distance": "76"
+        },
+        {
+          "PlaceCode": "7",
+          "Distance": "70"
         }
       ]
     },
@@ -90,7 +106,18 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "0",
+          "Distance": "47"
+        },
+        {
+          "PlaceCode": "1",
+          "Distance": "45"
+        },
+        {
+          "PlaceCode": "7",
+          "Distance": "70"
+        }
       ]
     },
     {
@@ -107,6 +134,10 @@
         {
           "PlaceCode": "19",
           "Distance": "71"
+        },
+        {
+          "PlaceCode": "7",
+          "Distance": "70"
         }
         
       ]
@@ -163,6 +194,14 @@
         {
           "PlaceCode": "10",
           "Distance": "66"
+        },
+        {
+          "PlaceCode": "4",
+          "Distance": "123"
+        },
+        {
+          "PlaceCode": "6",
+          "Distance": "64"
         }
         
       ]
@@ -174,6 +213,14 @@
       "ButtonPos": ["145","280"],
       "Type": "1",
       "NearestNeighbor" : [
+        {
+          "PlaceCode": "9",
+          "Distance": "66"
+        },
+        {
+          "PlaceCode": "11",
+          "Distance": "46"
+        }
       ]
     },
     {
@@ -208,6 +255,10 @@
         {
           "PlaceCode": "14",
           "Distance": "37"
+        },
+        {
+          "PlaceCode": "11",
+          "Distance": "41"
         }
         
       ]
@@ -219,7 +270,14 @@
       "ButtonPos": ["169","411"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "9",
+          "Distance": "66"
+        },
+        {
+          "PlaceCode": "11",
+          "Distance": "46"
+        }
       ]
     },
     {
@@ -232,6 +290,14 @@
         {
           "PlaceCode": "15",
           "Distance": "111"
+        },
+        {
+          "PlaceCode": "12",
+          "Distance": "37"
+        },
+        {
+          "PlaceCode": "36",
+          "Distance": "82"
         }
         
       ]
@@ -250,6 +316,14 @@
         {
           "PlaceCode": "23",
           "Distance": "135"
+        },
+        {
+          "PlaceCode": "14",
+          "Distance": "111"
+        },
+        {
+          "PlaceCode": "34",
+          "Distance": "82"
         }
       ]
     },
@@ -260,7 +334,14 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "9",
+          "Distance": "41"
+        },
+        {
+          "PlaceCode": "15",
+          "Distance": "38"
+        }
       ]
     },
     {
@@ -304,6 +385,14 @@
         {
           "PlaceCode": "17",
           "Distance": "41"
+        },
+        {
+          "PlaceCode": "1",
+          "Distance": "31"
+        },
+        {
+          "PlaceCode": "6",
+          "Distance": "71"
         }
         
       ]
@@ -318,6 +407,10 @@
         {
           "PlaceCode": "24",
           "Distance": "84"
+        },
+        {
+          "PlaceCode": "22",
+          "Distance": "40"
         }
       ]
     },
@@ -328,7 +421,14 @@
       "ButtonPos": ["160","160"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "4",
+          "Distance": "47"
+        },
+        {
+          "PlaceCode": "8",
+          "Distance": "41"
+        }
       ]
     },
     {
@@ -341,6 +441,10 @@
         {
           "PlaceCode": "20",
           "Distance": "40"
+        },
+        {
+          "PlaceCode": "23",
+          "Distance": "90"
         }
       ]
     },
@@ -358,6 +462,14 @@
         {
           "PlaceCode": "32",
           "Distance": "88"
+        },
+        {
+          "PlaceCode": "15",
+          "Distance": "135"
+        },
+        {
+          "PlaceCode": "17",
+          "Distance": "42"
         }
         
       ]
@@ -376,6 +488,10 @@
         {
           "PlaceCode": "27",
           "Distance": "110"
+        },
+        {
+          "PlaceCode": "20",
+          "Distance": "84"
         }
       ]
     },
@@ -386,7 +502,10 @@
       "ButtonPos": ["965","382"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "26",
+          "Distance": "70"
+        }
       ]
     },
     {
@@ -403,6 +522,10 @@
         {
           "PlaceCode": "53",
           "Distance": "31"
+        },
+        {
+          "PlaceCode": "24",
+          "Distance": "27"
         }
         
       ]
@@ -417,6 +540,18 @@
         {
           "PlaceCode": "29",
           "Distance": "102"
+        },
+        {
+          "PlaceCode": "1",
+          "Distance": "125"
+        },
+        {
+          "PlaceCode": "24",
+          "Distance": "110"
+        },
+        {
+          "PlaceCode": "28",
+          "Distance": "47"
         }
         
       ]
@@ -442,7 +577,10 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "27",
+          "Distance": "102"
+        }
       ]
     },
     {
@@ -459,6 +597,10 @@
         {
           "PlaceCode": "53",
           "Distance": "29"
+        },
+        {
+          "PlaceCode": "50",
+          "Distance": "131"
         }
         
       ]
@@ -473,6 +615,10 @@
         {
           "PlaceCode": "32",
           "Distance": "106"
+        },
+        {
+          "PlaceCode": "30",
+          "Distance": "118"
         }
         
       ]
@@ -491,6 +637,14 @@
         {
           "PlaceCode": "33",
           "Distance": "65"
+        },
+        {
+          "PlaceCode": "23",
+          "Distance": "88"
+        },
+        {
+          "PlaceCode": "31",
+          "Distance": "106"
         }
         
       ]
@@ -502,7 +656,14 @@
       "ButtonPos": ["385","551"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "32",
+          "Distance": "65"
+        },
+        {
+          "PlaceCode": "34",
+          "Distance": "59"
+        }
       ]
     },
     {
@@ -523,6 +684,10 @@
         {
           "PlaceCode": "39",
           "Distance": "94"
+        },
+        {
+          "PlaceCode": "35",
+          "Distance": "59"
         }
       ]
     },
@@ -535,6 +700,10 @@
       "NearestNeighbor" : [
         {
           "PlaceCode": "34",
+          "Distance": "59"
+        },
+        {
+          "PlaceCode": "36",
           "Distance": "59"
         }
       ]
@@ -553,6 +722,10 @@
         {
           "PlaceCode": "35",
           "Distance": "59"
+        },
+        {
+          "PlaceCode": "37",
+          "Distance": "100"
         }
         
       ]
@@ -571,6 +744,10 @@
         {
           "PlaceCode": "43",
           "Distance": "96"
+        },
+        {
+          "PlaceCode": "38",
+          "Distance": "59"
         }
       ]
     },
@@ -583,6 +760,10 @@
       "NearestNeighbor" : [
         {
           "PlaceCode": "37",
+          "Distance": "59"
+        },
+        {
+          "PlaceCode": "39",
           "Distance": "59"
         }
       ]
@@ -605,6 +786,10 @@
         {
           "PlaceCode": "45",
           "Distance": "100"
+        },
+        {
+          "PlaceCode": "34",
+          "Distance": "94"
         }
         
       ]
@@ -619,6 +804,10 @@
         {
           "PlaceCode": "41",
           "Distance": "76"
+        },
+        {
+          "PlaceCode": "39",
+          "Distance": "59"
         }
         
       ]
@@ -637,6 +826,14 @@
         {
           "PlaceCode": "86",
           "Distance": "90"
+        },
+        {
+          "PlaceCode": "32",
+          "Distance": "100"
+        },
+        {
+          "PlaceCode": "40",
+          "Distance": "76"
         }
         
       ]
@@ -648,7 +845,10 @@
       "ButtonPos": ["742","713"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "41",
+          "Distance": "82"
+        }
       ]
     },
     {
@@ -661,6 +861,18 @@
         {
           "PlaceCode": "44",
           "Distance": "59"
+        },
+        {
+          "PlaceCode": "37",
+          "Distance": "96"
+        },
+        {
+          "PlaceCode": "63",
+          "Distance": "65"
+        },
+        {
+          "PlaceCode": "66",
+          "Distance": "65"
         }
         
       ]
@@ -672,7 +884,14 @@
       "ButtonPos": ["170","875"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "43",
+          "Distance": "59"
+        },
+        {
+          "PlaceCode": "45",
+          "Distance": "59"
+        }
       ]
     },
     {
@@ -689,6 +908,10 @@
         {
           "PlaceCode": "46",
           "Distance": "59"
+        },
+        {
+          "PlaceCode": "39",
+          "Distance": "100"
         }
         
       ]
@@ -703,11 +926,15 @@
         {
           "PlaceCode": "86",
           "Distance": "70"
+        },
+        {
+          "PlaceCode": "45",
+          "Distance": "59"
         }
       ]
     },
     {
-      "PlaceName" : "教四楼西北侧路口",
+      "PlaceName" : "教四楼西南侧路口",
       "PlaceCode": "47",
       "Position" : ["569", "920"],
       "ButtonPos": ["-1","-1"],
@@ -726,6 +953,10 @@
         {
           "PlaceCode": "86",
           "Distance": "100"
+        },
+        {
+          "PlaceCode": "49",
+          "Distance": "112"
         }
       ]
     },
@@ -765,6 +996,10 @@
         {
           "PlaceCode": "30",
           "Distance": "131"
+        },
+        {
+          "PlaceCode": "49",
+          "Distance": "59"
         }
         
       ]
@@ -776,7 +1011,10 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "52",
+          "Distance": "105"
+        }
       ]
     },
     {
@@ -789,6 +1027,14 @@
         {
           "PlaceCode": "51",
           "Distance": "105"
+        },
+        {
+          "PlaceCode": "49",
+          "Distance": "174"
+        },
+        {
+          "PlaceCode": "55",
+          "Distance": "123"
         }
         
       ]
@@ -800,7 +1046,14 @@
       "ButtonPos": ["861","490"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "26",
+          "Distance": "31"
+        },
+        {
+          "PlaceCode": "30",
+          "Distance": "29"
+        }
         
       ]
     },
@@ -811,7 +1064,14 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "55",
+          "Distance": "140"
+        },
+        {
+          "PlaceCode": "56",
+          "Distance": "53"
+        }
       ]
     },
     {
@@ -866,6 +1126,14 @@
         {
           "PlaceCode": "64",
           "Distance": "131"
+        },
+        {
+          "PlaceCode": "58",
+          "Distance": "105"
+        },
+        {
+          "PlaceCode": "69",
+          "Distance": "97"
         }
         
       ]
@@ -884,6 +1152,14 @@
         {
           "PlaceCode": "85",
           "Distance": "118"
+        },
+        {
+          "PlaceCode": "61",
+          "Distance": "41"
+        },
+        {
+          "PlaceCode": "71",
+          "Distance": "90"
         }
         
       ]
@@ -898,6 +1174,14 @@
         {
           "PlaceCode": "85",
           "Distance": "35"
+        },
+        {
+          "PlaceCode": "49",
+          "Distance": "71"
+        },
+        {
+          "PlaceCode": "61",
+          "Distance": "110"
         }
         
       ]
@@ -912,6 +1196,14 @@
         {
           "PlaceCode": "86",
           "Distance": "60"
+        },
+        {
+          "PlaceCode": "57",
+          "Distance": "46"
+        },
+        {
+          "PlaceCode": "61",
+          "Distance": "110"
         }
         
       ]
@@ -948,6 +1240,14 @@
         {
           "PlaceCode": "86",
           "Distance": "60"
+        },
+        {
+          "PlaceCode": "57",
+          "Distance": "46"
+        },
+        {
+          "PlaceCode": "65",
+          "Distance": "132"
         }
         
       ]
@@ -962,6 +1262,14 @@
         {
           "PlaceCode": "43",
           "Distance": "65"
+        },
+        {
+          "PlaceCode": "65",
+          "Distance": "132"
+        },
+        {
+          "PlaceCode": "67",
+          "Distance": "45"
         }
       ]
     },
@@ -975,6 +1283,18 @@
         {
           "PlaceCode": "70",
           "Distance": "96"
+        },
+        {
+          "PlaceCode": "57",
+          "Distance": "131"
+        },
+        {
+          "PlaceCode": "65",
+          "Distance": "32"
+        },
+        {
+          "PlaceCode": "67",
+          "Distance": "122"
         }
       ]
     },
@@ -1010,6 +1330,10 @@
         {
           "PlaceCode": "43",
           "Distance": "65"
+        },
+        {
+          "PlaceCode": "67",
+          "Distance": "45"
         }
         
       ]
@@ -1050,6 +1374,14 @@
         {
           "PlaceCode": "73",
           "Distance": "85"
+        },
+        {
+          "PlaceCode": "67",
+          "Distance": "104"
+        },
+        {
+          "PlaceCode": "70",
+          "Distance": "114"
         }
         
       ]
@@ -1072,6 +1404,10 @@
         {
           "PlaceCode": "57",
           "Distance": "97"
+        },
+        {
+          "PlaceCode": "70",
+          "Distance": "140"
         }
         
       ]
@@ -1094,6 +1430,10 @@
         {
           "PlaceCode": "74",
           "Distance": "92"
+        },
+        {
+          "PlaceCode": "64",
+          "Distance": "96"
         }
         
       ]
@@ -1112,6 +1452,10 @@
         {
           "PlaceCode": "58",
           "Distance": "90"
+        },
+        {
+          "PlaceCode": "69",
+          "Distance": "128"
         }
       ]
     },
@@ -1129,6 +1473,18 @@
         {
           "PlaceCode": "78",
           "Distance": "51"
+        },
+        {
+          "PlaceCode": "69",
+          "Distance": "96"
+        },
+        {
+          "PlaceCode": "74",
+          "Distance": "133"
+        },
+        {
+          "PlaceCode": "79",
+          "Distance": "100"
         }
         
         
@@ -1148,6 +1504,10 @@
         {
           "PlaceCode": "74",
           "Distance": "116"
+        },
+        {
+          "PlaceCode": "68",
+          "Distance": "85"
         }
         
       ]
@@ -1162,6 +1522,18 @@
         {
           "PlaceCode": "72",
           "Distance": "133"
+        },
+        {
+          "PlaceCode": "70",
+          "Distance": "92"
+        },
+        {
+          "PlaceCode": "73",
+          "Distance": "116"
+        },
+        {
+          "PlaceCode": "77",
+          "Distance": "43"
         }
         
       ]
@@ -1173,7 +1545,18 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "72",
+          "Distance": "51"
+        },
+        {
+          "PlaceCode": "77",
+          "Distance": "179"
+        },
+        {
+          "PlaceCode": "82",
+          "Distance": "59"
+        }
       ]
     },
     {
@@ -1186,6 +1569,14 @@
         {
           "PlaceCode": "84",
           "Distance": "64"
+        },
+        {
+          "PlaceCode": "73",
+          "Distance": "44"
+        },
+        {
+          "PlaceCode": "77",
+          "Distance": "72"
         }
       ]
     },
@@ -1218,7 +1609,18 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "72",
+          "Distance": "51"
+        },
+        {
+          "PlaceCode": "80",
+          "Distance": "113"
+        },
+        {
+          "PlaceCode": "82",
+          "Distance": "59"
+        }
       ]
     },
     {
@@ -1231,6 +1633,18 @@
         {
           "PlaceCode": "72",
           "Distance": "100"
+        },
+        {
+          "PlaceCode": "71",
+          "Distance": "105"
+        },
+        {
+          "PlaceCode": "80",
+          "Distance": "71"
+        },
+        {
+          "PlaceCode": "81",
+          "Distance": "94"
         }
       ]
     },
@@ -1284,6 +1698,10 @@
         {
           "PlaceCode": "75",
           "Distance": "59"
+        },
+        {
+          "PlaceCode": "83",
+          "Distance": "74"
         }
         
       ]
@@ -1298,6 +1716,10 @@
         {
           "PlaceCode": "82",
           "Distance": "74"
+        },
+        {
+          "PlaceCode": "84",
+          "Distance": "177"
         }
         
       ]
@@ -1312,6 +1734,10 @@
         {
           "PlaceCode": "83",
           "Distance": "177"
+        },
+        {
+          "PlaceCode": "76",
+          "Distance": "64"
         }
         
       ]
@@ -1323,7 +1749,22 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "56",
+          "Distance": "52"
+        },
+        {
+          "PlaceCode": "58",
+          "Distance": "118"
+        },
+        {
+          "PlaceCode": "59",
+          "Distance": "35"
+        },
+        {
+          "PlaceCode": "81",
+          "Distance": "191"
+        }
       ]
     },
     {
@@ -1333,7 +1774,39 @@
       "ButtonPos": ["-1","-1"],
       "Type": "1",
       "NearestNeighbor" : [
-        
+        {
+          "PlaceCode": "41",
+          "Distance": "90"
+        },
+        {
+          "PlaceCode": "46",
+          "Distance": "70"
+        },
+        {
+          "PlaceCode": "48",
+          "Distance": "100"
+        },
+        {
+          "PlaceCode": "60",
+          "Distance": "60"
+        },
+        {
+          "PlaceCode": "62",
+          "Distance": "60"
+        }
+      ]
+    },
+    {
+      "PlaceName" : "体育场",
+      "PlaceCode": "87",
+      "Position" : ["1089", "1426"],
+      "ButtonPos": ["1300","1500"],
+      "Type": "1",
+      "NearestNeighbor" : [
+        {
+          "PlaceCode": "81",
+          "Distance": "234"
+        }
       ]
     }
   ]

@@ -231,22 +231,24 @@ void MapWin::on_pushButton_4_clicked()
     qp.setJoinStyle(Qt::MiterJoin);
     for(int i=1;i<pth.size();i++)
     {
-        /*
-        if(pth[i].x==-1||pth[i].y==-1||nowx==-1||nowy==-1)
-        {
-            nowx=pth[i].x;
-            nowy=pth[i].y;
-            continue;
-        }
-        */
-        //已经不存在权值为0的边了
         QGraphicsLineItem* line=new QGraphicsLineItem(qreal(nowx),qreal(nowy),qreal(pth[i].x),qreal(pth[i].y));
         line->setPen(qp);
-        //this->mv->scene()->addItem(line);
         this->head.push(line);
         nowx=pth[i].x;
         nowy=pth[i].y;
     }
+    //展示所有道路，调试界面
+    /*
+    for(int i=0;i<mp->tot;i++)
+    {
+        for(auto&e:mp->mp[i])
+        {
+            QGraphicsLineItem* line=new QGraphicsLineItem(qreal(mp->idtopos[e.first].x),qreal(mp->idtopos[e.first].y),qreal(mp->idtopos[i].x),qreal(mp->idtopos[i].y));
+            line->setPen(qp);
+            this->mv->scene()->addItem(line);
+            //this->head.push(line);
+        }
+    }*/
     while(this->head.size())
     {
         this->tail.push(this->head.top());

@@ -21,7 +21,9 @@ classwind::classwind(QWidget *parent) :
     model->setHorizontalHeaderLabels({"周一", "周二", "周三", "周四", "周五", "周六", "周日"});
     model->setVerticalHeaderLabels({"8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "休息", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "休息", "19:00-20:00", "20:00-21:00"});
     ui->week->setCurrentIndex(tim->get_week()-1);
+    tim->load_course=false;
     load(tim->get_week());
+    tim->load_course=true;
     ui->tableView->setModel(model);
     for(int i=0;i<13;i++){
         if(i==4 || i==10)
@@ -87,7 +89,7 @@ void classwind::load(int weeknum){
 
             //alarm=course["alarm"].toObject()["enable"].toBool();
             al=alarm==true?"alarm:on":"alarm:off";
-            if(alarm==true)
+            if(!(tim->load_course)&&alarm==true&&stweek<=tim->get_week()&&edweek>=tim->get_week())
             {
                 QString s=QString("课程名称：%1\n教师：%2\n").arg(name).arg(teacher);
                 if(course["destination_id"].toInt()!=-1)
@@ -98,7 +100,7 @@ void classwind::load(int weeknum){
                     s=s+QString("上课平台：%1\n上课链接：%2").arg(platform).arg(url);
                 }
                 tim->insert(talarm(day,starttime-1,30,(1<<(day-1)),s));//插入闹钟
-            }else
+            }else if(!(tim->load_course))
             {
                 QString s=QString("课程名称：%1\n教师：%2\n").arg(name).arg(teacher);
                 if(course["destination_id"].toInt()!=-1)

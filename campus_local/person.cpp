@@ -299,7 +299,27 @@ bool User::add_activity(const activity &a, int min) const{
     else timetable_online[a.day-1][a.start-6]|=2;
 
     if(min!=0){
-        rootObject2["alarm"]=alarm(true, a.day, a.start-1, 60-min, 1<<(a.day-1));
+        rootObject2["alarm"]=alarm(true, a.day, a.start-1, 60-min, a.day==0?((1<<7)-1):(1<<(a.day-1)));
+        QString tmp;
+        if(a.place.id==-1)
+        {
+            tmp=QString("活动：%1\n活动平台：%2\n活动链接：%3").arg(a.name).arg(a.platform).arg(a.url);
+        }else
+        {
+            tmp=QString("活动：%1\n地点：%2\n导航路径：%3").arg(a.name).arg(a.place.name).arg(school_online->navigate(user_online->get_place_id(),a.place.id));
+        }
+        if(a.day!=0)
+        {
+            tim->insert(talarm(a.day,a.start-1,60-min,(1<<(a.day-1)),tmp));
+        }else
+        {
+            for(int i=1;i<=7;i++)
+            {
+                tim->insert(talarm(i,a.start-1,60-min,(1<<(i-1)),tmp));
+            }
+        }
+
+
     }
     activityArray.append(rootObject2);
     rootObject1["activities"]=activityArray;
@@ -453,7 +473,7 @@ bool User::set_clock_course(const course &a, bool enable)const{
     day=a.day;hour=a.start-1;minute=30;
     int periodicity=(1<<(day-1));
     //添加闹钟
-    if(enable)
+    if(enable&&a.start_week<=tim->get_week()&&a.end_week>=tim->get_week())
     {
         QString s=QString("课程名称：%1\n教师：%2\n").arg(a.name).arg(a.teacher);
         if(a.classroom!="非线下课程")

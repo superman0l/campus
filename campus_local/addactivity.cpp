@@ -20,11 +20,9 @@ addactivity::~addactivity()
 
 void addactivity::on_add_clicked()
 {
-    QJsonObject a;
-    open_json("place_id.json",a);
     int placeid;
     if(ui->place->currentText()=="非线下活动")placeid=-1;
-    else placeid=a[ui->place->currentText()].toInt();
+    else placeid=school_online->get_id(ui->place->currentText());;
     int s=0;
     if(ui->day->currentIndex()==0){
         for(int i=0;i<7;i++)s+=1<<i;
@@ -33,7 +31,7 @@ void addactivity::on_add_clicked()
     activity newa=activity(
         ui->name->text(),
         ui->tag->currentIndex()+1,
-        school_online->idtopos[placeid],
+        placeid==-1?position(-1,""):school_online->idtopos[placeid],
         ui->time->currentIndex()+6,
         ui->time->currentIndex()+6,
         ui->day->currentIndex(),
@@ -103,6 +101,10 @@ void addactivity::on_add_clicked()
         emit flash_2(0, 1);
         log_action(tr("添加活动%1成功").arg(newa.name));
         this->close();
+        if(min)
+        {
+            log_action(tr("为活动%1设置闹钟").arg(newa.name));
+        }
     }
     else{
         QMessageBox::critical(this, "错误","存在个人时间冲突，请更正！");
