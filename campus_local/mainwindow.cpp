@@ -40,8 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     QTabWidget* tab = new QTabWidget(this);
     QWidget* Classes = new classwind(tab);
     QWidget* Map = new MapWin(tab);
-    QWidget* Affair = new AffairWin(tab);
+    tim->affwin=new AffairWin(tab);
+    QWidget* Affair = tim->affwin;
     QWidget* person = new PersonWin(tab);
+
     tab->addTab(Classes, "课表");
     tab->addTab(Map, "导航");
     tab->addTab(Affair, "事务");
@@ -90,6 +92,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+
+    QJsonObject stuobject,newobject;
+    open_json(QString::number(user_online->get_id())+".json",stuobject);
+    newobject.insert("activities",stuobject["activities"].toArray());
+    newobject.insert("affairs",QJsonArray());
+    newobject.insert("class",stuobject["class"].toString());
+    newobject.insert("course_alarm",stuobject["course_alarm"]);
+    write_json(QString::number(user_online->get_id())+".json",newobject);
     delete ui;
 }
 

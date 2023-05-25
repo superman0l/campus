@@ -54,6 +54,14 @@ LogIn::LogIn(QWidget *parent) :
 
 LogIn::~LogIn()
 {
+    if(this->admWin)
+    {
+        delete this->admWin;
+    }
+    if(this->useWin)
+    {
+        delete this->useWin;
+    }
     delete ui;
 }
 

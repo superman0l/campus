@@ -111,6 +111,22 @@ void timer::update()
             QMessageBox::information(NULL, QString("明日课程"), s, QMessageBox::Yes);
             log_event(QString("提醒第二天课程%1").arg(s));
         }
+        if(QMessageBox::question(NULL,QString("今天即将结束"),QString("是否清空本日临时事务?"),QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+        {
+            QJsonObject stuobject,newobject;
+            open_json(QString::number(user_online->get_id())+".json",stuobject);
+            newobject.insert("activities",stuobject["activities"].toArray());
+            newobject.insert("affairs",QJsonArray());
+            newobject.insert("class",stuobject["class"].toString());
+            newobject.insert("course_alarm",stuobject["course_alarm"]);
+            write_json(QString::number(user_online->get_id())+".json",newobject);
+            if(tim->affwin)
+            {
+                tim->load_affair=false;
+                tim->affwin->load_affair(0,0);
+                tim->load_affair=true;
+            }
+        }
     }
     for(auto&e:toshow)
     {

@@ -4,6 +4,7 @@
 #include<ctime>
 #include <queue>
 #include<set>
+#include"affairwin.h"
 static const QString st_time="20230220000000";
 constexpr int MAX_RELAY_CNT=5;
 class talarm
@@ -43,6 +44,7 @@ private:
         bool is_paused;
         std::vector<std::set<talarm>>alarm_st;
 public:
+    AffairWin* affwin;
     timer(QWidget*parent=nullptr):now(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),alarm_st(std::vector<std::set<talarm>>(8)),parent(parent){}
     timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused,QWidget*parent=nullptr):now(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),parent(parent){}
 
