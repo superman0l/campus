@@ -314,8 +314,10 @@ void AffairWin::load_affair(int tag, int sorttype){
     if(tag==0){
         if(array.isEmpty()){
             ui->tmpaffairlist->addItem("当前无事务");
+            tim->has_affair=false;
         }
         else{
+            tim->has_affair=true;
             for(int i=0;i<array.size();i++){
                     QJsonObject tmp=array.at(i).toObject();
                     int time=tmp["time"].toInt();
@@ -324,15 +326,21 @@ void AffairWin::load_affair(int tag, int sorttype){
                     QString place=school_online->idtopos[placeid].name;
                     QString data=tmp["name"].toString()+"  "+num_to_qstr(tmp["day"].toInt())+"  "+timestr+"  "+place;
                     QJsonObject alarm=tmp["alarm"].toObject();
-                    if(!tim->load_affair&&!alarm.isEmpty()&&alarm["enable"].toBool())
+                    if(!alarm.isEmpty()&&alarm["enable"].toBool())
                     {
                         talarm tmpalarm;
-                        tmpalarm.day=alarm["day"].toInt();
+                        tmpalarm.day=tim->get_days();
                         tmpalarm.hour=alarm["hour"].toInt();
                         tmpalarm.minute=alarm["minute"].toInt();
-                        tmpalarm.periodicity=alarm["minute"].toInt();
-                        tmpalarm.info=QString("活动：%1\n地点：%2\n导航路径：%3").arg(tmp["name"].toString()).arg(tmp["platform"].toString()).arg(school_online->navigate(user_online->get_place_id(),placeid));
-                        tim->insert(tmpalarm);
+                        tmpalarm.periodicity=0;
+                        tmpalarm.info=QString("事务：%1\n地点：%2\n导航路径：%3").arg(tmp["name"].toString()).arg(place).arg(school_online->navigate(user_online->get_place_id(),placeid));
+                        if(!tim->load_affair)
+                        {
+                            tim->insert(tmpalarm);
+                        }else if(tim->del_affair)
+                        {
+                            tim->erase(tmpalarm);
+                        }
                     }
                     listwidgetItem* item=new listwidgetItem();
 

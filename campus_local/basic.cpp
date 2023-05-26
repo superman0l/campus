@@ -112,7 +112,7 @@ QJsonObject activitytojson(activity a){
     rootObject.insert("url",a.url);
     return rootObject;
 }
-activity jsontoactivity(QJsonObject rootObject, map school){
+activity jsontoactivity(QJsonObject rootObject, map* school){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue tagValue=rootObject.value("tag");
@@ -121,7 +121,7 @@ activity jsontoactivity(QJsonObject rootObject, map school){
     return activity(
         nameValue.toString(),
         tagValue.toInt(),
-        school.idtopos[idValue.toInt()],
+        school->idtopos[idValue.toInt()],
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),

@@ -55,7 +55,7 @@ QJsonObject activitytojson(activity a);
 /// @brief 把json转化为activity
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的activity
-activity jsontoactivity(QJsonObject rootObject);
+activity jsontoactivity(QJsonObject rootObject,map* school);
 
 /// @brief 把json转化为tmpaffair
 /// @param 参数为需要转化的json

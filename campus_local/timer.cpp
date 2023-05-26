@@ -40,48 +40,55 @@ void timer::update()
     bool flg=false;
     if(d1==d2)
     {
-        if((h1<23||(h1==23&&m1<=0))&&(23<h2||(23==h2&&0<m2)))
+        if((h1<22||(h1==22&&m1<=30))&&(22<h2||(22==h2&&30<m2)))
         {
             flg=true;
-        }
-        for(auto&e:this->alarm_st[d1])
-        {
-
-            if((h1<e.hour||(h1==e.hour&&m1<=e.minute))&&(e.hour<h2||(e.hour==h2&&e.minute<m2)))
-            {
-                toshow.push_back(e);
-            }
         }
     }else
     {
-        if(h1<23||(h1==23&&m1<=0))
+        if(h1<22||(h1==22&&m1<=30))
         {
             flg=true;
         }
-        if(23<h2||(23==h2&&0<m2))
+        if(22<h2||(22==h2&&30<m2))
         {
             flg=true;
-        }
-        for(auto&e:this->alarm_st[d1])
-        {
-            if(h1<e.hour||(h1==e.hour&&m1<=e.minute))
-            {
-                toshow.push_back(e);
-            }
-
-        }
-        for(auto&e:this->alarm_st[d2])
-        {
-            if(e.hour<h2||(e.hour==h2&&e.minute<m2))
-            {
-                toshow.push_back(e);
-            }
         }
     }
-    //统一晚上23:00进行提醒
+    //22:30进行询问
     std::vector<course>next_day;
+    if(d1!=d2)
+    {
+        if(tim->affwin)
+        {
+            tim->load_affair=false;
+            tim->affwin->load_affair(0,0);
+            tim->load_affair=true;
+        }
+    }
     if(flg)
     {
+        if(tim->has_affair)
+        {
+            tim->del_affair=true;
+            tim->load_affair=true;
+            tim->affwin->load_affair(0,0);
+            tim->del_affair=false;
+            if(QMessageBox::question(NULL,QString("今天即将结束"),QString("是否清空本日临时事务?"),QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+            {
+                QJsonObject stuobject,newobject;
+                open_json(QString::number(user_online->get_id())+".json",stuobject);
+                newobject.insert("activities",stuobject["activities"].toArray());
+                newobject.insert("affairs",QJsonArray());
+                newobject.insert("class",stuobject["class"].toString());
+                newobject.insert("course_alarm",stuobject["course_alarm"]);
+                write_json(QString::number(user_online->get_id())+".json",newobject);
+                if(tim->affwin)
+                {
+                    tim->affwin->load_affair(0,0);
+                }
+            }
+        }
         QJsonArray courseArray=load_student_class_coursearray(QString::number(user_online->get_id()));
         for(int i=0;i<courseArray.size();i++)
         {
@@ -91,9 +98,22 @@ void timer::update()
                 next_day.push_back(tmp);
             }
         }
+        QJsonObject stuobject;
+        open_json(QString::number(user_online->get_id())+".json",stuobject);
+        QJsonArray actvtarray=stuobject["activities"].toArray();
+        std::vector<activity>next_act;
+        for(int i=0;i<actvtarray.size();i++)
+        {
+            activity act=jsontoactivity(actvtarray.at(i).toObject(),school_online);
+            if(act.day==0||act.day==(d1%7+1))
+            {
+                next_act.push_back(act);
+            }
+        }
+        QString s;
         if(next_day.size())
         {
-            QString s;
+            s=s+QString("明日课程如下：");
             for(auto&e:next_day)
             {
                 s=s+QString("\n");
@@ -108,23 +128,61 @@ void timer::update()
                 }
                 s=s+QString("%1:00 %2").arg(e.end).arg(e.name);
             }
-            QMessageBox::information(NULL, QString("明日课程"), s, QMessageBox::Yes);
-            log_event(QString("提醒第二天课程%1").arg(s));
         }
-        if(QMessageBox::question(NULL,QString("今天即将结束"),QString("是否清空本日临时事务?"),QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes)
+        if(next_act.size())
         {
-            QJsonObject stuobject,newobject;
-            open_json(QString::number(user_online->get_id())+".json",stuobject);
-            newobject.insert("activities",stuobject["activities"].toArray());
-            newobject.insert("affairs",QJsonArray());
-            newobject.insert("class",stuobject["class"].toString());
-            newobject.insert("course_alarm",stuobject["course_alarm"]);
-            write_json(QString::number(user_online->get_id())+".json",newobject);
-            if(tim->affwin)
+            if(next_day.size())
             {
-                tim->load_affair=false;
-                tim->affwin->load_affair(0,0);
-                tim->load_affair=true;
+                s=s+QString("\n");
+            }
+            s=s+QString("明日活动如下：");
+            for(auto&e:next_act)
+            {
+
+                s=s+QString("\n");
+                if(e.start<10)
+                {
+                    s=s+("0");
+                }
+                s=s+QString("%1:00-").arg(e.start);
+                if(e.end<10)
+                {
+                    s=s+("0");
+                }
+                s=s+QString("%1:00 %2").arg(e.end).arg(e.name);
+            }
+        }
+        if(next_day.size()||next_act.size())
+        {
+            QMessageBox::information(NULL, QString("明日安排"), s, QMessageBox::Yes);
+            log_event(QString("提醒第二天课程及活动%1").arg(s));
+        }
+    }
+    if(d1==d2)
+    {
+        for(auto&e:this->alarm_st[d1])
+        {
+
+            if((h1<e.hour||(h1==e.hour&&m1<=e.minute))&&(e.hour<h2||(e.hour==h2&&e.minute<m2)))
+            {
+                toshow.push_back(e);
+            }
+        }
+    }else
+    {
+        for(auto&e:this->alarm_st[d1])
+        {
+            if(h1<e.hour||(h1==e.hour&&m1<=e.minute))
+            {
+                toshow.push_back(e);
+            }
+
+        }
+        for(auto&e:this->alarm_st[d2])
+        {
+            if(e.hour<h2||(e.hour==h2&&e.minute<m2))
+            {
+                toshow.push_back(e);
             }
         }
     }

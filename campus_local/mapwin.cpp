@@ -237,15 +237,17 @@ void MapWin::on_pushButton_4_clicked()
         nowx=pth[i].x;
         nowy=pth[i].y;
     }
-    //展示所有道路，调试界面
     /*
     for(int i=0;i<mp->tot;i++)
     {
         for(auto&e:mp->mp[i])
         {
-            QGraphicsLineItem* line=new QGraphicsLineItem(qreal(mp->idtopos[e.first].x),qreal(mp->idtopos[e.first].y),qreal(mp->idtopos[i].x),qreal(mp->idtopos[i].y));
-            line->setPen(qp);
-            this->mv->scene()->addItem(line);
+            if(e.first<i)
+            {
+                QGraphicsLineItem* line=new QGraphicsLineItem(qreal(mp->idtopos[e.first].x),qreal(mp->idtopos[e.first].y),qreal(mp->idtopos[i].x),qreal(mp->idtopos[i].y));
+                line->setPen(qp);
+                this->mv->scene()->addItem(line);
+            }
             //this->head.push(line);
         }
     }*/

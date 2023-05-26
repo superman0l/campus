@@ -442,7 +442,7 @@ bool User::set_clock_activity(const affair &a, int early_moment, bool enable)con
 bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
     int day,hour,minute;
     day=a.day;hour=a.start;minute=0;
-    QString s=QString("事务：%1\n地点：%2").arg(a.name).arg(a.place.name);
+    QString s=QString("事务：%1\n地点：%2\n导航路径：%3").arg(a.name).arg(a.place.name).arg(school_online->navigate(user_online->get_place_id(),a.place.id));
     QJsonObject rootObject1;//存储学生信息的json
     QString filepath = QString::number(id)+".json";
     if(!open_json(filepath,rootObject1))
@@ -455,10 +455,10 @@ bool User::set_clock_tmpaffair(const affair &a, bool enable)const{
             tmpaffairarray[i]=affair;
             if(enable)
             {
-                tim->insert(talarm(a.day,a.start,0,0,s));
+                tim->insert(talarm(tim->get_days(),a.start,0,0,s));
             }else
             {
-                tim->erase(talarm(a.day,a.start,0,0,s));
+                tim->erase(talarm(tim->get_days(),a.start,0,0,s));
             }
             break;
         }

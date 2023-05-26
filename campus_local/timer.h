@@ -6,7 +6,6 @@
 #include<set>
 #include"affairwin.h"
 static const QString st_time="20230220000000";
-constexpr int MAX_RELAY_CNT=5;
 class talarm
 {
 public:
@@ -14,10 +13,9 @@ public:
     int hour;
     int minute;
     int periodicity;//闹钟重复周期
-    int cnt;//表示闹钟已经被推迟几次,达到上限后不再推迟
     QString info;//闹钟相关信息,如导航路线,上课链接等
     talarm(){}
-    talarm(int day,int hour,int minute,int periodicity,QString info):day(day),hour(hour),minute(minute),periodicity(periodicity),info(info),cnt(0){}
+    talarm(int day,int hour,int minute,int periodicity,QString info):day(day),hour(hour),minute(minute),periodicity(periodicity),info(info){}
     bool operator < (const talarm& rhs)const
     {
         if(day!=rhs.day)return day<rhs.day;
@@ -33,7 +31,6 @@ public:
 class timer
 {
 private:
-        QWidget*parent;
         QDateTime now;//记录当前时间
         QDateTime term_begin;//记录学期开始时间点,默认为2023年2月20日
         /// @brief last记录时间点
@@ -45,13 +42,19 @@ private:
         std::vector<std::set<talarm>>alarm_st;
 public:
     AffairWin* affwin;
-    timer(QWidget*parent=nullptr):now(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),alarm_st(std::vector<std::set<talarm>>(8)),parent(parent){}
-    timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused,QWidget*parent=nullptr):now(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),parent(parent){}
+    timer(QWidget*parent=nullptr):now(QDateTime::currentDateTime()),last(clock()),ratio(360),is_paused(false),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),alarm_st(std::vector<std::set<talarm>>(8)),del_affair(false),has_affair(false){}
+    timer(QDateTime qt,clock_t tnow,int tratio,bool this_paused,QWidget*parent=nullptr):now(qt),last(tnow),ratio(tratio),is_paused(this_paused),term_begin(QDateTime::fromString(st_time,QString("yyyyMMddHHmmss"))),del_affair(false),has_affair(false){}
 
     /// @brief load_affair 表示affairwin的闹钟是否加载
     bool load_affair;
     /// @brief load_course 表示课表闹钟是否加载
     bool load_course;
+
+    /// @brief del_affair 表示本次加载是否删除闹钟
+    bool del_affair;
+
+    /// @brief has_affair 表示当前是否有事务
+    bool has_affair;
     /// @brief puase 设置暂停
     void puase(){ is_paused=true;}
 
