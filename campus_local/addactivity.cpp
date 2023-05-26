@@ -46,7 +46,7 @@ void addactivity::on_add_clicked()
     bool isavailable=1;
     if(ui->day->currentIndex()==0){
         for(int i=0;i<7;i++){
-            if(timetable_online[ui->day->currentIndex()-1][ui->time->currentIndex()]>1){
+            if(timetable_online[i][ui->time->currentIndex()]>1){
                 isavailable=0;
                 break;
             }

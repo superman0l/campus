@@ -116,6 +116,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         obj["place_id"] = user_online->get_place_id();
         write_json(QString::number(user_online->get_id()) + ".json", obj);
         qDebug() << "Saved";
+        delete user_online;
+        delete tim;
         qApp->quit();
     }
     else if(button == QMessageBox::No){

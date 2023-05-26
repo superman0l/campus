@@ -18,8 +18,9 @@ public:
     ~AffairWin();
     std::vector<std::vector<tmpaffair> > queryaffairresult;
     int f=0;
+
+public slots:
     void load_affair(int tag, int sorttype);
-private slots:
     void on_comboBox_currentIndexChanged(int index);
     void load(int day, int tag,int sorttype);
     void on_addactvt_clicked();

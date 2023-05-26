@@ -36,6 +36,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
 
 AdminWindow::~AdminWindow()
 {
+    delete tim;
     delete ui;
 }
 
@@ -82,6 +83,8 @@ void AdminWindow::closeEvent(QCloseEvent *event)
         if(button == QMessageBox::Yes){
             QFile flagfile("../"+QString::number(admin_online->get_classid())+"_busy");
             flagfile.remove();
+            delete tim;
+            delete admin_online;
             qApp->quit();
         }
         else if(button == QMessageBox::No){

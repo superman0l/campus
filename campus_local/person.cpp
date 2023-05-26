@@ -199,7 +199,7 @@ const std::vector<tmpaffair>User::query_tmpaffair(const QString&s,map*school)con
 }
 const std::vector<QString> User::query_time(int day) const
 {
-    bool flag[7][14];
+    bool flag[7][16];
     std::vector<QString> result;
 
     QJsonObject rootObject1;//存储学生信息的json
@@ -211,21 +211,21 @@ const std::vector<QString> User::query_time(int day) const
     for(int i=0;i<activityArray.size();i++){
         QJsonObject activityObject=activityArray[i].toObject();
         int day=activityObject["day"].toInt();int time=activityObject["time"].toInt();
-        flag[day-1][time-8]=1;
+        flag[day-1][time-6]=1;
     }
     QJsonArray coursearray = load_student_class_coursearray(QString::number(id));
     for(int i=0;i<coursearray.size();i++){
         QJsonObject course=coursearray.at(i).toObject();
         if(tim->get_week()<course["startweek"].toInt()||tim->get_week()>course["endweek"].toInt())continue;
         int day=course["weekday"].toInt();int sttime=course["starttime"].toInt();int edtime=course["endtime"].toInt();
-        for(int j=sttime;j<=edtime;j++)flag[day-1][j-8]=1;
+        for(int j=sttime;j<=edtime;j++)flag[day-1][j-6]=1;
     }
     for(int i=0;i<7;i++){
         if(day!=0)i=day-1;
-        for(int j=0;j<14;j++){
+        for(int j=0;j<16;j++){
             if(!flag[i][j]){
                 QString day=num_to_qstr(i+1);
-                QString time=QString::number(j+8)+":00-"+QString::number(j+9)+":00";
+                QString time=QString::number(j+6)+":00-"+QString::number(j+7)+":00";
                 QString data=day+"  "+time;
                 result.push_back(data);
             }
