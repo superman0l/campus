@@ -21,8 +21,13 @@ public:
 
 public slots:
     void load_affair(int tag, int sorttype);
-    void on_comboBox_currentIndexChanged(int index);
+
     void load(int day, int tag,int sorttype);
+
+private slots:
+
+    void on_comboBox_currentIndexChanged(int index);
+
     void on_addactvt_clicked();
 
     void on_deleteactvt_clicked();

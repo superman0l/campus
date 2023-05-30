@@ -75,7 +75,7 @@ QJsonObject coursetojson(course c){
     rootObject.insert("url",c.url);
     return rootObject;
 }
-course jsontocourse(QJsonObject rootObject, map* school){
+course jsontocourse(QJsonObject rootObject){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue teacherValue=rootObject.value("teacher");
@@ -87,7 +87,7 @@ course jsontocourse(QJsonObject rootObject, map* school){
     QJsonValue classroomValue=rootObject.value("classroom");
     return course(
         nameValue.toString(),
-        school->idtopos[idValue.toInt()],
+        school_online->idtopos[idValue.toInt()],
         startValue.toInt(),
         endValue.toInt(),
         weekdayValue.toInt(),
@@ -112,7 +112,7 @@ QJsonObject activitytojson(activity a){
     rootObject.insert("url",a.url);
     return rootObject;
 }
-activity jsontoactivity(QJsonObject rootObject, map* school){
+activity jsontoactivity(QJsonObject rootObject){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue tagValue=rootObject.value("tag");
@@ -121,7 +121,7 @@ activity jsontoactivity(QJsonObject rootObject, map* school){
     return activity(
         nameValue.toString(),
         tagValue.toInt(),
-        school->idtopos[idValue.toInt()],
+        school_online->idtopos[idValue.toInt()],
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),
@@ -140,7 +140,7 @@ QJsonObject tmpaffairtojson(tmpaffair t){
     rootObject.insert("day",t.day);
     return rootObject;
 }
-tmpaffair jsontotmpaffair(QJsonObject rootObject, map school){
+tmpaffair jsontotmpaffair(QJsonObject rootObject){
     QJsonValue idValue=rootObject.value("destination_id");
     QJsonValue nameValue=rootObject.value("name");
     QJsonValue tagValue=rootObject.value("tag");
@@ -149,7 +149,7 @@ tmpaffair jsontotmpaffair(QJsonObject rootObject, map school){
     return tmpaffair(
         nameValue.toString(),
         tagValue.toInt(),
-        school.idtopos[idValue.toInt()],
+        school_online->idtopos[idValue.toInt()],
         startValue.toInt(),
         startValue.toInt()+1,
         weekdayValue.toInt(),

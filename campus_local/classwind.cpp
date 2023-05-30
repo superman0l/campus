@@ -167,7 +167,7 @@ void classwind::on_checkBox_stateChanged(int arg1)
     QStringList datalist=data.split("\n\n");
     coursename=datalist[0];
     QJsonObject course1=load_course_json(QString::number(user_online->get_id()),coursename,ui->tableView->currentIndex().column()+1);
-    course course2= jsontocourse(course1,school_online);
+    course course2= jsontocourse(course1);
     QModelIndex indx=ui->tableView->currentIndex();
     if(ui->checkBox->isChecked()){
         user_online->set_clock_course(course2,true);

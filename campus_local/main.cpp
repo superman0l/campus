@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)){
         QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Unset);
     }
+
     QApplication a(argc, argv);
     QFile qss("../StyleSheet.qss");
     qss.open(QFile::ReadOnly);

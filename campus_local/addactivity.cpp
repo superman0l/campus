@@ -22,7 +22,7 @@ void addactivity::on_add_clicked()
 {
     int placeid;
     if(ui->place->currentText()=="非线下活动")placeid=-1;
-    else placeid=school_online->get_id(ui->place->currentText());;
+    else placeid=school_online->get_id(ui->place->currentText());
     int s=0;
     if(ui->day->currentIndex()==0){
         for(int i=0;i<7;i++)s+=1<<i;

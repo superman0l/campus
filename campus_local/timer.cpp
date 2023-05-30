@@ -92,7 +92,7 @@ void timer::update()
         QJsonArray courseArray=load_student_class_coursearray(QString::number(user_online->get_id()));
         for(int i=0;i<courseArray.size();i++)
         {
-            course tmp= jsontocourse(courseArray.at(i).toObject(),school_online);
+            course tmp= jsontocourse(courseArray.at(i).toObject());
             if(tmp.end_week>=tim->get_week()&&tmp.start_week<=tim->get_week()&&tmp.day==(d1%7+1))
             {
                 next_day.push_back(tmp);
@@ -104,7 +104,7 @@ void timer::update()
         std::vector<activity>next_act;
         for(int i=0;i<actvtarray.size();i++)
         {
-            activity act=jsontoactivity(actvtarray.at(i).toObject(),school_online);
+            activity act=jsontoactivity(actvtarray.at(i).toObject());
             if(act.day==0||act.day==(d1%7+1))
             {
                 next_act.push_back(act);

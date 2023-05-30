@@ -54,7 +54,7 @@ void AffairWin::load(int day,int tag, int sorttype){
                 int time=activity["time"].toInt();
                 QString timestr=QString::number(time)+":00-"+QString::number(time+1)+":00";
                 int placeid=activity["destination_id"].toInt();
-                QString place=school_online->idtopos[placeid].name;
+                QString place=placeid==-1?"非线下活动":school_online->idtopos[placeid].name;
                 QString data=activity["name"].toString()+"  "+num_to_qstr(activity["day"].toInt())+"  "+timestr+"  "+place;
                 if(activity["platform"].toString()!=""&&activity["url"].toString()!="")
                     data+="  "+activity["platform"].toString()+"  "+activity["url"].toString();
@@ -324,7 +324,7 @@ void AffairWin::load_affair(int tag, int sorttype){
                     QString timestr=QString::number(time)+":00-"+QString::number(time+1)+":00";
                     int placeid=tmp["destination_id"].toInt();
                     QString place=school_online->idtopos[placeid].name;
-                    QString data=tmp["name"].toString()+"  "+num_to_qstr(tmp["day"].toInt())+"  "+timestr+"  "+place;
+                    QString data=tmp["name"].toString()+"  当天  "+timestr+"  "+place;
                     QJsonObject alarm=tmp["alarm"].toObject();
                     if(!alarm.isEmpty()&&alarm["enable"].toBool())
                     {
@@ -374,7 +374,7 @@ void AffairWin::load_affair(int tag, int sorttype){
             QString timestr=QString::number(time)+":00-"+QString::number(time+1)+":00";
             int placeid=tmp["destination_id"].toInt();
             QString place=school_online->idtopos[placeid].name;
-            QString data=tmp["name"].toString()+"  "+num_to_qstr(tmp["day"].toInt())+"  "+timestr+"  "+place;
+            QString data=tmp["name"].toString()+"  当天  "+timestr+"  "+place;
             isempty=0;
 
             listwidgetItem* item=new listwidgetItem();
@@ -535,6 +535,10 @@ void AffairWin::on_navigate_clicked()
     std::vector<int> edid;
     QString tmp1=school_online->idtopos[stid].name;
     QString tmp2;
+    if(queryaffairresult.empty()){
+        ui->naviresult->setText("当前无多个同时事务，无法导航");
+        return;
+    }
     for(int i=0;i<queryaffairresult[f].size();i++){
         edid.push_back(queryaffairresult[f][i].place.id);
         tmp2.append(school_online->idtopos[edid[i]].name);
@@ -556,7 +560,7 @@ void AffairWin::on_aff_alarmcheck_stateChanged(int arg1)
         QJsonObject affair=affairs.at(i).toObject();
         int st,ed;qstr_to_time(list[2],st,ed);
         if(affair["name"].toString()==list[0]&&affair["time"].toInt()==st){
-                tmpaffair a=jsontotmpaffair(affair,*school_online);
+                tmpaffair a=jsontotmpaffair(affair);
                 if(ui->aff_alarmcheck->isChecked()==true){
                     user_online->set_clock_tmpaffair(a,true);
                     log_action(tr("设置%1的闹钟").arg(a.name));

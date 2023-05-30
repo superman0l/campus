@@ -40,8 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
     QTabWidget* tab = new QTabWidget(this);
     QWidget* Classes = new classwind(tab);
     QWidget* Map = new MapWin(tab);
-    tim->affwin=new AffairWin(tab);
-    QWidget* Affair = tim->affwin;
+    QWidget* Affair = new AffairWin(tab);
+    tim->affwin=(AffairWin*)Affair;
     QWidget* person = new PersonWin(tab);
 
     tab->addTab(Classes, "课表");

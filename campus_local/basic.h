@@ -45,7 +45,7 @@ QJsonObject coursetojson(course c);
 /// @brief 把json格式转化为course类
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的course
-course jsontocourse(QJsonObject rootObject, map* school);
+course jsontocourse(QJsonObject rootObject);
 
 /// @brief 把activity转化为json格式
 /// @param 参数为需要转化的activity类
@@ -55,12 +55,12 @@ QJsonObject activitytojson(activity a);
 /// @brief 把json转化为activity
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的activity
-activity jsontoactivity(QJsonObject rootObject,map* school);
+activity jsontoactivity(QJsonObject rootObject);
 
 /// @brief 把json转化为tmpaffair
 /// @param 参数为需要转化的json
 /// @return 返回转化之后的tmpaffair
-tmpaffair jsontotmpaffair(QJsonObject rootObject,  map school);
+tmpaffair jsontotmpaffair(QJsonObject rootObject);
 
 /// @brief 把tmpaffair转化为json格式
 /// @param 参数为需要转化的tmpaffair类

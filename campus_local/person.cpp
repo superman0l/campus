@@ -211,7 +211,9 @@ const std::vector<QString> User::query_time(int day) const
     for(int i=0;i<activityArray.size();i++){
         QJsonObject activityObject=activityArray[i].toObject();
         int day=activityObject["day"].toInt();int time=activityObject["time"].toInt();
-        flag[day-1][time-6]=1;
+        if(day==0)
+            for(int i=0;i<7;i++)flag[i][time-6]=1;
+        else flag[day-1][time-6]=1;
     }
     QJsonArray coursearray = load_student_class_coursearray(QString::number(id));
     for(int i=0;i<coursearray.size();i++){
@@ -245,7 +247,7 @@ const std::vector<std::vector<tmpaffair> > User::query_tmpaffair() const
     for(int i=0;i<affairs.size();i++){
         QJsonObject affair=affairs.at(i).toObject();
         int time=affair["time"].toInt();
-        tmpaffair ta=jsontotmpaffair(affair,*school_online);
+        tmpaffair ta=jsontotmpaffair(affair);
         count[time-8].push_back(ta);
     }
     for(int i=0;i<15;i++){
