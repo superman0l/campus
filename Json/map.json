@@ -7,7 +7,6 @@
       "PlaceCode": "0",
       "Position" : ["535", "107"],
       "ButtonPos": ["580","106"],
-      "Type": "0",
       "NearestNeighbor" : [
         {
           "PlaceCode" : "2",
@@ -24,7 +23,6 @@
       "PlaceCode": "1",
       "Position" : ["541", "260"],
       "ButtonPos": ["573","187"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "5",
@@ -45,7 +43,6 @@
       "PlaceCode": "2",
       "Position" : ["533", "76"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "3",
@@ -62,7 +59,6 @@
       "PlaceCode": "3",
       "Position" : ["294", "83"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "4",
@@ -79,7 +75,6 @@
       "PlaceCode": "4",
       "Position" : ["301", "209"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "21",
@@ -104,7 +99,6 @@
       "PlaceCode": "5",
       "Position" : ["541", "184"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "0",
@@ -125,7 +119,6 @@
       "PlaceCode": "6",
       "Position" : ["423", "321"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "9",
@@ -147,7 +140,6 @@
       "PlaceCode": "7",
       "Position" : ["422", "195"],
       "ButtonPos": ["364","188"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "4",
@@ -168,7 +160,6 @@
       "PlaceCode": "8",
       "Position" : ["143", "226"],
       "ButtonPos": ["75","193"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "21",
@@ -181,7 +172,6 @@
       "PlaceCode": "9",
       "Position" : ["305", "326"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "16",
@@ -211,7 +201,6 @@
       "PlaceCode": "10",
       "Position" : ["189", "330"],
       "ButtonPos": ["145","280"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "9",
@@ -228,7 +217,6 @@
       "PlaceCode": "11",
       "Position" : ["112", "333"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "13",
@@ -250,7 +238,6 @@
       "PlaceCode": "12",
       "Position" : ["113", "403"],
       "ButtonPos": ["65","304"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "14",
@@ -268,7 +255,6 @@
       "PlaceCode": "13",
       "Position" : ["189", "330"],
       "ButtonPos": ["169","411"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "9",
@@ -285,7 +271,6 @@
       "PlaceCode": "14",
       "Position" : ["122", "467"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "15",
@@ -307,7 +292,6 @@
       "PlaceCode": "15",
       "Position" : ["312", "458"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "16",
@@ -332,7 +316,6 @@
       "PlaceCode": "16",
       "Position" : ["311", "394"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "9",
@@ -349,7 +332,6 @@
       "PlaceCode": "17",
       "Position" : ["545", "382"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "23",
@@ -362,7 +344,6 @@
       "PlaceCode": "18",
       "Position" : ["406", "392"],
       "ButtonPos": ["407","370"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "16",
@@ -380,7 +361,6 @@
       "PlaceCode": "19",
       "Position" : ["541", "313"],
       "ButtonPos": ["596","314"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "17",
@@ -402,7 +382,6 @@
       "PlaceCode": "20",
       "Position" : ["762", "443"],
       "ButtonPos": ["677","372"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "24",
@@ -419,7 +398,6 @@
       "PlaceCode": "21",
       "Position" : ["216", "227"],
       "ButtonPos": ["160","160"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "4",
@@ -436,7 +414,6 @@
       "PlaceCode": "22",
       "Position" : ["700", "445"],
       "ButtonPos": ["678","486"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "20",
@@ -453,7 +430,6 @@
       "PlaceCode": "23",
       "Position" : ["547", "450"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "22",
@@ -479,7 +455,6 @@
       "PlaceCode": "24",
       "Position" : ["915", "436"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "26",
@@ -500,7 +475,6 @@
       "PlaceCode": "25",
       "Position" : ["1046", "475"],
       "ButtonPos": ["965","382"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "26",
@@ -513,7 +487,6 @@
       "PlaceCode": "26",
       "Position" : ["919", "481"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "25",
@@ -535,7 +508,6 @@
       "PlaceCode": "27",
       "Position" : ["905", "249"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "29",
@@ -561,7 +533,6 @@
       "PlaceCode": "28",
       "Position" : ["901", "169"],
       "ButtonPos": ["774","215"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "27",
@@ -575,7 +546,6 @@
       "PlaceCode": "29",
       "Position" : ["731", "252"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "27",
@@ -588,7 +558,6 @@
       "PlaceCode": "30",
       "Position" : ["923", "586"],
       "ButtonPos": ["986","586"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "31",
@@ -610,7 +579,6 @@
       "PlaceCode": "31",
       "Position" : ["725", "594"],
       "ButtonPos": ["678","557"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "32",
@@ -628,7 +596,6 @@
       "PlaceCode": "32",
       "Position" : ["553", "597"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "41",
@@ -654,7 +621,6 @@
       "PlaceCode": "33",
       "Position" : ["443", "602"],
       "ButtonPos": ["385","551"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "32",
@@ -671,7 +637,6 @@
       "PlaceCode": "34",
       "Position" : ["323", "601"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "33",
@@ -696,7 +661,6 @@
       "PlaceCode": "35",
       "Position" : ["230", "606"],
       "ButtonPos": ["176","568"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "34",
@@ -713,7 +677,6 @@
       "PlaceCode": "36",
       "Position" : ["127", "601"],
       "ButtonPos": ["77","605"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "14",
@@ -735,7 +698,6 @@
       "PlaceCode": "37",
       "Position" : ["128", "776"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "36",
@@ -756,7 +718,6 @@
       "PlaceCode": "38",
       "Position" : ["217", "765"],
       "ButtonPos": ["174","732"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "37",
@@ -773,7 +734,6 @@
       "PlaceCode": "39",
       "Position" : ["327", "766"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "38",
@@ -799,7 +759,6 @@
       "PlaceCode": "40",
       "Position" : ["432", "767"],
       "ButtonPos": ["381","727"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "41",
@@ -817,7 +776,6 @@
       "PlaceCode": "41",
       "Position" : ["559", "770"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "42",
@@ -843,7 +801,6 @@
       "PlaceCode": "42",
       "Position" : ["700", "763"],
       "ButtonPos": ["742","713"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "41",
@@ -856,7 +813,6 @@
       "PlaceCode": "43",
       "Position" : ["135", "943"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "44",
@@ -882,7 +838,6 @@
       "PlaceCode": "44",
       "Position" : ["230", "940"],
       "ButtonPos": ["170","875"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "43",
@@ -899,7 +854,6 @@
       "PlaceCode": "45",
       "Position" : ["333", "940"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "44",
@@ -921,7 +875,6 @@
       "PlaceCode": "46",
       "Position" : ["447", "932"],
       "ButtonPos": ["385","871"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "86",
@@ -938,7 +891,6 @@
       "PlaceCode": "47",
       "Position" : ["569", "920"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         
       ]
@@ -948,7 +900,6 @@
       "PlaceCode": "48",
       "Position" : ["742", "918"],
       "ButtonPos": ["753","1015"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "86",
@@ -965,7 +916,6 @@
       "PlaceCode": "49",
       "Position" : ["935", "912"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "50",
@@ -991,7 +941,6 @@
       "PlaceCode": "50",
       "Position" : ["929", "812"],
       "ButtonPos": ["977","767"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "30",
@@ -1009,7 +958,6 @@
       "PlaceCode": "51",
       "Position" : ["1409", "897"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "52",
@@ -1022,7 +970,6 @@
       "PlaceCode": "52",
       "Position" : ["1230", "900"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "51",
@@ -1044,7 +991,6 @@
       "PlaceCode": "53",
       "Position" : ["920", "536"],
       "ButtonPos": ["861","490"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "26",
@@ -1062,7 +1008,6 @@
       "PlaceCode": "54",
       "Position" : ["1090", "1100"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "55",
@@ -1079,7 +1024,6 @@
       "PlaceCode": "55",
       "Position" : ["1230", "1100"],
       "ButtonPos": ["1155","1034"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "52",
@@ -1096,7 +1040,6 @@
       "PlaceCode": "56",
       "Position" : ["1000", "1100"],
       "ButtonPos": ["996","1230"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "54",
@@ -1113,7 +1056,6 @@
       "PlaceCode": "57",
       "Position" : ["572", "1111"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "60",
@@ -1143,7 +1085,6 @@
       "PlaceCode": "58",
       "Position" : ["757", "1111"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "57",
@@ -1169,7 +1110,6 @@
       "PlaceCode": "59",
       "Position" : ["942", "1037"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "85",
@@ -1191,7 +1131,6 @@
       "PlaceCode": "60",
       "Position" : ["569", "1054"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "86",
@@ -1213,7 +1152,6 @@
       "PlaceCode": "61",
       "Position" : ["757", "1040"],
       "ButtonPos": ["655","1060"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "58",
@@ -1235,7 +1173,6 @@
       "PlaceCode": "62",
       "Position" : ["566", "1030"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "86",
@@ -1257,7 +1194,6 @@
       "PlaceCode": "63",
       "Position" : ["141", "1052"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "43",
@@ -1278,7 +1214,6 @@
       "PlaceCode": "64",
       "Position" : ["341", "1124"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "70",
@@ -1303,7 +1238,6 @@
       "PlaceCode": "65",
       "Position" : ["341", "1069"],
       "ButtonPos": ["341","1069"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "62",
@@ -1325,7 +1259,6 @@
       "PlaceCode": "66",
       "Position" : ["141", "1052"],
       "ButtonPos": ["93","1110"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "43",
@@ -1343,7 +1276,6 @@
       "PlaceCode": "67",
       "Position" : ["141", "1128"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "66",
@@ -1369,7 +1301,6 @@
       "PlaceCode": "68",
       "Position" : ["150", "1304"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "73",
@@ -1391,7 +1322,6 @@
       "PlaceCode": "69",
       "Position" : ["582", "1276"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "72",
@@ -1417,7 +1347,6 @@
       "PlaceCode": "70",
       "Position" : ["344", "1276"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "69",
@@ -1443,7 +1372,6 @@
       "PlaceCode": "71",
       "Position" : ["800", "1276"],
       "ButtonPos": ["856","1280"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "79",
@@ -1464,7 +1392,6 @@
       "PlaceCode": "72",
       "Position" : ["587", "1439"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "75",
@@ -1495,7 +1422,6 @@
       "PlaceCode": "73",
       "Position" : ["157", "1449"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "76",
@@ -1517,7 +1443,6 @@
       "PlaceCode": "74",
       "Position" : ["355", "1444"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "72",
@@ -1543,7 +1468,6 @@
       "PlaceCode": "75",
       "Position" : ["586", "1524"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "72",
@@ -1564,7 +1488,6 @@
       "PlaceCode": "76",
       "Position" : ["159", "1524"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "84",
@@ -1585,7 +1508,6 @@
       "PlaceCode": "77",
       "Position" : ["282", "1499"],
       "ButtonPos": ["230","1560"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "74",
@@ -1607,7 +1529,6 @@
       "PlaceCode": "78",
       "Position" : ["586", "1524"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "72",
@@ -1628,7 +1549,6 @@
       "PlaceCode": "79",
       "Position" : ["765", "1440"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "72",
@@ -1653,7 +1573,6 @@
       "PlaceCode": "80",
       "Position" : ["778", "1513"],
       "ButtonPos": ["700","1516"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "78",
@@ -1671,7 +1590,6 @@
       "PlaceCode": "81",
       "Position" : ["925", "1431"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "79",
@@ -1689,7 +1607,6 @@
       "PlaceCode": "82",
       "Position" : ["590", "1620"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "78",
@@ -1711,7 +1628,6 @@
       "PlaceCode": "83",
       "Position" : ["465", "1620"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "82",
@@ -1729,7 +1645,6 @@
       "PlaceCode": "84",
       "Position" : ["164", "1633"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "83",
@@ -1747,7 +1662,6 @@
       "PlaceCode": "85",
       "Position" : ["941", "1105"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "56",
@@ -1772,7 +1686,6 @@
       "PlaceCode": "86",
       "Position" : ["567", "926"],
       "ButtonPos": ["-1","-1"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "41",
@@ -1801,7 +1714,6 @@
       "PlaceCode": "87",
       "Position" : ["1089", "1426"],
       "ButtonPos": ["1300","1500"],
-      "Type": "1",
       "NearestNeighbor" : [
         {
           "PlaceCode": "81",
