@@ -28,7 +28,7 @@ MapView::MapView(QWidget*parent):QGraphicsView(parent){
         setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏竖条
         setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
         setResizeAnchor(QGraphicsView::AnchorUnderMouse);
-        setDragMode(QGraphicsView::ScrollHandDrag);
+        setDragMode(QGraphicsView::ScrollHandDrag);//拖拽模式
 };
 
 void MapView::wheelEvent(QWheelEvent *event)
@@ -151,12 +151,10 @@ void MapWin::on_pushButton_3_clicked()
     }
     while(this->itemhead.size())
     {
-        //delete itemhead.top();
         itemhead.pop();
     }
     while(this->itemtail.size())
     {
-        //delete itemtail.top();
         itemtail.pop();
     }
 }
@@ -296,7 +294,10 @@ void MapWin::on_search_clicked()
     tim->puase();
     //this->end.clear();
     bool ok=0;//判断是否存在非网课
-    if(ui->comboBox->currentText()==QString("搜索课程"))
+    if(ui->search_line->text()==QString(""))
+    {
+        QMessageBox::warning(this, tr("失败！"), tr("无有效输入"), QMessageBox::Ok);
+    }else if(ui->comboBox->currentText()==QString("搜索课程"))
     {
         QString s=ui->search_line->text();
         log_action(QString("搜索课程：%1并进行导航").arg(s));

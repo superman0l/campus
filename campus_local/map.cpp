@@ -44,7 +44,6 @@ map::map(const QString fname)
             nxt=edge.at(i).toObject().value("PlaceCode").toString().toInt();
             len=edge.at(i).toObject().value("Distance").toString().toInt();
             this->mp[id].push_back({nxt,len});
-            //this->mp[nxt].push_back({id,len});
         }
     }
 
