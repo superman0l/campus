@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     perm->setMinimumSize(QSize(0, 30));
     perm->setFont(QFont("楷体", 14));
     perm->setFrameStyle(QFrame::Box|QFrame::Sunken);
-    perm->setText(tr("<a href=\"https://live.bilibili.com/22603245?live_from=85001&spm_id_from=444.41.live_users.item.click\">项目源码地址<a>"));
+    perm->setText(tr("<a href=\"https://github.com/superman0l/campus\">项目源码地址<a>"));
     perm->setTextFormat(Qt::RichText);
     perm->setOpenExternalLinks(true);
     ui->statusbar->addPermanentWidget(perm);

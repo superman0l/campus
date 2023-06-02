@@ -26,7 +26,7 @@ void setcourse::receivesetData(QModelIndex indx, QString show)
     ui->title->setText(ttle);
     int st,ed;
     qstr_to_time(strlist[3],st,ed);
-    ui->startweek->setCurrentIndex(st-8);
+    ui->starttime->setCurrentIndex(st-8);
     ui->period->setCurrentIndex(ed-st);
 }
 

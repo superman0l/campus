@@ -197,9 +197,9 @@ const std::vector<tmpaffair>User::query_tmpaffair(const QString&s,map*school)con
     }
     return result;
 }
-const std::vector<QString> User::query_time(int day) const
+const std::vector<QString> User::query_time(int qday) const
 {
-    bool flag[7][16];
+    bool flag[7][16]={0};
     std::vector<QString> result;
 
     QJsonObject rootObject1;//存储学生信息的json
@@ -223,16 +223,16 @@ const std::vector<QString> User::query_time(int day) const
         for(int j=sttime;j<=edtime;j++)flag[day-1][j-6]=1;
     }
     for(int i=0;i<7;i++){
-        if(day!=0)i=day-1;
+        if(qday!=0)i=qday-1;
         for(int j=0;j<16;j++){
-            if(!flag[i][j]){
+            if(flag[i][j]==0){
                 QString day=num_to_qstr(i+1);
                 QString time=QString::number(j+6)+":00-"+QString::number(j+7)+":00";
                 QString data=day+"  "+time;
                 result.push_back(data);
             }
         }
-        if(day!=0)break;
+        if(qday!=0)break;
     }
     return result;
 }
@@ -240,7 +240,7 @@ const std::vector<QString> User::query_time(int day) const
 const std::vector<std::vector<tmpaffair> > User::query_tmpaffair() const
 {
     std::vector<std::vector<tmpaffair>> result;
-    std::vector<std::vector<tmpaffair>> count(15);
+    std::vector<std::vector<tmpaffair>> count(16);
     QJsonObject user;
     open_json(QString::number(id)+".json",user);
     QJsonArray affairs=user["affairs"].toArray();
@@ -248,9 +248,9 @@ const std::vector<std::vector<tmpaffair> > User::query_tmpaffair() const
         QJsonObject affair=affairs.at(i).toObject();
         int time=affair["time"].toInt();
         tmpaffair ta=jsontotmpaffair(affair);
-        count[time-8].push_back(ta);
+        count[time-6].push_back(ta);
     }
-    for(int i=0;i<15;i++){
+    for(int i=0;i<16;i++){
         if(count[i].size()>1){
             result.push_back(count[i]);
         }
@@ -377,6 +377,10 @@ bool User::add_tmpaffair(const tmpaffair &t) const
     QJsonArray act=user["activities"].toArray();
     for(int i=0;i<act.size();i++){
         QJsonObject a=act.at(i).toObject();
+        if(a["day"].toInt()==0 && a["time"].toInt()==t.start){
+            qDebug()<<"time error:tempaffair conflicts activity.";
+            return false;
+        }
         if(a["day"].toInt()==t.day&&a["time"].toInt()==t.start){
             qDebug()<<"time error:tempaffair conflicts activity.";
             return false;

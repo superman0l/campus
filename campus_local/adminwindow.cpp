@@ -42,6 +42,7 @@ AdminWindow::~AdminWindow()
 
 void AdminWindow::load(int weeknum)
 {
+    model->clear();
     QJsonArray courseArray=load_student_class_coursearray(QString::number(admin_online->get_id()));
     QString name,teacher,classroom;
     int starttime,period,day;
